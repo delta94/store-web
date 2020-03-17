@@ -1,9 +1,9 @@
 import React, { ReactNode } from 'react';
+import styled from 'styled-components';
 import { BACKGROUND_LIGHT } from '~/styles/colors';
 
 import Footer from './components/Footer';
 import Header from './components/Header';
-import styled from 'styled-components';
 
 interface Props {
   className?: string;
