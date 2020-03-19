@@ -1,8 +1,6 @@
 export let qu: any;
 if (typeof window !== 'undefined') qu = (window as any).qu;
 
-export const isLauncher = process.env.REACT_APP_MODE === 'electron';
-
 export const getUrlParameter = (name: string) => {
   if (typeof window === 'undefined') return null;
 
