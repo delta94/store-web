@@ -8,7 +8,7 @@ WORKDIR /data
 
 COPY ./package.json ./yarn.lock ./
 
-RUN yarn install
+RUN yarn install --network-concurrency 1
 
 COPY ./ ./
 
