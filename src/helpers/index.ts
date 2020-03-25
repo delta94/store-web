@@ -1,8 +1,10 @@
+export const isServerSide = typeof window === 'undefined';
+
 export let qu: any;
-if (typeof window !== 'undefined') qu = (window as any).qu;
+if (!isServerSide) qu = (window as any).qu;
 
 export const getUrlParameter = (name: string) => {
-  if (typeof window === 'undefined') return null;
+  if (isServerSide) return null;
 
   const search = window.location.search;
   const regex = new RegExp(`[\\?&]${name}=([^&#]*)`);
@@ -26,4 +28,14 @@ export const humanStorageSize = (bytes: number) => {
 export const megabytesToSize = (megabytes: number) => {
   const bytes = megabytes * 1024 * 1024;
   return humanStorageSize(bytes);
+};
+
+export const getCookie = (name: string) => {
+  if (isServerSide) return;
+  
+  const matches = document.cookie.match(new RegExp(
+    // eslint-disable-next-line
+    `(?:^|; )${name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1')}=([^;]*)`
+  ));
+  return matches ? decodeURIComponent(matches[1]) : undefined;
 };
