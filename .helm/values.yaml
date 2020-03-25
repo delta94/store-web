@@ -1,0 +1,42 @@
+enableCertIssuer: true
+
+ingress:
+  hostname: store.tst.qilin.super.com
+  hostnamePrefix: ""
+  pathBackend:
+   - /
+
+certIssuer:
+  email: admin@protocol.one
+
+backend:
+  name: nodejs
+  role: backend
+  image: p1hub/store-web
+  imageTag: latest
+  port: 3000
+  replicas: 1
+  service:
+    type: ClusterIP
+    port: 8080
+    protocol: TCP
+#  env:
+
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #  cpu: 100m
+  #  memory: 128Mi
+  # requests:
+  #  cpu: 100m
+  #  memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
