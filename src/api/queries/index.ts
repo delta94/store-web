@@ -11,3 +11,41 @@ query User {
   }
 }
 `;
+
+export const ALL_GAMES = gql`
+query AllGames{
+  store {
+    games {
+      id
+    }
+  }
+}
+`;
+
+export const CARD_GAME = gql`
+query CardGame($id: ID!) {
+  store {
+    game(id: $id) {
+      __typename
+      id
+      title
+      description
+      slug
+      media {
+        screenshots {
+          url
+        }
+      }
+      pricing {
+        price
+        discount
+        currency
+      }
+      genres{
+        name
+      }
+      platforms
+    }
+  }
+}
+`;
