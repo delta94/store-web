@@ -1,6 +1,6 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { Skeleton, GameCard, COLORS } from 'store-library';
+import { Skeleton, GameCard } from 'store-library';
 import { CARD_GAME } from '~/api/queries';
 import styled from 'styled-components';
 
@@ -8,8 +8,6 @@ interface Props {
   id: string;
   type: string;
 }
-
-const { GRAY_900, GRAY_700 } = COLORS;
 
 const GameCardContainer = (props: Props) => {
   const { id, type } = props;
@@ -19,7 +17,7 @@ const GameCardContainer = (props: Props) => {
 
   const game = data?.store?.game;
 
-  if (loading || !game) return <StyledSkeleton from={GRAY_900} to={GRAY_700} />;
+  if (loading || !game) return <StyledSkeleton />;
 
   if (error) {
     console.log(error);
