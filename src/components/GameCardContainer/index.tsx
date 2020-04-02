@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
 import { Skeleton, GameCard, COLORS } from 'store-library';
 import { CARD_GAME } from '~/api/queries';
+import styled from 'styled-components';
 
 interface Props {
   id: string;
@@ -18,7 +19,7 @@ const GameCardContainer = (props: Props) => {
 
   const game = data?.store?.game;
 
-  if (loading || !game) return <Skeleton from={GRAY_900} to={GRAY_700} />;
+  if (loading || !game) return <StyledSkeleton from={GRAY_900} to={GRAY_700} />;
 
   if (error) {
     console.log(error);
@@ -51,3 +52,8 @@ const areEqual = (prev: Props, next: Props) => (
 );
 
 export default React.memo(GameCardContainer, areEqual);
+
+const StyledSkeleton = styled(Skeleton)`
+  width: 100%;
+  height: 100%;
+`;
