@@ -56,6 +56,10 @@ const AppWithContext = (props: any) => {
 export default MyApp;
 
 const GlobalStyle = createGlobalStyle`
+  html {
+    font-family: Arial, sans-serif;
+  }
+  
   html, body {
     border: 0;
     min-height: 100%;
@@ -65,6 +69,5 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
   }
 `;
