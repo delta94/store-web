@@ -8,11 +8,11 @@ WORKDIR /data
 
 COPY ./package.json ./yarn.lock ./
 
-RUN yarn install --network-concurrency 1
+RUN npm install --network-concurrency 1
 
 COPY ./ ./
 
-RUN yarn build
+RUN npm run build
 
 EXPOSE 3000
 
