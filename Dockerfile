@@ -8,7 +8,7 @@ WORKDIR /data
 
 COPY ./package.json ./yarn.lock ./
 
-RUN npm install --network-concurrency 1
+RUN npm install
 
 COPY ./ ./
 
