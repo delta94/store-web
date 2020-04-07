@@ -12,7 +12,7 @@ RUN yarn install --network-concurrency 1
 
 COPY ./ ./
 
-RUN yarn build
+RUN yarn build --verbose
 
 EXPOSE 3000
 
