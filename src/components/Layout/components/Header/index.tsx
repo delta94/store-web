@@ -1,9 +1,10 @@
-import React, { useContext, useState } from 'react';
-
+import React from 'react';
 import styled from 'styled-components';
-import { BACKGROUND_LOGO, BACKGROUND_DARK } from '~/styles/colors';
-import { UserContext } from '~/contexts';
-import MenuButton from './components/MenuButton';
+import { COLORS, Caps11Bold, LogoIcon, screenSize } from 'store-library';
+import Link from 'next/link';
+
+import MobileMenu from './components/MobileMenu';
+import DesktopMenu from './components/DesktopMenu';
 
 interface Props {
   className?: string;
@@ -11,24 +12,19 @@ interface Props {
 
 const Header = (props: Props) => {
   const { className } = props;
-  const { 
-    user,
-    loading,
-    onLogin,
-    onLogout,
-  } = useContext(UserContext);
-  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <Wrapper className={className}>
-      <LogoContainer>
-        <LogoText>Рамблер/ ИГРЫ</LogoText>
-      </LogoContainer>
-      <MenuButton isOpen={isOpen} toggleOpen={() => setIsOpen(!isOpen)} />
-      {!user
-        ? <span onClick={onLogin}>Log In</span>
-        : <span onClick={onLogout}>Log Out</span>
-      }
+      <Link  href="/">
+        <LogoContainer>
+          <LogoIcon />
+          <LogoText>Qilin</LogoText>
+        </LogoContainer>
+      </Link>
+      <Menu>
+        <MobileMenu />
+        <DesktopMenu />
+      </Menu>
     </Wrapper>
   );
 };
@@ -37,20 +33,30 @@ export default Header;
 
 const Wrapper = styled.header`
   display: flex;
+  min-height: 48px;
   align-items: center;
   justify-content: space-between;
-  padding: 35px 45px;
-  background-color: ${BACKGROUND_DARK};
-  color: white;
+  padding: 0 16px 0 12px;
+  background-color: ${COLORS.GRAY_700};
+  color: ${COLORS.WHITE};
+
+  @media only screen and (min-width: ${screenSize.TABLET}) {
+    padding: 0 20px;
+  }
 `;
 
 const LogoContainer = styled.div`
-  display: inline-block;
-  padding: 15px;
-  background-color: ${BACKGROUND_LOGO};
-  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 `;
 
-const LogoText = styled.span`
-  color: white;
+const LogoText = styled(Caps11Bold)`
+  color: ${COLORS.WHITE};
+  margin-left: 5px;
+`;
+
+const Menu = styled.nav`
+  margin-left: 40px;
+  flex-grow: 1;
 `;
