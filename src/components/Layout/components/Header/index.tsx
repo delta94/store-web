@@ -1,8 +1,9 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 
 import styled from 'styled-components';
 import { BACKGROUND_LOGO, BACKGROUND_DARK } from '~/styles/colors';
 import { UserContext } from '~/contexts';
+import MenuButton from './components/MenuButton';
 
 interface Props {
   className?: string;
@@ -16,12 +17,14 @@ const Header = (props: Props) => {
     onLogin,
     onLogout,
   } = useContext(UserContext);
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <Wrapper className={className}>
       <LogoContainer>
         <LogoText>Рамблер/ ИГРЫ</LogoText>
       </LogoContainer>
+      <MenuButton isOpen={isOpen} toggleOpen={() => setIsOpen(!isOpen)} />
       {!user
         ? <span onClick={onLogin}>Log In</span>
         : <span onClick={onLogout}>Log Out</span>
