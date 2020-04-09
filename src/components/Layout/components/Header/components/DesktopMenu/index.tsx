@@ -1,17 +1,20 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { screenSize, Caps11 } from 'store-library';
 import { UserContext } from '~/contexts';
-import menuLinks from '../../menuLinks';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+
+import menuLinks from '../../menuLinks';
+import LocaleSwitcher from '../LocaleSwitcher';
 interface Props {
   className?: string;
-
 }
 
 const DesktopMenu = (props: Props) => {
   const { className } = props;
+  const { t } = useTranslation();
   const { 
     user,
     loading,
@@ -26,7 +29,7 @@ const DesktopMenu = (props: Props) => {
         {menuLinks.map(({ title, href }) => (
           <Link key={title} href={href}>
             <StyledLink active={pathname === href}>
-              <Caps11>{title}</Caps11>
+              <Caps11>{t(`routes.${title}`)}</Caps11>
             </StyledLink>
           </Link>
         ))}
@@ -37,6 +40,7 @@ const DesktopMenu = (props: Props) => {
           : <span onClick={onLogout}>Log Out</span>
         }
       </Side>
+      <LocaleSwitcher />
     </Wrapper>
   );
 };

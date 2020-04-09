@@ -3,12 +3,10 @@
 export default {
   translation: {
     routes: {
-      home: 'Home',
-      shop: 'Shop',
-      library: 'Library',
-      personal: 'Personal',
-      account: 'Account',
-      'auth-web-form-example': 'Auth web form example',
+      store: 'store',
+      news: 'news',
+      community: 'community',
+      support: 'support',
     },
     titles: {
       auth: 'Authorization',

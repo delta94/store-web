@@ -3,12 +3,10 @@
 export default {
   translation: {
     routes: {
-      home: 'Главная',
-      shop: 'Магазин',
-      library: 'Библиотека',
-      personal: 'Основное',
-      account: 'Аккаунт',
-      'auth-web-form-example': 'Auth web form example',
+      store: 'магазин',
+      news: 'новости',
+      community: 'сообщество',
+      support: 'поддержка',
     },
     titles: {
       auth: 'Авторизация',
