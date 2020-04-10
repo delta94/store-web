@@ -56,9 +56,7 @@ const Wrapper = styled.div`
 `;
 
 const StyledButton = styled(Button)`
-  border-radius: 4px !important;
-  margin-right: 20px;
-  cursor: pointer;
+  margin: 0 20px;
 `;
 
 const UserMenu = styled.div<{ isOpen: boolean }>`

@@ -7,6 +7,7 @@ export default {
       news: 'новости',
       community: 'сообщество',
       support: 'поддержка',
+      download: 'скачать лаунчер',
     },
     titles: {
       auth: 'Авторизация',

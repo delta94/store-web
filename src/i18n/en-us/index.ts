@@ -7,6 +7,7 @@ export default {
       news: 'news',
       community: 'community',
       support: 'support',
+      download: 'download launcher',
     },
     titles: {
       auth: 'Authorization',

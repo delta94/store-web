@@ -34,7 +34,7 @@ const LocaleSwitcher = (props: Props) => {
     >
       <ActiveLang>
         {displayedLang}
-        <StyledIcon isOpen={isOpen} />  
+        <StyledIcon open={isOpen} />  
       </ActiveLang>
       <Languages isOpen={isOpen}>
         {languages.map(({ title, value }, i) => (
@@ -89,7 +89,7 @@ const Language = styled(Caps11)<{ active: boolean }>`
   }
 `;
 
-const StyledIcon = styled(ArrowDownIcon)<{ isOpen: boolean }>`
+const StyledIcon = styled(ArrowDownIcon)<{ open: boolean }>`
   transition: transform .3s ease-in-out;
   margin: 4px;
   ${({ isOpen }) => isOpen && 'transform: rotateX(180deg);'}

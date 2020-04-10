@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { screenSize, Caps11, Button } from 'store-library';
+import { screenSize, Caps11, COLORS, DownloadIcon } from 'store-library';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -29,6 +29,12 @@ const DesktopMenu = (props: Props) => {
         ))}
       </Links>
       <Side>
+        <Link href="/download">
+          <DownloadLink>
+            <DownloadIcon />
+            {t('routes.download')}
+          </DownloadLink>
+        </Link>
         <UserButton />
         <LocaleSwitcher />
       </Side>
@@ -68,5 +74,18 @@ const StyledLink = styled.a<{ active?: boolean }>`
   line-height: 16px;
   letter-spacing: 0.1em;
   font-weight: ${({ active }) => active ? 'bold' : 'normal'};
+  color: ${({ active }) => active ? COLORS.WHITE : COLORS.GRAY_100};
   cursor: pointer;
+`;
+
+const DownloadLink = styled(StyledLink)`
+  margin-right: 0;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  color: ${COLORS.WHITE};
+
+  svg {
+    margin-right: 4px;
+  }
 `;
