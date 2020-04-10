@@ -1,13 +1,13 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { screenSize, Caps11 } from 'store-library';
-import { UserContext } from '~/contexts';
+import { screenSize, Caps11, Button } from 'store-library';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import menuLinks from '../../menuLinks';
 import LocaleSwitcher from '../LocaleSwitcher';
+import UserButton from '../UserButton';
 interface Props {
   className?: string;
 }
@@ -15,12 +15,6 @@ interface Props {
 const DesktopMenu = (props: Props) => {
   const { className } = props;
   const { t } = useTranslation();
-  const { 
-    user,
-    loading,
-    onLogin,
-    onLogout,
-  } = useContext(UserContext);
   const { pathname } = useRouter();
 
   return (
@@ -35,12 +29,9 @@ const DesktopMenu = (props: Props) => {
         ))}
       </Links>
       <Side>
-        {!user
-          ? <span onClick={onLogin}>Log In</span>
-          : <span onClick={onLogout}>Log Out</span>
-        }
+        <UserButton />
+        <LocaleSwitcher />
       </Side>
-      <LocaleSwitcher />
     </Wrapper>
   );
 };
@@ -67,6 +58,7 @@ const Links = styled.ul`
 
 const Side = styled.div`
   display: flex;
+  align-items: center;
 `;
 
 const StyledLink = styled.a<{ active?: boolean }>`

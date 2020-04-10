@@ -71,12 +71,12 @@ const ActiveLang = styled(Caps11)`
 const Languages = styled.div<{ isOpen: boolean }>`
   position: absolute;
   top: calc(100% + 10px);
-  right: 10px;
+  right: 50%;
   padding: 8px;
   background-color: ${COLORS.GRAY_800};
   border-radius: 6px;
-  opacity: ${({ isOpen }) => isOpen ? 1 : 0};
-  transition: opacity .3s ease-in-out;
+  display: ${({ isOpen }) => isOpen ? 'block' : 'none'};
+  transition: all .3s ease-in-out;
 `;
 
 const Language = styled(Caps11)<{ active: boolean }>`
