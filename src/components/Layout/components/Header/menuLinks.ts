@@ -5,14 +5,14 @@ export default [
   },
   {
     title: 'news',
-    href: '/news',
+    href: '/',
   },
   {
     title: 'community',
-    href: '/community',
+    href: '/',
   },
   {
     title: 'support',
-    href: '/support',
+    href: '/',
   },
 ];
