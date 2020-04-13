@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 import React from 'react';
 import styled from 'styled-components';
-import { Grid, Container } from 'store-library';
+import { Grid, Container, GameCard } from 'store-library';
 import { useQuery } from '@apollo/react-hooks';
 import { ALL_GAMES } from '~/api/queries';
 import GameCardContainer from '~/components/GameCardContainer';
+import mockGame from '~/mocks/game';
 
 interface Props {
   className?: string;
@@ -14,22 +16,29 @@ const cardTypes = ['xs', 's', 'm', 'l', 'xl'];
 const Home = (props: Props) => {
   const { className } = props;
   const { data } = useQuery(ALL_GAMES);
-  const games: any[] = data?.store?.games?.slice(0, 18) || [];
+  const games: any[] = data?.store?.games?.slice(0, 18) || Array(18).fill(mockGame);
 
   return (
     <Wrapper className={className}>
       <Container>
         {/* Тест для GameCardContainer */}
         <Grid.Row gap="12px">
-          {games.map(({ id }, index) => (
+          {games.map((game, index) => (
             <Grid.Col 
-              key={id}
+              key={game.id + index}
               xs={index < 4 ? 12 : 6}
-              sm={index < 4 ? 12 : index < 12 ? 3 : 12}
+              sm={index < 4 ? 12 : index < 8 ? 3 : index < 12 ? 6 : 12}
               lg={index < 4 ? 6 : undefined}
             >
               <GameCardWrapper type={cardTypes[Math.floor((index / 4) % cardTypes.length)]}>
-                <GameCardContainer id={id} type={cardTypes[Math.floor((index / 4) % cardTypes.length)]} />
+                <GameCardContainer id={game.id} type={cardTypes[Math.floor((index / 4) % cardTypes.length)]} />
+                {/* <GameCard 
+                  game={game}
+                  onBuyNow={() => {}}
+                  onCardClick={() => {}}
+                  onWishList={() => {}}
+                  type={cardTypes[Math.floor((index / 4) % cardTypes.length)]} 
+                /> */}
               </GameCardWrapper>
             </Grid.Col>
           ))}
