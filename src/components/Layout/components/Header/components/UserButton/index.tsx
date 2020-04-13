@@ -8,6 +8,8 @@ interface Props {
   className?: string;
 }
 
+const { WHITE, GRAY_800 } = COLORS;
+
 const UserButton = (props: Props) => {
   const { className } = props;
   const { t } = useTranslation();
@@ -49,7 +51,7 @@ const Wrapper = styled.div`
   position: relative;
   display: flex;
   align-items: center;
-  color: ${COLORS.WHITE};
+  color: ${WHITE};
   outline: none;
   cursor: pointer;
   margin-right: 20px;
@@ -65,7 +67,7 @@ const UserMenu = styled.div<{ isOpen: boolean }>`
   right: 0px;
   display: ${({ isOpen }) => isOpen ? 'block' : 'none'};
   padding: 16px;
-  background-color: ${COLORS.GRAY_800};
+  background-color: ${GRAY_800};
   border-radius: 6px;
   transition: all .3s ease-in-out;
   z-index: 10;

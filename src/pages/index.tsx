@@ -48,11 +48,6 @@ const Wrapper = styled.div`
   color: white;
 `;
 
-// const StyledColor = styled.div<{ name: string }>`
-//   height: 20px;
-//   background-color: ${({ name }) => COLORS[name]};
-// `;
-
 const GameCardWrapper = styled.div<{ type?: string }>`
   height: ${({ type }) => {
     if (type === 'xs') return 'unset';

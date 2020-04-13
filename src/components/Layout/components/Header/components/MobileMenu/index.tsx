@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
 import { screenSize } from 'store-library';
+import { UserContext } from '~/contexts';
 
 import MenuButton from '../MenuButton';
-import { UserContext } from '~/contexts';
 
 interface Props {
   className?: string;

@@ -8,6 +8,8 @@ interface Props {
   className?: string;
 }
 
+const { GRAY_100, GRAY_800, WHITE } = COLORS;
+
 const LocaleSwitcher = (props: Props) => {
   const { className } = props;
   const { i18n } = useTranslation();
@@ -58,7 +60,7 @@ export default React.memo(LocaleSwitcher, areEqual);
 
 const Wrapper = styled.div`
   position: relative;
-  color: ${COLORS.GRAY_100};
+  color: ${GRAY_100};
   outline: none;
   cursor: pointer;
 `;
@@ -73,7 +75,7 @@ const Languages = styled.div<{ isOpen: boolean }>`
   top: calc(100% + 10px);
   right: 50%;
   padding: 8px;
-  background-color: ${COLORS.GRAY_800};
+  background-color: ${GRAY_800};
   border-radius: 6px;
   display: ${({ isOpen }) => isOpen ? 'block' : 'none'};
   transition: all .3s ease-in-out;
@@ -81,7 +83,7 @@ const Languages = styled.div<{ isOpen: boolean }>`
 
 const Language = styled(Caps11)<{ active: boolean }>`
   display: block;
-  color: ${({ active }) => active ? COLORS.WHITE : 'inherit'};
+  color: ${({ active }) => active ? WHITE : 'inherit'};
   margin-bottom: 4px;
 
   &:last-child {

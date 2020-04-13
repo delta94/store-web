@@ -8,9 +8,12 @@ import { useRouter } from 'next/router';
 import menuLinks from '../../menuLinks';
 import LocaleSwitcher from '../LocaleSwitcher';
 import UserButton from '../UserButton';
+
 interface Props {
   className?: string;
 }
+
+const { WHITE, GRAY_100 } = COLORS;
 
 const DesktopMenu = (props: Props) => {
   const { className } = props;
@@ -28,7 +31,7 @@ const DesktopMenu = (props: Props) => {
           </Link>
         ))}
       </Links>
-      <Side>
+      <OtherMenu>
         <Link href="/download">
           <DownloadLink>
             <DownloadIcon />
@@ -37,7 +40,7 @@ const DesktopMenu = (props: Props) => {
         </Link>
         <UserButton />
         <LocaleSwitcher />
-      </Side>
+      </OtherMenu>
     </Wrapper>
   );
 };
@@ -62,7 +65,7 @@ const Links = styled.ul`
   list-style-type: none;
 `; 
 
-const Side = styled.div`
+const OtherMenu = styled.div`
   display: flex;
   align-items: center;
 `;
@@ -74,7 +77,7 @@ const StyledLink = styled.a<{ active?: boolean }>`
   line-height: 16px;
   letter-spacing: 0.1em;
   font-weight: ${({ active }) => active ? 'bold' : 'normal'};
-  color: ${({ active }) => active ? COLORS.WHITE : COLORS.GRAY_100};
+  color: ${({ active }) => active ? WHITE : GRAY_100};
   cursor: pointer;
 `;
 
@@ -83,7 +86,7 @@ const DownloadLink = styled(StyledLink)`
   font-weight: bold;
   display: flex;
   align-items: center;
-  color: ${COLORS.WHITE};
+  color: ${WHITE};
 
   svg {
     margin-right: 4px;

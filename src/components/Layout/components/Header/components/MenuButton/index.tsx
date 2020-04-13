@@ -8,6 +8,8 @@ interface Props {
   toggleOpen: () => void;
 }
 
+const { WHITE } = COLORS;
+
 const MenuButton = (props: Props) => {
   const { className, isOpen, toggleOpen } = props;
 
@@ -28,7 +30,7 @@ const Line = styled.div`
   width: 16px;
   height: 1.5px;
   margin-bottom: 4.5px;
-  background: ${COLORS.WHITE};
+  background: ${WHITE};
   border-radius: 1px;
   transition: all .3s ease-in-out;
 
@@ -52,7 +54,7 @@ const Line = styled.div`
       bottom: 0;
       left: 0;
       right: 0;
-      background: ${COLORS.WHITE};
+      background: ${WHITE};
       border-radius: 1px;
       transition: all .3s ease-in-out;
     }

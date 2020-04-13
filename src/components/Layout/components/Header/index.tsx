@@ -10,6 +10,8 @@ interface Props {
   className?: string;
 }
 
+const { WHITE, GRAY_700 } = COLORS;
+
 const Header = (props: Props) => {
   const { className } = props;
 
@@ -37,8 +39,8 @@ const Wrapper = styled.header`
   align-items: center;
   justify-content: space-between;
   padding: 0 16px 0 12px;
-  background-color: ${COLORS.GRAY_700};
-  color: ${COLORS.WHITE};
+  background-color: ${GRAY_700};
+  color: ${WHITE};
 
   @media only screen and (min-width: ${screenSize.TABLET}) {
     padding: 0 20px;
@@ -52,7 +54,7 @@ const LogoContainer = styled.div`
 `;
 
 const LogoText = styled(Caps11Bold)`
-  color: ${COLORS.WHITE};
+  color: ${WHITE};
   margin-left: 5px;
 `;
 
