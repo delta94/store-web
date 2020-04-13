@@ -13,18 +13,15 @@ const { GRAY_100, GRAY_800, WHITE } = COLORS;
 const LocaleSwitcher = (props: Props) => {
   const { className } = props;
   const { i18n } = useTranslation();
-  const [activeLang, setActiveLang] = useState(languages.find(({ value }) => {
-    return value === i18n.language;
-  }) || languages[0]);
+  const [activeLang, setActiveLang] = useState(i18n.language);
   const [isOpen, setIsOpen] = useState(false);
-  const displayedLang = activeLang.value.slice(0, 2);
+  const displayedLang = activeLang.slice(0, 2);
   const toggleOpen = () => setIsOpen(!isOpen);
   const handleBlur = () => setIsOpen(false);
 
-  const handleChangeLocale = (index: number) => () => {
-    const newLang = languages[index];
-    setActiveLang(newLang);
-    i18n.changeLanguage(newLang.value);
+  const handleChangeLocale = (value: string) => () => {
+    setActiveLang(value);
+    i18n.changeLanguage(value);
   };
 
   return (
@@ -39,12 +36,11 @@ const LocaleSwitcher = (props: Props) => {
         <StyledIcon open={isOpen} />  
       </ActiveLang>
       <Languages isOpen={isOpen}>
-        {languages.map(({ title, value }, i) => (
+        {Object.entries(languages).map(([value, title]) => (
           <Language 
             key={value}
-            active={activeLang.value === value}
-            data-lang={value}
-            onClick={handleChangeLocale(i)}
+            active={activeLang === value}
+            onClick={handleChangeLocale(value)}
           >
             {title}
           </Language>
