@@ -31,7 +31,7 @@ const areEqual = (prev: Props, next: Props) => prev === next;
 export default React.memo(MobileMenu, areEqual);
 
 const Wrapper = styled.div`
-  @media only screen and (min-width: ${screenSize.WIDE_TABLET}) {
+  @media only screen and (min-width: ${screenSize.LAUNCHER}) {
     display: none;
   }
 `;

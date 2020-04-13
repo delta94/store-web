@@ -54,7 +54,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   flex-grow: 1;
 
-  @media only screen and (min-width: ${screenSize.WIDE_TABLET}) {
+  @media only screen and (min-width: ${screenSize.LAUNCHER}) {
     display: flex;
   }
 `;
