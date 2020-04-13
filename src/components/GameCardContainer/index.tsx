@@ -34,12 +34,18 @@ const GameCardContainer = (props: Props) => {
     console.log('WishList', id);
   };
 
+  const handleCardClick = () => {
+    // Later will be logic opening game page
+    console.log('Card Clicked', id);
+  };
+
   return (
     <GameCard 
       type={type}
       game={game}
       onBuyNow={handleBuyNow}
       onWishList={handleWishList}
+      onCardClick={handleCardClick}
     />
   );
 };

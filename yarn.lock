@@ -1653,7 +1653,7 @@ babel-plugin-dynamic-import-node@^2.3.0:
   dependencies:
     object.assign "^4.1.0"
 
-"babel-plugin-styled-components@>= 1":
+"babel-plugin-styled-components@>= 1", babel-plugin-styled-components@^1.10.7:
   version "1.10.7"
   resolved "https://registry.yarnpkg.com/babel-plugin-styled-components/-/babel-plugin-styled-components-1.10.7.tgz#3494e77914e9989b33cc2d7b3b29527a949d635c"
   integrity sha512-MBMHGcIA22996n9hZRf/UJLVVgkEOITuR2SvjHLb5dSTUyR4ZRGn+ngITapes36FI3WLxZHfRhkA1ffHxihOrg==
@@ -6285,9 +6285,9 @@ static-extend@^0.1.1:
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.5.0.tgz#161c7dac177659fd9811f43771fa99381478628c"
   integrity sha1-Fhx9rBd2Wf2YEfQ3cfqZOBR4Yow=
 
-"store-library@git+https://github.com/qilin/store-library.git":
+"store-library@https://github.com/qilin/store-library":
   version "0.0.1"
-  resolved "git+https://github.com/qilin/store-library.git#e379b04e0a7c8c89107d93cc30380430d4448f45"
+  resolved "https://github.com/qilin/store-library#c0aa65637950c83f43966272745dab1f36a8f113"
 
 stream-browserify@^2.0.1:
   version "2.0.2"

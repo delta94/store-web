@@ -3,12 +3,11 @@
 export default {
   translation: {
     routes: {
-      home: 'Home',
-      shop: 'Shop',
-      library: 'Library',
-      personal: 'Personal',
-      account: 'Account',
-      'auth-web-form-example': 'Auth web form example',
+      store: 'store',
+      news: 'news',
+      community: 'community',
+      support: 'support',
+      download: 'download launcher',
     },
     titles: {
       auth: 'Authorization',
@@ -25,7 +24,7 @@ export default {
       released_on: 'Released on',
       profile: 'Profile',
       logout: 'Logout',
-      login: 'Login',
+      signin: 'Sign in',
       minimal: 'Minimal',
       recommended: 'Recommended',
       cpu: 'CPU',

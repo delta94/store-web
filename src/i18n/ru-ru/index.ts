@@ -3,12 +3,11 @@
 export default {
   translation: {
     routes: {
-      home: 'Главная',
-      shop: 'Магазин',
-      library: 'Библиотека',
-      personal: 'Основное',
-      account: 'Аккаунт',
-      'auth-web-form-example': 'Auth web form example',
+      store: 'магазин',
+      news: 'новости',
+      community: 'сообщество',
+      support: 'поддержка',
+      download: 'скачать лаунчер',
     },
     titles: {
       auth: 'Авторизация',
@@ -25,7 +24,7 @@ export default {
       released_on: 'Выпущена',
       profile: 'Профиль',
       logout: 'Выйти',
-      login: 'Войти',
+      signin: 'Войти',
       minimal: 'Минимальные',
       recommended: 'Рекомендуемые',
       cpu: 'CPU',
