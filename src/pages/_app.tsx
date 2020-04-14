@@ -8,11 +8,12 @@ import { GET_USER } from '~/api/queries';
 import { logout, login } from '~/auth';
 import Layout from '~/components/Layout';
 import { UserContext } from '~/contexts';
+import 'pure-react-carousel/dist/react-carousel.es.css';
 
 class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
-    
+
     return (
       <ApolloProvider client={client}>
         <AppWithContext>
@@ -59,7 +60,7 @@ const GlobalStyle = createGlobalStyle`
   html {
     font-family: Arial, sans-serif;
   }
-  
+
   html, body {
     border: 0;
     min-height: 100%;
