@@ -19,18 +19,22 @@ const Home = (props: Props) => {
       <Container>
         {/* Тест для GameCardContainer */}
         <Grid.Row gap="12px">
-          {games.map(({ id }, index) => (
-            <Grid.Col 
-              key={id}
-              xs={index < 4 ? 12 : 6}
-              sm={index < 4 ? 12 : index < 12 ? 3 : 12}
-              lg={index < 4 ? 6 : undefined}
-            >
-              <GameCardWrapper type={cardTypes[Math.floor((index / 4) % cardTypes.length)]}>
-                <GameCardContainer id={id} type={cardTypes[Math.floor((index / 4) % cardTypes.length)]} />
-              </GameCardWrapper>
-            </Grid.Col>
-          ))}
+          {games.map(({ id }, index) => {
+            const type = cardTypes[Math.floor((index / 4) % cardTypes.length)];
+            
+            return (
+              <Grid.Col 
+                key={id}
+                xs={type !== 's' ? 12 : 6}
+                sm={type === 's' ? 3 : type === 'm' ? 6 : 12}
+                lg={type === 'xs' ? 6 : undefined}
+              >
+                <GameCardWrapper type={type}>
+                  <GameCardContainer id={id} type={type} />
+                </GameCardWrapper>
+              </Grid.Col>
+            )
+          })}
         </Grid.Row>
         
       </Container>
@@ -49,7 +53,9 @@ const Wrapper = styled.div`
 const GameCardWrapper = styled.div<{ type?: string }>`
   height: ${({ type }) => {
     if (type === 'xs') return 'unset';
+    if (type === 'm') return '320px';
     if (type === 'xl' || type === 'l') return '400px';
     return '200px';
   }};
+  margin-bottom: 12px;
 `;
