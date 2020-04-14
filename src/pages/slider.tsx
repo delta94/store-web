@@ -28,7 +28,7 @@ const MainPage = () => {
   ));
 
   const specialOffersSlides = [
-    <Row key={0} gap={16}>
+    <Row key={0} gap="16px">
       <Col md={6}>
         <GameCardWrapper type="s">
           <GameCardContainer id={gameIds[1]} type="s" />
@@ -40,7 +40,7 @@ const MainPage = () => {
         </GameCardWrapper>
       </Col>
     </Row>,
-    <Row key={1} gap={16}>
+    <Row key={1} gap="16px">
       <Col md={6}>
         <GameCardWrapper type="s">
           <GameCardContainer id={gameIds[1]} type="s" />

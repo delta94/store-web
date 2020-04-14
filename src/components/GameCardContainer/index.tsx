@@ -43,7 +43,6 @@ const GameCardContainer = (props: Props) => {
     <GameCard
       type={type}
       game={game}
-      onCardClick={() => { }}
       onBuyNow={handleBuyNow}
       onWishList={handleWishList}
       onCardClick={handleCardClick}
