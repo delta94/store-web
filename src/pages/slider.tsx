@@ -66,7 +66,7 @@ const MainPage = () => {
       <StyledSpecialOffersCarousel>
         {specialOffersSlides}
       </StyledSpecialOffersCarousel>
-      <StyledGameCarousel footer={gameFooter}>
+      <StyledGameCarousel overflow="visible" footer={gameFooter}>
         {gameScreenshots}
       </StyledGameCarousel>
     </Container>
