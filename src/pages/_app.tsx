@@ -59,6 +59,7 @@ export default MyApp;
 const GlobalStyle = createGlobalStyle`
   html {
     font-family: Arial, sans-serif;
+    overflow-x: hidden;
   }
 
   html, body {
