@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { languages } from '~/i18n';
-import { Caps11, COLORS, ArrowDownIcon } from 'store-library';
+import { Caps11, COLORS, ArrowDownIcon, LANGUAGES } from 'store-library';
 
 interface Props {
   className?: string;
@@ -36,7 +35,7 @@ const LocaleSwitcher = (props: Props) => {
         <StyledIcon open={isOpen} />  
       </ActiveLang>
       <Languages isOpen={isOpen}>
-        {Object.entries(languages).map(([value, title]) => (
+        {Object.entries(LANGUAGES).map(([value, title]) => (
           <Language 
             key={value}
             active={activeLang === value}
