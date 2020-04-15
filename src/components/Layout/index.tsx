@@ -37,4 +37,5 @@ const Main = styled.main`
   flex-grow: 1;
   background-color: ${GRAY_900};
   padding-top: 48px;
+  overflow: hidden;
 `;
