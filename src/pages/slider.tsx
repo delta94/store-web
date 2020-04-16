@@ -1,19 +1,17 @@
 import React from 'react';
 import { useQuery } from '@apollo/react-hooks';
-import { Carousel, Container, Grid, COLORS } from 'store-library';
-import { ALL_GAMES, CARD_GAME } from '~/api/queries';
-import GameCardContainer from '~/components/GameCardContainer';
+import { Carousel, Container, Grid, COLORS, QUERIES, GameCardContainer } from 'store-library';
 import styled from 'styled-components';
 
 const { Row, Col } = Grid;
 
 const MainPage = () => {
-  const { data: gameData } = useQuery(CARD_GAME, {
+  const { data: gameData } = useQuery(QUERIES.CARD_GAME, {
     variables: {
       id: '252e540f-210b-4f09-9c7c-6b079a6acf85',
     },
   });
-  const { data } = useQuery(ALL_GAMES);
+  const { data } = useQuery(QUERIES.ALL_GAMES);
   const game = gameData?.store?.game;
   const games: any[] = data?.store?.games?.slice(0, 2) || [];
 

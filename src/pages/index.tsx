@@ -1,9 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Grid, Container } from 'store-library';
+import { Grid, Container, QUERIES, GameCardContainer } from 'store-library';
 import { useQuery } from '@apollo/react-hooks';
-import { ALL_GAMES } from '~/api/queries';
-import GameCardContainer from '~/components/GameCardContainer';
 
 interface Props {
   className?: string;
@@ -13,7 +11,7 @@ const cardTypes = ['xs', 's', 'm', 'l', 'xl'];
 
 const Home = (props: Props) => {
   const { className } = props;
-  const { data } = useQuery(ALL_GAMES);
+  const { data } = useQuery(QUERIES.ALL_GAMES);
   const games: any[] = data?.store?.games?.slice(0, 18) || [];
 
   return (
