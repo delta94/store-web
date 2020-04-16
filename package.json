@@ -23,7 +23,7 @@
     "react": "16.13.0",
     "react-dom": "16.13.0",
     "react-i18next": "^11.3.3",
-    "store-library": "https://github.com/qilin/store-library#changes/move-i18n-api-gamecardcontainer",
+    "store-library": "https://github.com/qilin/store-library#v0.0.3",
     "styled-components": "^5.0.1"
   },
   "devDependencies": {
