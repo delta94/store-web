@@ -23,7 +23,7 @@
     "react": "16.13.0",
     "react-dom": "16.13.0",
     "react-i18next": "^11.3.3",
-    "store-library": "https://github.com/qilin/store-library",
+    "store-library": "https://github.com/qilin/store-library#83b93307c575ecd4ef2d447ffe43d3583ed0dd3b",
     "styled-components": "^5.0.1"
   },
   "devDependencies": {
