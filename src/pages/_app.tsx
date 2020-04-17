@@ -17,7 +17,7 @@ class MyApp extends App {
 
     return (
       <ApolloProvider client={apolloClient}>
-        <I18nextProvider i18n={i18n}>
+        <I18nextProvider i18n={i18n as any}>
           <AppWithContext>
             <Layout>
               <Component {...pageProps} />
