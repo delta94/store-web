@@ -47,7 +47,7 @@ export default [
   },
   {
     id: 'games-on-sale',
-    cardType: 'm',
+    cardType: 's',
     title: 'Games on sale',
     component: 'GamesOnSale',
     visibleItems: {
