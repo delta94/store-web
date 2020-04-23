@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Container, PageModule, screenSize } from 'store-library';
+import { Container, PageModule } from 'store-library';
 
 import modules from '~/mainPageModules';
 
@@ -15,15 +15,9 @@ const Home = (props: Props) => {
     <Wrapper className={className}>
       <Container>
         <Content>
-          {modules.map(({ component, ...rest }) => {
-            const Component = PageModule[component];
-            return (
-              <React.Fragment key={component}>
-                <Component key={component} {...rest} />
-                <Devider />
-              </React.Fragment>
-            );
-          })}
+          {modules.map(item => (
+            <PageModule {...item} key={item.id} />
+          ))}
         </Content>
       </Container>
     </Wrapper>
@@ -40,16 +34,4 @@ const Wrapper = styled.div`
 
 const Content = styled.div`
   padding-top: 30px;
-`;
-
-export const Devider = styled.div`
-  height: 40px;
-
-  @media only screen and (min-width: ${screenSize.TABLET}) {
-    height: 48px;
-  }
-
-  @media only screen and (min-width: ${screenSize.LAPTOP}) {
-    height: 50px;
-  }
 `;

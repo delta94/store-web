@@ -2,7 +2,10 @@ export default [
   {
     id: 'main-offers',
     cardType: 'xl',
-    component: 'MainOffers',
+    component: 'Carousel',
+    col: {
+      xs: 12,
+    },
     items: [
       '252e540f-210b-4f09-9c7c-6b079a6acf85',
       '1049f844-4806-464f-821b-7209691c3a18',
@@ -17,7 +20,11 @@ export default [
   {
     id: 'sub-offers',
     cardType: 's',
-    component: 'SubOffers',
+    component: 'Grid',
+    col: {
+      xs: 6,
+      sm: 3,
+    },
     items: [
       '252e540f-210b-4f09-9c7c-6b079a6acf85',
       '1049f844-4806-464f-821b-7209691c3a18',
@@ -29,10 +36,10 @@ export default [
     id: 'special-offers',
     cardType: 'm',
     title: 'Special offers',
-    component: 'SpecialOffers',
-    visibleItems: {
-      xs: 1,
-      sm: 2,
+    component: 'Carousel',
+    col: {
+      xs: 12,
+      sm: 6,
     },
     items: [
       '252e540f-210b-4f09-9c7c-6b079a6acf85',
@@ -49,10 +56,16 @@ export default [
     id: 'games-on-sale',
     cardType: 's',
     title: 'Games on sale',
-    component: 'GamesOnSale',
-    visibleItems: {
-      xs: 2,
-      sm: 5,
+    component: 'Carousel',
+    imgHeight: {
+      xs: '218px',
+      sm: '170px',
+      lg: '234px',
+      xl: '266px',
+    },
+    col: {
+      xs: 6,
+      sm: 2.4,
     },
     items: [
       'b984bdb9-7fd7-4cfb-885d-8cad7e9fe92f',
@@ -71,7 +84,11 @@ export default [
     id: 'most-popular',
     cardType: 's',
     title: 'Most popular',
-    component: 'MostPopular',
+    component: 'Grid',
+    col: {
+      xs: 6,
+      sm: 3,
+    },
     items: [
       '252e540f-210b-4f09-9c7c-6b079a6acf85',
       '1049f844-4806-464f-821b-7209691c3a18',
@@ -86,14 +103,21 @@ export default [
   {
     id: 'game',
     cardType: 'l',
-    component: 'GameCard',
+    component: 'Grid',
+    col: {
+      xs: 12,
+    },
     items: ['252e540f-210b-4f09-9c7c-6b079a6acf85'],
   },
   {
     id: 'trendings',
     cardType: 'xs',
     title: 'Trendings',
-    component: 'Trendings',
+    component: 'Grid',
+    col: {
+      xs: 12,
+      lg: 6,
+    },
     items: [
       '252e540f-210b-4f09-9c7c-6b079a6acf85',
       '1049f844-4806-464f-821b-7209691c3a18',
