@@ -11,8 +11,11 @@ Our solution is a part of Protocol One IAAS and is actively used in the Storefro
 
 ![Qilin architecture schema](qilin-schema.png)
 
-**Store UI** is an open-source digital video games multilingual storefront available via the web and launcher application. 
-Players can purchase and update games.
+**Store UI** is an open-source digital video games multilingual storefront available via the web and launcher application.
+
+## Features
+
+- Players can purchase and update games.
 
 ---
 
@@ -21,6 +24,7 @@ Players can purchase and update games.
 - [Installation](#installation)
 - [Configuration](#configuration)
 - [Usage](#usage)
+- [Contributing](#contributing)
 - [License](#license)
 
 ## Installation
@@ -34,6 +38,18 @@ TODO
 ## Usage
 
 TODO
+
+## Contributing, Feature Requests and Support
+
+If you like this project then you can put a ⭐ on it. It means a lot to us.
+
+If you have an idea of how to improve Qilin (or any of the product parts) or have general feedback, you're welcome to submit a [feature request](../../issues/new?assignees=&labels=&template=feature_request.md&title=).
+
+Chances are, you like what we have already but you may require a custom integration, a special license or something else big and specific to your needs. We're generally open to such conversations.
+
+If you have a question and can't find the answer yourself, you can [raise an issue](../../issues/new?assignees=&labels=&template=support-request.md&title=I+have+a+question+about+%3Cthis+and+that%3E+%5BSupport%5D) and describe what exactly you're trying to do. We'll do our best to reply in a meaningful time.
+
+Qilin welcomes contributions from anyone and everyone. Please refer to [our contribution guide to learn more](CONTRIBUTING.md).
 
 ## License
 
