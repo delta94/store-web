@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import styled from 'styled-components';
-import { COLORS } from 'store-library';
+import { GRAY_900 } from 'store-library';
 
 import Footer from './components/Footer';
 import Header from './components/Header';
@@ -33,5 +33,5 @@ const Wrapper = styled.div`
 
 const Main = styled.main`
   flex-grow: 1;
-  background-color: ${COLORS.GRAY_900};
+  background-color: ${GRAY_900};
 `;

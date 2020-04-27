@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { COLORS } from 'store-library';
+import { WHITE } from 'store-library';
 
 interface Props {
   className?: string;
@@ -8,16 +8,14 @@ interface Props {
   toggleOpen: () => void;
 }
 
-const { WHITE } = COLORS;
-
 const MenuButton = (props: Props) => {
   const { className, isOpen, toggleOpen } = props;
 
   return (
     <Wrapper className={className} onClick={toggleOpen} isOpen={isOpen}>
-      <Line/>
-      <Line/>
-      <Line/>
+      <Line />
+      <Line />
+      <Line />
     </Wrapper>
   );
 };
@@ -80,6 +78,6 @@ const Wrapper = styled.div<{ isOpen: boolean }>`
         }
       }
       `
-    }
+  }
   }
 `;
