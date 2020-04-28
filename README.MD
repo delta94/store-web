@@ -11,7 +11,7 @@ Our solution is a part of Protocol One IAAS and is actively used in the Storefro
 
 ![Qilin architecture schema](qilin-schema.png)
 
-**Store UI** is an open-source digital video games multilingual storefront available via the web and launcher application.
+**Store UI** is an open-source digital video games multilingual storefront available via the web and [launcher application](https://github.com/qilin/store-launcher).
 
 ## Features
 
