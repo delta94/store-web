@@ -1,6 +1,7 @@
 # Qilin Store Web
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/qilin/store-web/issues)
 [![Build Status](https://travis-ci.com/qilin/store-web.svg?branch=master)](https://travis-ci.com/qilin/store-web)
 
 Qilin is an open-source digital distribution platform for game developers and publishers. Our mission is to distribute games by minimizing the effort of contracting, sharing documentation and providing comprehensive real-time statistics.
