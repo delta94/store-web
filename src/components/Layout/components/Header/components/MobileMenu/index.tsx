@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import styled from 'styled-components';
-import { screenSize } from 'store-library';
+import { SCREEN_SIZE } from 'store-library';
 import { UserContext } from '~/contexts';
 
 import MenuButton from '../MenuButton';
@@ -12,7 +12,7 @@ interface Props {
 const MobileMenu = (props: Props) => {
   const { className } = props;
   const [isOpen, setIsOpen] = useState(false);
-  const { 
+  const {
     user,
     loading,
     onLogin,
@@ -31,7 +31,7 @@ const areEqual = (prev: Props, next: Props) => prev === next;
 export default React.memo(MobileMenu, areEqual);
 
 const Wrapper = styled.div`
-  @media only screen and (min-width: ${screenSize.LAUNCHER}) {
+  @media only screen and (min-width: ${SCREEN_SIZE.LAUNCHER}) {
     display: none;
   }
 `;

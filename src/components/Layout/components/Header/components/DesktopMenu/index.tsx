@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { screenSize, Caps11, COLORS, DownloadIcon } from 'store-library';
+import { SCREEN_SIZE, Caps11, WHITE, GRAY_100, DownloadIcon } from 'store-library';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -12,8 +12,6 @@ import UserButton from '../UserButton';
 interface Props {
   className?: string;
 }
-
-const { WHITE, GRAY_100 } = COLORS;
 
 const DesktopMenu = (props: Props) => {
   const { className } = props;
@@ -54,7 +52,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   flex-grow: 1;
 
-  @media only screen and (min-width: ${screenSize.LAUNCHER}) {
+  @media only screen and (min-width: ${SCREEN_SIZE.LAUNCHER}) {
     display: flex;
   }
 `;
@@ -63,7 +61,7 @@ const Links = styled.ul`
   display: flex;
   align-items: center;
   list-style-type: none;
-`; 
+`;
 
 const OtherMenu = styled.div`
   display: flex;

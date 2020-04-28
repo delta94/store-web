@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { COLORS, Caps11Bold, LogoIcon, screenSize } from 'store-library';
+import { WHITE, GRAY_700, Caps11Bold, LogoIcon, SCREEN_SIZE } from 'store-library';
 import Link from 'next/link';
 
 import MobileMenu from './components/MobileMenu';
@@ -10,14 +10,12 @@ interface Props {
   className?: string;
 }
 
-const { WHITE, GRAY_700 } = COLORS;
-
 const Header = (props: Props) => {
   const { className } = props;
 
   return (
     <Wrapper className={className}>
-      <Link  href="/">
+      <Link href="/">
         <LogoContainer>
           <LogoIcon />
           <LogoText>Qilin</LogoText>
@@ -42,7 +40,7 @@ const Wrapper = styled.header`
   background-color: ${GRAY_700};
   color: ${WHITE};
 
-  @media only screen and (min-width: ${screenSize.TABLET}) {
+  @media only screen and (min-width: ${SCREEN_SIZE.TABLET}) {
     padding: 0 20px;
   }
 `;

@@ -2,19 +2,17 @@ import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { UserContext } from '~/contexts';
-import { Button, COLORS, Caps10Bold } from 'store-library';
+import { Button, WHITE, GRAY_800, Caps10Bold } from 'store-library';
 
 interface Props {
   className?: string;
 }
 
-const { WHITE, GRAY_800 } = COLORS;
-
 const UserButton = (props: Props) => {
   const { className } = props;
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
-  const { 
+  const {
     user,
     loading,
     onLogin,
@@ -26,7 +24,7 @@ const UserButton = (props: Props) => {
   if (!user) return <StyledButton loading={loading} onClick={onLogin}>{t('labels.signin')}</StyledButton>;
 
   return (
-    <Wrapper 
+    <Wrapper
       className={className}
       onMouseEnter={handleOpen}
       onMouseLeave={handleClose}

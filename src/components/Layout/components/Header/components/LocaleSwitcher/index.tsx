@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { Caps11, COLORS, ArrowDownIcon, LANGUAGES } from 'store-library';
+import { Caps11, GRAY_100, GRAY_800, WHITE, ArrowDownIcon, LANGUAGES } from 'store-library';
 
 interface Props {
   className?: string;
 }
-
-const { GRAY_100, GRAY_800, WHITE } = COLORS;
 
 const LocaleSwitcher = (props: Props) => {
   const { className } = props;
@@ -24,19 +22,19 @@ const LocaleSwitcher = (props: Props) => {
   };
 
   return (
-    <Wrapper 
+    <Wrapper
       className={className}
       onClick={toggleOpen}
       onBlur={handleBlur}
-      tabIndex={1}  
+      tabIndex={1}
     >
       <ActiveLang>
         {displayedLang}
-        <StyledIcon open={isOpen} />  
+        <StyledIcon open={isOpen} />
       </ActiveLang>
       <Languages isOpen={isOpen}>
         {Object.entries(LANGUAGES).map(([value, title]) => (
-          <Language 
+          <Language
             key={value}
             active={activeLang === value}
             onClick={handleChangeLocale(value)}
@@ -76,7 +74,7 @@ const Languages = styled.div<{ isOpen: boolean }>`
   transition: all .3s ease-in-out;
 `;
 
-const Language = styled(Caps11)<{ active: boolean }>`
+const Language = styled(Caps11) <{ active: boolean }>`
   display: block;
   color: ${({ active }) => active ? WHITE : 'inherit'};
   margin-bottom: 4px;
@@ -86,8 +84,8 @@ const Language = styled(Caps11)<{ active: boolean }>`
   }
 `;
 
-const StyledIcon = styled(ArrowDownIcon)<{ open: boolean }>`
+const StyledIcon = styled(ArrowDownIcon) <{ open: boolean }>`
   transition: transform .3s ease-in-out;
   margin: 4px;
-  ${({ isOpen }) => isOpen && 'transform: rotateX(180deg);'}
+  ${({ open }) => open && 'transform: rotateX(180deg);'}
 `;
