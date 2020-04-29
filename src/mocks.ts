@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
-import { GameType } from 'store-library';
+import { GameType } from 'store-library/src/types';
+
 export const game: GameType = {
   id: '1234',
   description: `<p>После <b>Великой катастрофы</b> люди ушли жить в бункеры под землю,
@@ -74,13 +75,12 @@ export const game: GameType = {
       },
     ],
     trailers: [
-      // { url: 'https://www.youtube.com/embed/iNzk6M0Zf8A' },
+      { url: 'https://www.youtube.com/embed/iNzk6M0Zf8A' },
     ],
   },
   genres: [{ name: 'Action' }, { name: 'Platformer' }, { name: 'Single player' }],
   ranking: '17+',
   tags: [{ name: 'RPG' }, { name: 'Shooter' }],
-  developer: 'Reikon games',
   title: 'Проект восстановление',
   pricing: {
     price: 99.99,

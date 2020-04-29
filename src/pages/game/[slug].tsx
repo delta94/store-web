@@ -6,14 +6,14 @@ import { NextPageContext, NextPage } from 'next';
 import {
   AboutGame,
   Requirements,
-  QUERIES,
   apolloClient,
   GameMedia,
   Container,
-  GameType,
   Grid,
   BasicInfoBlock,
 } from 'store-library';
+import { GET_GAME } from 'store-library/src/api';
+import { GameType } from 'store-library/src/types';
 import { game as mockGame } from '~/mocks';
 
 const { Row, Col } = Grid;
@@ -56,8 +56,8 @@ Game.getInitialProps = async ({ query }: NextPageContext) => {
   let game: GameType = mockGame;
 
   try {
-    const data = await apolloClient.query({
-      query: QUERIES.GET_GAME,
+    const data: any = await apolloClient.query({
+      query: GET_GAME,
       variables: { slug },
     });
 
