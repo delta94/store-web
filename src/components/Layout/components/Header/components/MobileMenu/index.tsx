@@ -21,7 +21,7 @@ const MobileMenu = (props: Props) => {
 
   return (
     <Wrapper className={className}>
-      <MenuButton isOpen={isOpen} toggleOpen={() => setIsOpen(!isOpen)} />
+      <StyledMenuButton isOpen={isOpen} toggleOpen={() => setIsOpen(!isOpen)} />
     </Wrapper>
   );
 };
@@ -34,4 +34,8 @@ const Wrapper = styled.div`
   @media only screen and (min-width: ${SCREEN_SIZE.LAUNCHER}) {
     display: none;
   }
+`;
+
+const StyledMenuButton = styled(MenuButton)`
+  margin-left: auto;
 `;

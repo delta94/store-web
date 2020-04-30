@@ -60,6 +60,7 @@ const Line = styled.div`
 `;
 
 const Wrapper = styled.div<{ isOpen: boolean }>`
+  width: 16px;
   ${Line} {
     ${({ isOpen }) => isOpen && `
       &:first-child {
