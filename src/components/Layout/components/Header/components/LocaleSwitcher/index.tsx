@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { Caps11, GRAY_100, WHITE, LANGUAGES, Dropdown } from 'store-library';
+import { Caps11, GRAY_100, WHITE } from 'store-library/src/styles';
+import { LANGUAGES } from 'store-library/src/const';
+import { Dropdown } from 'store-library';
 import { DropdownMenuItem } from '~/styles/primitives';
 
 interface Props {
