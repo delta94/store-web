@@ -179,9 +179,9 @@ export const game: Game = {
   ],
   license: '© 2012-2019 Sony Interactive Entertainment LLC. Journey is a trademark of Sony Interactive Entertainment LLC. Developed by thatgamecompany',
   features: [
-    { name: 'Full contoller support', iconId: 'fullContollerSupport' },
-    { name: 'Cloud saving', iconId: 'cloudSaving' },
-    { name: 'Multiplayer', iconId: 'multiplayer' },
+    { name: 'Full contoller support', icon: 'fullContollerSupport' },
+    { name: 'Cloud saving', icon: 'cloudSaving' },
+    { name: 'Multiplayer', icon: 'multiplayer' },
   ],
   releaseDate: '2020-05-26T18:29:37.000Z',
 };
