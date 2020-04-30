@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
-import { GameType } from 'store-library/src/types';
+import { Game } from 'store-library/src/types';
 
-export const game: GameType = {
+export const game: Game = {
   id: '1234',
   description: `<p>После <b>Великой катастрофы</b> люди ушли жить в бункеры под землю,
       а на поверхности остались только горы мусора, сухие деревья и кусты. 

@@ -13,7 +13,7 @@ import {
   BasicInfoBlock,
 } from 'store-library';
 import { GET_GAME } from 'store-library/src/api';
-import { GameType } from 'store-library/src/types';
+import { Game as GameType } from 'store-library/src/types';
 import { game as mockGame } from '~/mocks';
 
 const { Row, Col } = Grid;
