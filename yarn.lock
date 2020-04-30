@@ -6692,7 +6692,7 @@ static-extend@^0.1.1:
 
 "store-library@https://github.com/qilin/store-library#changes/web-desktop-menu":
   version "1.0.1"
-  resolved "https://github.com/qilin/store-library#f068fb202d752fb366efaeff5b143865795a073d"
+  resolved "https://github.com/qilin/store-library#7fd2dcf167ccee419ec0c5e9d72127b1f33d83cb"
 
 stream-browserify@^2.0.1:
   version "2.0.2"
