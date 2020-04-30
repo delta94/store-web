@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { SCREEN_SIZE, Caps11, WHITE, GRAY_100, DownloadIcon } from 'store-library';
+import { SCREEN_SIZE } from 'store-library/src/const';
+import { Caps11, WHITE, GRAY_100, buttonStyles, PURPLE_500 } from 'store-library/src/styles';
+import { DownloadIcon } from 'store-library/src/icons';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -30,14 +32,14 @@ const DesktopMenu = (props: Props) => {
         ))}
       </Links>
       <OtherMenu>
+        <LocaleSwitcher />
+        <StyledUserButton />
         <Link href="/download">
-          <DownloadLink>
+          <DownloadLink color={PURPLE_500}>
             <DownloadIcon />
             {t('routes.download')}
           </DownloadLink>
         </Link>
-        <UserButton />
-        <LocaleSwitcher />
       </OtherMenu>
     </Wrapper>
   );
@@ -68,6 +70,10 @@ const OtherMenu = styled.div`
   align-items: center;
 `;
 
+const StyledUserButton = styled(UserButton)`
+  margin: 0 24px;
+`;
+
 const StyledLink = styled.a<{ active?: boolean }>`
   margin-right: 14px;
   text-transform: uppercase;
@@ -79,12 +85,10 @@ const StyledLink = styled.a<{ active?: boolean }>`
   cursor: pointer;
 `;
 
-const DownloadLink = styled(StyledLink)`
-  margin-right: 0;
-  font-weight: bold;
+const DownloadLink = styled.a`
+  ${buttonStyles}
   display: flex;
   align-items: center;
-  color: ${WHITE};
 
   svg {
     margin-right: 4px;

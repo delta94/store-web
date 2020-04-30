@@ -33,7 +33,7 @@ class MyApp extends App {
 const AppWithContext = (props: any) => {
   const { children } = props;
   const { loading, data } = useQuery(GET_USER, { fetchPolicy: 'network-only' });
-  const user = (data && data.auth) || null;
+  const user = data?.auth?.profile || null;
 
   const onLogout = () => {
     logout();
