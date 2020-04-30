@@ -1,8 +1,12 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
+import { useRouter } from 'next/router';
 import { UserContext } from '~/contexts';
-import { Button, WHITE, GRAY_500, Caps10Bold, GRAY_700, UserIcon, Avatar, Dropdown } from 'store-library';
+import { Button, Avatar, Dropdown } from 'store-library';
+import { Caps10Bold, GRAY_700, WHITE } from 'store-library/src/styles';
+import { UserIcon, LogoutIcon, SettingsIcon } from 'store-library/src/icons';
+import { DropdownMenuItem } from '~/styles/primitives';
 
 interface Props {
   className?: string;
@@ -11,17 +15,15 @@ interface Props {
 const UserButton = (props: Props) => {
   const { className } = props;
   const { t } = useTranslation();
+  const router = useRouter();
   const {
-    // user,
+    user,
     loading,
     onLogin,
     onLogout,
   } = useContext(UserContext);
 
-  const user = {
-    email: 'john@mail.com',
-    photoURL: undefined,
-  };
+  const handleClickSettings = () => router.push('/settings'); 
 
   if (!user) return (
     <StyledButton
@@ -50,9 +52,22 @@ const UserButton = (props: Props) => {
   return (
     <Wrapper className={className}>
       <Dropdown title={usetTitle}>
-        <Caps10Bold onClick={onLogout}>
-          {t('labels.logout')}
-        </Caps10Bold>
+        <DropdownMenuItem onClick={handleClickSettings}>
+          <IconWrapper>
+            <SettingsIcon />
+          </IconWrapper>
+          <Caps10Bold >
+            {t('labels.settings')}
+          </Caps10Bold>
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={onLogout}>
+          <IconWrapper>
+            <LogoutIcon />
+          </IconWrapper>
+          <Caps10Bold >
+            {t('labels.logout')}
+          </Caps10Bold>
+        </DropdownMenuItem>
       </Dropdown>
     </Wrapper>
   );
@@ -82,6 +97,11 @@ const IconWrapper = styled.div`
 
   svg {
     margin: auto;
+  }
+
+  path {
+    fill: ${WHITE};
+    fill-opacity: 1;
   }
 `;
 

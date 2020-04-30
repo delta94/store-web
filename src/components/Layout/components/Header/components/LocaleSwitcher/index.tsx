@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { Caps11, GRAY_100, WHITE, LANGUAGES, Dropdown } from 'store-library';
+import { DropdownMenuItem } from '~/styles/primitives';
 
 interface Props {
   className?: string;
@@ -41,7 +42,9 @@ const LocaleSwitcher = (props: Props) => {
             active={activeLang === value}
             onClick={handleChangeLocale(value)}
           >
-            {title}
+            <DropdownMenuItem>
+              {title}
+            </DropdownMenuItem>
           </Language>
         ))}
       </Dropdown>
@@ -67,11 +70,5 @@ const ActiveLang = styled(Caps11)`
 `;
 
 const Language = styled(Caps11) <{ active: boolean }>`
-  display: block;
   color: ${({ active }) => active ? WHITE : 'inherit'};
-  margin-bottom: 4px;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
 `;
