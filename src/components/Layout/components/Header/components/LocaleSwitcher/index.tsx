@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { Caps11, GRAY_100, GRAY_800, WHITE, ArrowDownIcon, LANGUAGES } from 'store-library';
+import { Caps11, GRAY_100, WHITE, LANGUAGES, Dropdown } from 'store-library';
 
 interface Props {
   className?: string;
@@ -21,6 +21,12 @@ const LocaleSwitcher = (props: Props) => {
     i18n.changeLanguage(value);
   };
 
+  const langTitle = (
+    <ActiveLang>
+      {displayedLang}
+    </ActiveLang>
+  );
+
   return (
     <Wrapper
       className={className}
@@ -28,11 +34,7 @@ const LocaleSwitcher = (props: Props) => {
       onBlur={handleBlur}
       tabIndex={1}
     >
-      <ActiveLang>
-        {displayedLang}
-        <StyledIcon open={isOpen} />
-      </ActiveLang>
-      <Languages isOpen={isOpen}>
+      <Dropdown title={langTitle}>
         {Object.entries(LANGUAGES).map(([value, title]) => (
           <Language
             key={value}
@@ -42,12 +44,12 @@ const LocaleSwitcher = (props: Props) => {
             {title}
           </Language>
         ))}
-      </Languages>
+      </Dropdown>
     </Wrapper>
   );
 };
 
-const areEqual = (prev: Props, next: Props) => prev === next;
+const areEqual = () => true;
 
 export default React.memo(LocaleSwitcher, areEqual);
 
@@ -56,22 +58,12 @@ const Wrapper = styled.div`
   color: ${GRAY_100};
   outline: none;
   cursor: pointer;
+  z-index: 5;
 `;
 
 const ActiveLang = styled(Caps11)`
   display: flex;
   align-items: center;
-`;
-
-const Languages = styled.div<{ isOpen: boolean }>`
-  position: absolute;
-  top: calc(100% + 10px);
-  right: 50%;
-  padding: 8px;
-  background-color: ${GRAY_800};
-  border-radius: 6px;
-  display: ${({ isOpen }) => isOpen ? 'block' : 'none'};
-  transition: all .3s ease-in-out;
 `;
 
 const Language = styled(Caps11) <{ active: boolean }>`
@@ -82,10 +74,4 @@ const Language = styled(Caps11) <{ active: boolean }>`
   &:last-child {
     margin-bottom: 0;
   }
-`;
-
-const StyledIcon = styled(ArrowDownIcon) <{ open: boolean }>`
-  transition: transform .3s ease-in-out;
-  margin: 4px;
-  ${({ open }) => open && 'transform: rotateX(180deg);'}
 `;
