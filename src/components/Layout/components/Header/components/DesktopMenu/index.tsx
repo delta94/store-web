@@ -59,10 +59,9 @@ const Wrapper = styled.div`
   }
 `;
 
-const Links = styled.ul`
+const Links = styled.nav`
   display: flex;
   align-items: center;
-  list-style-type: none;
 `;
 
 const OtherMenu = styled.div`
