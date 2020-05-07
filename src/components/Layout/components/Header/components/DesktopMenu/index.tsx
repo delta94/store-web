@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
 import { SCREEN_SIZE } from 'store-library/src/const';
 import { Caps11, WHITE, GRAY_100, buttonStyles, PURPLE_500 } from 'store-library/src/styles';
 import { DownloadIcon } from 'store-library/src/icons';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
 
 import menuLinks from '../../menuLinks';
 import LocaleSwitcher from '../LocaleSwitcher';
@@ -54,7 +54,7 @@ const Wrapper = styled.div`
   justify-content: space-between;
   flex-grow: 1;
 
-  @media only screen and (min-width: ${SCREEN_SIZE.LAUNCHER}) {
+  @media only screen and (min-width: ${SCREEN_SIZE.LAPTOP}) {
     display: flex;
   }
 `;
