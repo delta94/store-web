@@ -36,15 +36,3 @@ export const MenuItem = styled(H3) <{ active?: boolean }>`
     fill: ${({ active }) => active ? WHITE : GRAY_100}
   }
 `;
-
-export const MenuWrapper = styled.div`
-  background-color: ${GRAY_700};
-  padding: 20px 12px;
-  width: 100%;
-  height: 100%;
-
-  @media only screen and (min-width: ${SCREEN_SIZE.TABLET}) {
-    max-width: 320px;
-    margin-left: auto;
-  }
-`;

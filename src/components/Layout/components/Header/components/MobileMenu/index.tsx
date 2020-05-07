@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Modal } from 'store-library';
 import { SCREEN_SIZE } from 'store-library/src/const';
@@ -10,13 +10,14 @@ import LanguagesMenu from './components/LanguagesMenu';
 
 interface Props {
   className?: string;
+  toggleMenu: () => void;
+  isOpen: boolean;
 }
 
 type Screen = 'MAIN' | 'LANGUAGES';
 
 const MobileMenu = (props: Props) => {
-  const { className } = props;
-  const [isOpen, setIsOpen] = useState(false);
+  const { className, isOpen, toggleMenu } = props;
   const [activeScreen, setActiveScreen] = useState<Screen>('MAIN');
 
   const handleOpenLanguagesMenu = () => {
@@ -27,16 +28,15 @@ const MobileMenu = (props: Props) => {
     setActiveScreen('MAIN');
   };
 
-  const toggleOpen = () => {
-    setIsOpen(!isOpen);
-    setActiveScreen('MAIN');
-  };
+  useEffect(() => {
+    handleOpenMainMenu();
+  }, [isOpen]);
 
   return (
     <Wrapper className={className}>
-      <StyledMenuButton isOpen={isOpen} toggleOpen={toggleOpen} />
+      <StyledMenuButton isOpen={isOpen} toggleOpen={toggleMenu} />
       <Modal>
-        <ModalWrapper isOpen={isOpen}>
+        <ModalWrapper isOpen={isOpen} onClick={toggleMenu}>
           {activeScreen === 'MAIN' && <MainMenu onOpenLanguagesMenu={handleOpenLanguagesMenu} />}
           {activeScreen === 'LANGUAGES' && <LanguagesMenu onBack={handleOpenMainMenu} />}
         </ModalWrapper>
@@ -60,7 +60,7 @@ const ModalWrapper = styled.div<{ isOpen: boolean }>`
   bottom: 0;
   left: ${({ isOpen }) => isOpen ? 0 : '100%'};;
   right: 0;
-  position: absolute;
+  position: fixed;
   z-index: 10;
   overflow: hidden;
   background-color: ${WHITE_01};

@@ -5,7 +5,8 @@ import { PURPLE_500, GRAY_100 } from 'store-library/src/styles';
 import { LANGUAGES } from 'store-library/src/const';
 import { ArrowLeftIcon } from 'store-library/src/icons';
 
-import { MenuWrapper, MenuItem, IconWrapper, Divider } from '../../styles';
+import { MenuItem, IconWrapper, Divider } from '../../styles';
+import MenuWrapper from '../MenuWrapper';
 
 interface Props {
   className?: string;
@@ -23,7 +24,7 @@ const LanguagesMenu = (props: Props) => {
   };
 
   return (
-    <MenuWrapper className={className}>
+    <MenuWrapper className={className} >
       <MenuItem onClick={onBack}>
         <IconWrapper>
           <ArrowLeftIcon />

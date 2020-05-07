@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, SyntheticEvent } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
@@ -8,8 +8,9 @@ import { LanguagesIcon, SettingsIcon, LogoutIcon } from 'store-library/src/icons
 import { LANGUAGES } from 'store-library/src/const';
 import { UserContext } from '~/contexts';
 
-import { MenuWrapper, MenuItem, Divider, IconWrapper } from '../../styles';
+import { MenuItem, Divider, IconWrapper } from '../../styles';
 import menuLinks from '../../../../menuLinks';
+import MenuWrapper from '../MenuWrapper';
 
 interface Props {
   className?: string;
