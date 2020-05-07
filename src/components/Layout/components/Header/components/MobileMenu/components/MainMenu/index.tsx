@@ -35,8 +35,8 @@ const MainMenu = (props: Props) => {
     <MenuWrapper className={className}>
       {isUserSignedIn && (
         <>
-          <StyledAvatar src={user?.photoURL} />
           <MenuItem>
+            <StyledAvatar width="24px" height="24px" src={user?.photoURL} />
             {user?.email || 'anonymous'}
           </MenuItem>
           <Divider />
