@@ -30,7 +30,7 @@ const Wrapper = styled.div`
   background-color: ${GRAY_700};
   padding: 20px 12px;
   width: 100%;
-  height: 100%;
+  min-height: 100%;
 
   @media only screen and (min-width: ${SCREEN_SIZE.TABLET}) {
     max-width: 320px;

@@ -62,7 +62,7 @@ const ModalWrapper = styled.div<{ isOpen: boolean }>`
   right: 0;
   position: fixed;
   z-index: 10;
-  overflow: hidden;
+  overflow-y: auto;
   background-color: ${WHITE_01};
   transition: all .3s ease-in-out;
 `;
