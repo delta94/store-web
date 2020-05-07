@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { WHITE, GRAY_700, Caps11Bold, LogoIcon, SCREEN_SIZE } from 'store-library';
 import Link from 'next/link';
@@ -12,9 +12,14 @@ interface Props {
 
 const Header = (props: Props) => {
   const { className } = props;
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const toggleMobileMenu = () => {
+    setMobileMenuOpen(!isMobileMenuOpen);
+  };
 
   return (
-    <Wrapper className={className}>
+    <Wrapper fixed={isMobileMenuOpen} className={className}>
       <Link href="/">
         <LogoContainer>
           <LogoIcon />
@@ -22,7 +27,7 @@ const Header = (props: Props) => {
         </LogoContainer>
       </Link>
       <Menu>
-        <MobileMenu />
+        <MobileMenu isOpen={isMobileMenuOpen} toggleMenu={toggleMobileMenu} />
         <DesktopMenu />
       </Menu>
     </Wrapper>
@@ -31,14 +36,17 @@ const Header = (props: Props) => {
 
 export default Header;
 
-const Wrapper = styled.header`
+const Wrapper = styled.header<{ fixed: boolean }>`
+  position: ${({ fixed }) => fixed ? 'fixed' : 'absolute'};
   display: flex;
-  min-height: 48px;
+  height: 48px;
+  width: 100%;
   align-items: center;
   justify-content: space-between;
   padding: 0 16px 0 12px;
   background-color: ${GRAY_700};
   color: ${WHITE};
+  z-index: 10;
 
   @media only screen and (min-width: ${SCREEN_SIZE.TABLET}) {
     padding: 0 20px;

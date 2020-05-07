@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { WHITE } from 'store-library';
+import { WHITE, GRAY_100 } from 'store-library/src/styles';
 
 interface Props {
   className?: string;
@@ -60,8 +60,13 @@ const Line = styled.div`
 `;
 
 const Wrapper = styled.div<{ isOpen: boolean }>`
+  width: 16px;
+  cursor: pointer;
+
   ${Line} {
     ${({ isOpen }) => isOpen && `
+      background: ${GRAY_100};
+      
       &:first-child {
         transform: translateY(0.6px) translateX(2.75px) rotate(45deg);
       }
@@ -75,9 +80,9 @@ const Wrapper = styled.div<{ isOpen: boolean }>`
 
         &:after {
           transform: rotate(90deg);
+          background: ${GRAY_100};
         }
       }
-      `
-  }
+    `}
   }
 `;
