@@ -31,7 +31,6 @@ const LanguagesMenu = (props: Props) => {
         </IconWrapper>
         {t('labels.back')}
       </MenuItem>
-
       <Divider />
       {Object.entries(LANGUAGES).map(([value, title]) => (
         <MenuItem
