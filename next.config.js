@@ -5,6 +5,7 @@ const withTM = require('next-transpile-modules')(['store-library']);
 module.exports = withTM({
   env: {
     API_URL: 'https://store.tst.qilin.super.com/api',
+    STORE_NAME: 'Qilin',
   },
   webpack: (config, options) => {
     config.resolve.alias['~'] = path.resolve(__dirname, 'src');
