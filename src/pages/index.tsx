@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Container, PageModule } from 'store-library';
-
-import modules from '~/mainPageModules';
+import homePageModules from 'store-library/src/mocks/homePageModules';
 
 interface Props {
   className?: string;
@@ -15,8 +14,13 @@ const Home = (props: Props) => {
     <Wrapper className={className}>
       <Container>
         <Content>
-          {modules.map(item => (
-            <PageModule {...item} key={item.id} />
+          {homePageModules.map(({ type, items, title }, i) => (
+            <PageModule
+              key={`${i}_${type}`}
+              type={type}
+              items={items}
+              title={title}
+            />
           ))}
         </Content>
       </Container>
