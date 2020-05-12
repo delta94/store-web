@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Container, PageModule } from 'store-library';
-import homePageModules from 'store-library/src/mock/homePageModules';
+import homePageModules from 'store-library/src/mocks/homePageModules';
 
 interface Props {
   className?: string;
