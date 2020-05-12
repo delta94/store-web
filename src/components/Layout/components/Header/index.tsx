@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { WHITE, GRAY_700, Caps11Bold, LogoIcon, SCREEN_SIZE } from 'store-library';
-import Link from 'next/link';
+import { WHITE, GRAY_700 } from 'store-library/src/styles';
+import { SCREEN_SIZE } from 'store-library/src/const';
 
 import MobileMenu from './components/MobileMenu';
 import DesktopMenu from './components/DesktopMenu';
+import Logo from '../Logo';
 
 interface Props {
   className?: string;
@@ -20,12 +21,7 @@ const Header = (props: Props) => {
 
   return (
     <Wrapper fixed={isMobileMenuOpen} className={className}>
-      <Link href="/">
-        <LogoContainer>
-          <LogoIcon />
-          <LogoText>Qilin</LogoText>
-        </LogoContainer>
-      </Link>
+      <Logo />
       <Menu>
         <MobileMenu isOpen={isMobileMenuOpen} toggleMenu={toggleMobileMenu} />
         <DesktopMenu />
@@ -51,17 +47,6 @@ const Wrapper = styled.header<{ fixed: boolean }>`
   @media only screen and (min-width: ${SCREEN_SIZE.TABLET}) {
     padding: 0 20px;
   }
-`;
-
-const LogoContainer = styled.div`
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-`;
-
-const LogoText = styled(Caps11Bold)`
-  color: ${WHITE};
-  margin-left: 5px;
 `;
 
 const Menu = styled.nav`
