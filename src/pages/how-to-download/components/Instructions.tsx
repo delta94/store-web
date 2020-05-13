@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { GRAY_800, H2, H2Bold, WHITE } from 'store-library';
+import { GRAY_800, H2Bold, WHITE } from 'store-library';
 import { InstallLauncherIcon, CreateAccountIcon, StartUseLauncherIcon } from 'store-library/src/icons';
-import { UserContext } from '~/contexts';
 
 interface Props {
   className?: string;
+  authorized: boolean;
 }
 
 const allInstructions = [
@@ -22,21 +22,19 @@ const allInstructions = [
     title: 'start_use_launcher',
     Icon: StartUseLauncherIcon,
   },
-]
+];
 
 const Insructions = (props: Props) => {
-  const { className } = props;
+  const { className, authorized } = props;
   const { t } = useTranslation();
-  const { user } = useContext(UserContext);
-  const isUserSigned = !!user;
-  const instructions = !isUserSigned
+  const instructions = !authorized
     ? allInstructions
     : allInstructions.filter(({ title }) => title !== 'create_account');
 
   return (
     <Wrapper className={className}>
       {instructions.map(({ title, Icon }) => (
-        <Instruction>
+        <Instruction key={title}>
           <IconWrapper>
             <Icon />
           </IconWrapper>

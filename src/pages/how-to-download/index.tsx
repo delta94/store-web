@@ -1,10 +1,13 @@
-import React, { useContext, useRef, useEffect } from 'react';
+import React, { useContext, useRef, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { DownloadLauncherWrapper, DownloadLauncherContent } from '~/styles/primitives';
-import { WHITE, H3, GRAY_100, PURPLE_500 } from 'store-library';
+import { WHITE, H3, GRAY_100, PURPLE_500 } from 'store-library/src/styles';
 import { parse } from 'bowser';
+import { UserContext } from '~/contexts';
+
 import Instructions from './components/Instructions';
+import DownloadHint from './components/DownloadHint';
 
 interface Props {
   className?: string;
@@ -16,11 +19,16 @@ const HowToDownload = (props: Props) => {
   const { className } = props;
   const { t } = useTranslation();
   const linkRef = useRef<HTMLAnchorElement>(null);
+  const { user } = useContext(UserContext);
+  const isUserSigned = !!user;
+  const [meta, setMeta] = useState<any>({})
+  const { browser, os } = meta;
 
+  
   useEffect(() => {
-    const meta = parse(window.navigator.userAgent);
-    console.log(meta);
-    // linkRef?.current?.click();
+    const newMeta = parse(window.navigator.userAgent);
+    setMeta(newMeta);
+    linkRef?.current?.click();
   }, [])
 
   return (
@@ -36,8 +44,9 @@ const HowToDownload = (props: Props) => {
           {' '}
           {t('labels.downloading_not_started')}
         </NotStarted>
-        <Instructions />
+        <Instructions authorized={isUserSigned} />
       </DownloadLauncherContent>
+      <DownloadHint browser={browser?.name} />
     </DownloadLauncherWrapper>
   );
 };
