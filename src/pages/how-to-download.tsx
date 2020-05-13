@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
+import { DownloadLauncherWrapper } from '~/styles/primitives';
 
 interface Props {
   className?: string;
@@ -11,9 +12,9 @@ const HowToDownload = (props: Props) => {
   const { t } = useTranslation();
 
   return (
-    <Wrapper className={className}>
+    <DownloadLauncherWrapper className={className}>
         
-    </Wrapper>
+    </DownloadLauncherWrapper>
   );
 };
 

@@ -9,3 +9,12 @@ export const DropdownMenuItem = styled.div`
     background-color: ${WHITE_01};
   }
 `;
+
+export const DownloadLauncherWrapper = styled.div`
+  position: relative;
+  background-image: url('/images/download-background-full.png');
+  background-size: cover;
+  background-position: top center;
+  min-height: 720px;
+  height: 100%;
+`;
