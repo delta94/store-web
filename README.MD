@@ -19,7 +19,7 @@ Qilin is an open-source digital distribution platform for game developers and pu
 ## Features
 
 - Players can purchase and update games.
-- Add games to your Wishlist.
+- Add games to user's Wishlist.
 - Download the desktop application for Windows and MacOS.
 - Authorization through [Qilin Store Auth Web](https://github.com/qilin/store-auth-web).
 - View and edit a user profile.
