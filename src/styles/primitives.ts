@@ -18,3 +18,14 @@ export const DownloadLauncherWrapper = styled.div`
   min-height: 720px;
   height: 100%;
 `;
+
+export const DownloadLauncherContent = styled.div`
+position: absolute;
+top: 50%;
+left: 0;
+right: 0;
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 0 16px;
+`;

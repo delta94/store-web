@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
 import { WHITE, PURPLE_500, buttonStyles, Caption13, WHITE_05, H3, GRAY_100 } from 'store-library/src/styles';
 import { DownloadFullIcon } from 'store-library/src/icons';
-import { DownloadLauncherWrapper } from '~/styles/primitives';
+import { DownloadLauncherWrapper, DownloadLauncherContent } from '~/styles/primitives';
 
 interface Props {
   className?: string;
@@ -17,7 +17,7 @@ const Download = (props: Props) => {
 
   return (
     <DownloadLauncherWrapper className={className}>
-      <Content>
+      <DownloadLauncherContent>
         <Title>
           {t('titles.play_with_launcher', { storeName })}
         </Title>
@@ -33,7 +33,7 @@ const Download = (props: Props) => {
         <Available>
           {t('labels.downloads_available')}
         </Available>
-      </Content>
+      </DownloadLauncherContent>
     </DownloadLauncherWrapper>
   );
 };
@@ -41,17 +41,6 @@ const Download = (props: Props) => {
 const areEqual = (prev: Props, next: Props) => prev === next;
 
 export default React.memo(Download, areEqual);
-
-const Content = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 16px;
-`;
 
 const Title = styled.h1`
   font-weight: bold;
