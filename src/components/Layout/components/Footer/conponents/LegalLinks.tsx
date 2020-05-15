@@ -7,7 +7,7 @@ import { SCREEN_SIZE } from 'store-library/src/const';
 
 import legalLinks from '../legalLinks';
 
-const { LAUNCHER } = SCREEN_SIZE;
+const { TABLET, LAUNCHER, LAPTOP } = SCREEN_SIZE;
 
 interface Props {
   className?: string;
@@ -38,11 +38,9 @@ const Wrapper = styled.nav`
   display: flex;
   flex-direction: column;
   align-items: center;
-  order: 2;
 
-  @media only screen and (min-width: ${LAUNCHER}) {
+  @media only screen and (min-width: ${TABLET}) {
     flex-direction: row;
-    order: 0;
   }
 `;
 
@@ -61,12 +59,20 @@ const StyledLink = styled.a`
     opacity: .6;
   }
 
-  @media only screen and (min-width: ${LAUNCHER}) {
+  @media only screen and (min-width: ${TABLET}) {
     margin-bottom: 0;
-    margin-right: 32px;
+    margin-right: 24px;
 
     :last-child {
       margin-right: 0;
     }
+  }
+
+  @media only screen and (min-width: ${LAUNCHER}) {
+    margin-right: 32px;
+  }
+
+  @media only screen and (min-width: ${LAPTOP}) {
+    margin-right: 40px;
   }
 `;

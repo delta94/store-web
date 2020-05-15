@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { Caption12, WHITE_05 } from 'store-library/src/styles';
+import { SCREEN_SIZE } from 'store-library';
 
 interface Props {
   className?: string;
@@ -30,12 +31,13 @@ const areEqual = (prev: Props, next: Props) => prev === next;
 export default React.memo(Copyright, areEqual);
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  text-align: center;
 `;
 
 const Text = styled(Caption12)`
   color: ${WHITE_05};
-  text-align: center;
+
+  @media only screen and (min-width: ${SCREEN_SIZE.TABLET}) {
+    display: block;
+  }
 `;
