@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { GRAY_800, H2Bold, WHITE } from 'store-library';
+import { GRAY_800, H2Bold, WHITE } from 'store-library/src/styles';
 import { InstallLauncherIcon, CreateAccountIcon, StartUseLauncherIcon } from 'store-library/src/icons';
 
 interface Props {

@@ -13,7 +13,7 @@ interface Props {
   className?: string;
 }
 
-const DOWNLOAD_LINK = '/launcher.txt'
+const DOWNLOAD_LINK = '/launcher.txt';
 
 const HowToDownload = (props: Props) => {
   const { className } = props;
@@ -21,15 +21,14 @@ const HowToDownload = (props: Props) => {
   const linkRef = useRef<HTMLAnchorElement>(null);
   const { user } = useContext(UserContext);
   const isUserSigned = !!user;
-  const [meta, setMeta] = useState<any>({})
-  const { browser, os } = meta;
+  const [meta, setMeta] = useState<Bowser.Parser.ParsedResult>();
+  const { browser } = meta || {};
 
-  
   useEffect(() => {
     const newMeta = parse(window.navigator.userAgent);
     setMeta(newMeta);
     linkRef?.current?.click();
-  }, [])
+  }, []);
 
   return (
     <DownloadLauncherWrapper className={className}>

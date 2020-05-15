@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { Modal, WHITE, PURPLE_500, DownloadFullIcon } from 'store-library';
+import { Modal } from 'store-library';
+import { WHITE, PURPLE_500 } from 'store-library/src/styles';
+import { DownloadFullIcon } from 'store-library/src/icons';
+
+import { isFirefox, isOpera, isEdge, isYandex } from '../helpers';
 
 interface Props {
   className?: string;
@@ -83,12 +87,12 @@ const Hint = styled.div<{ browser?: string }>`
   left: 32px;
   right: 32px;
 
-  ${({ browser }) => browser === 'Microsoft Edge' && `
+  ${({ browser }) => isEdge(browser) && `
     bottom: 112px;
     justify-content: center;
   `}
 
-  ${({ browser = '' }) => ['Opera', 'Yandex', 'Firefox'].includes(browser) && `
+  ${({ browser }) => (isFirefox(browser) || isOpera(browser) || isYandex(browser)) && `
     top: 32px;
     justify-content: flex-end;
     ${IconWrapper} {
@@ -96,7 +100,7 @@ const Hint = styled.div<{ browser?: string }>`
     }
   `}
 
-  ${({ browser = '' }) => !['Opera', 'Yandex', 'Firefox', 'Microsoft Edge'].includes(browser) && `
+  ${({ browser }) => !isFirefox(browser) && !isOpera(browser) && !isEdge(browser) && !isYandex(browser) && `
     bottom: 16px;
 
     ${IconWrapper} {
