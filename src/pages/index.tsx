@@ -1,21 +1,24 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Container, apolloClient, PageModule, GET_STORE_FRONT } from 'store-library';
+import { Container, PageModule, GET_STORE_FRONT } from 'store-library';
 import { PageModule as PageModuleProps } from 'store-library/src/types';
+import { useQuery } from '@apollo/react-hooks';
 
 interface Props {
   className?: string;
-  blocks: PageModuleProps[];
 }
 
 const Home = (props: Props) => {
-  const { className, blocks } = props;
+  const { className } = props;
+  const { data } = useQuery(GET_STORE_FRONT);
+
+  const { blocks = [] } = data?.store?.storefront || {};
 
   return (
     <Wrapper className={className}>
       <Container>
         <Content>
-          {blocks.map(({ type, items, title }, i) => (
+          {(blocks as PageModuleProps[]).map(({ type, items, title }, i) => (
             <PageModule
               key={`${i}_${type}`}
               type={type}
@@ -28,14 +31,6 @@ const Home = (props: Props) => {
     </Wrapper>
   );
 };
-
-export async function getServerSideProps() {
-  const { data } = await apolloClient.query({ query: GET_STORE_FRONT });
-
-  const { blocks = [] } = data?.store?.storefront || {};
-
-  return { props: { blocks } };
-}
 
 const areEqual = (prev: Props, next: Props) => prev === next;
 
