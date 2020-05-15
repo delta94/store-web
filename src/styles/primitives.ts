@@ -25,7 +25,7 @@ export const DownloadLauncherContent = styled.div`
   left: 0;
   right: 0;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
   padding: 0 16px;
 `;
