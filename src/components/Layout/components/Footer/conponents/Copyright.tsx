@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { Caption12, WHITE_05 } from 'store-library/src/styles';
-import { SCREEN_SIZE } from 'store-library';
+import { SCREEN_SIZE } from 'store-library/src/const';
 
 interface Props {
   className?: string;
