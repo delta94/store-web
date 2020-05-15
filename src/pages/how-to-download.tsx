@@ -9,6 +9,6 @@ const HowTODownloadPage = () => (
   <HowToDownload />
 );
 
-const areEqual = (prev: Props, next: Props) => prev === next;
+const areEqual = () => true;
 
 export default React.memo(HowTODownloadPage, areEqual);
