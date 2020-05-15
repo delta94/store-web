@@ -31,10 +31,12 @@ export default React.memo(SocialLinks, areEqual);
 
 const Wrapper = styled.nav`
   display: flex;
+  align-items: center;
 `;
 
 const StyledLink = styled.a`
   cursor: pointer;
+  display: flex;
   opacity: 1;
   transition: opacity .3s ease-in-out;
   margin-right: 20px;
