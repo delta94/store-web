@@ -7,7 +7,7 @@ import { SCREEN_SIZE } from 'store-library/src/const';
 
 import legalLinks from '../legalLinks';
 
-const { LAUNCHER } = SCREEN_SIZE;
+const { TABLET, LAUNCHER } = SCREEN_SIZE;
 
 interface Props {
   className?: string;
@@ -40,7 +40,7 @@ const Wrapper = styled.nav`
   align-items: center;
   order: 2;
 
-  @media only screen and (min-width: ${LAUNCHER}) {
+  @media only screen and (min-width: ${TABLET}) {
     flex-direction: row;
     order: 0;
   }
