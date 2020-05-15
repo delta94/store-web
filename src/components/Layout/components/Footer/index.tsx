@@ -12,6 +12,8 @@ interface Props {
   className?: string;
 }
 
+const { LAUNCHER } = SCREEN_SIZE;
+
 const Footer = (props: Props) => {
   const { className } = props;
 
@@ -20,8 +22,8 @@ const Footer = (props: Props) => {
       <Container>
         <LinksWrapper>
           <StyledLogo />
-          <LegalLinks />
-          <StyledSocialLinks />
+          <StyledLegalLinks />
+          <SocialLinks />
         </LinksWrapper>
         <Copyright />
       </Container>
@@ -32,7 +34,7 @@ const Footer = (props: Props) => {
 export default Footer;
 
 const Wrapper = styled.footer`
-  padding: 24px 16px;
+  padding: 24px 0;
   background-color:${GRAY_700};
 `;
 
@@ -41,26 +43,26 @@ const LinksWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 
-  @media only screen and (min-width: ${SCREEN_SIZE.LAUNCHER}) {
+  @media only screen and (min-width: ${LAUNCHER}) {
     margin-bottom: 28px;
     flex-direction: row;
   }
 `;
 
 const StyledLogo = styled(Logo)`
-  margin-bottom: 28px;
+  margin-bottom: 16px;
 
-  @media only screen and (min-width: ${SCREEN_SIZE.LAUNCHER}) {
+  @media only screen and (min-width: ${LAUNCHER}) {
     margin-bottom: 0;
   }
 `;
 
-const StyledSocialLinks = styled(SocialLinks)`
-  margin-bottom: 24px;
+const StyledLegalLinks = styled(LegalLinks)`
+  margin-bottom: 20px;
 
-  @media only screen and (min-width: ${SCREEN_SIZE.LAUNCHER}) {
+  @media only screen and (min-width: ${LAUNCHER}) {
     margin-bottom: 0;
   }
 `;
