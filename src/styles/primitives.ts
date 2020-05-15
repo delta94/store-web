@@ -20,12 +20,12 @@ export const DownloadLauncherWrapper = styled.div`
 `;
 
 export const DownloadLauncherContent = styled.div`
-position: absolute;
-top: 50%;
-left: 0;
-right: 0;
-display: flex;
-flex-direction: column;
-align-items: center;
-padding: 0 16px;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 16px;
 `;
