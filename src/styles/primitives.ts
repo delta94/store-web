@@ -12,9 +12,9 @@ export const DropdownMenuItem = styled.div`
 
 export const DownloadLauncherWrapper = styled.div`
   position: relative;
-  background-image: url('/images/download-background-full.png');
+  background-image: url('/images/download-background.png');
   background-size: cover;
-  background-position: top center;
+  background-position: center -48px;
   min-height: 720px;
   height: 100%;
 `;
