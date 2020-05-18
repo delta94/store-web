@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Modal } from 'store-library';
 import { SCREEN_SIZE } from 'store-library/src/const';
-import { WHITE_01 } from 'store-library/src/styles';
 
 import MenuButton from '../MenuButton';
 import MainMenu from './components/MainMenu';
@@ -37,8 +36,11 @@ const MobileMenu = (props: Props) => {
       <StyledMenuButton isOpen={isOpen} toggleOpen={toggleMenu} />
       <Modal>
         <ModalWrapper isOpen={isOpen} onClick={toggleMenu}>
-          {activeScreen === 'MAIN' && <MainMenu onOpenLanguagesMenu={handleOpenLanguagesMenu} />}
-          {activeScreen === 'LANGUAGES' && <LanguagesMenu onBack={handleOpenMainMenu} />}
+          <Overlay isOpen={isOpen} />
+          <ModalContent isOpen={isOpen}>
+            {activeScreen === 'MAIN' && <MainMenu onOpenLanguagesMenu={handleOpenLanguagesMenu} />}
+            {activeScreen === 'LANGUAGES' && <LanguagesMenu onBack={handleOpenMainMenu} />}
+          </ModalContent>
         </ModalWrapper>
       </Modal>
     </Wrapper>
@@ -58,12 +60,28 @@ const Wrapper = styled.div`
 const ModalWrapper = styled.div<{ isOpen: boolean }>`
   top: 48px;
   bottom: 0;
-  left: ${({ isOpen }) => isOpen ? 0 : '100%'};;
+  left: 0;
   right: 0;
   position: fixed;
-  z-index: 10;
+  z-index: ${({ isOpen }) => isOpen ? 10 : -1};
   overflow-y: auto;
+  transition: all .3s ease-in-out;
+`;
+
+const Overlay = styled.div<{ isOpen: boolean }>`
+  height: 100vh;
+  opacity: ${({ isOpen }) => isOpen ? 1 : 0};
   background-color: rgba(1, 1, 1, .6);
+  transition: all .3s ease-in-out;
+`;
+
+const ModalContent = styled.div<{ isOpen: boolean }>`
+  position: fixed;
+  top: 48px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: ${({ isOpen }) => isOpen ? 'translate(0, 0)' : 'translate(110%, 0)'};
   transition: all .3s ease-in-out;
 `;
 
