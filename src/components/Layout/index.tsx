@@ -29,6 +29,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  overflow-y: auto;
 `;
 
 const Main = styled.main`
