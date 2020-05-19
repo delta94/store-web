@@ -64,7 +64,7 @@ const ModalWrapper = styled.div<{ isOpen: boolean }>`
   right: 0;
   position: fixed;
   z-index: ${({ isOpen }) => isOpen ? 10 : -1};
-  overflow-y: auto;
+  overflow: hidden;
   transition: all .3s ease-in-out;
 `;
 
@@ -83,6 +83,7 @@ const ModalContent = styled.div<{ isOpen: boolean }>`
   right: 0;
   transform: ${({ isOpen }) => isOpen ? 'translate(0, 0)' : 'translate(110%, 0)'};
   transition: all .3s ease-in-out;
+  overflow-y: auto;
 `;
 
 const StyledMenuButton = styled(MenuButton)`
