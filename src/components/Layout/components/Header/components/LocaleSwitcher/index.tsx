@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { Caps11, GRAY_100, WHITE } from 'store-library/src/styles';
@@ -9,6 +9,8 @@ import { DropdownMenuItem } from '~/styles/primitives';
 interface Props {
   className?: string;
 }
+
+const CURRENT_LANG_KEY = 'i18nextLng';
 
 const LocaleSwitcher = (props: Props) => {
   const { className } = props;
@@ -22,7 +24,17 @@ const LocaleSwitcher = (props: Props) => {
   const handleChangeLocale = (value: string) => () => {
     setActiveLang(value);
     i18n.changeLanguage(value);
+    localStorage.setItem(CURRENT_LANG_KEY, value);
   };
+
+  useEffect(() => {
+    const currentLang = localStorage.getItem(CURRENT_LANG_KEY);
+
+    if (currentLang) {
+      setActiveLang(currentLang);
+      i18n.changeLanguage(currentLang);
+    }
+  }, []);
 
   const langTitle = (
     <ActiveLang>
