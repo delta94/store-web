@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
 import { UserContext } from '~/contexts';
 import { Button, Avatar, Dropdown } from 'store-library';
 import { Caps10Bold, GRAY_700, WHITE } from 'store-library/src/styles';
-import { UserIcon, LogoutIcon, SettingsIcon } from 'store-library/src/icons';
+import { LogoutIcon, SettingsIcon } from 'store-library/src/icons';
 import { DropdownMenuItem } from '~/styles/primitives';
 
 interface Props {
@@ -16,6 +16,7 @@ const UserButton = (props: Props) => {
   const { className } = props;
   const { t } = useTranslation();
   const router = useRouter();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const {
     user,
     loading,
@@ -23,7 +24,11 @@ const UserButton = (props: Props) => {
     onLogout,
   } = useContext(UserContext);
 
-  const handleClickSettings = () => router.push('/settings'); 
+  const handleClickSettings = () => router.push('/settings');
+
+  const handleToggleDropdown = (open: boolean) => {
+    setDropdownOpen(open);
+  };
 
   if (!user) return (
     <StyledButton
@@ -32,26 +37,24 @@ const UserButton = (props: Props) => {
       onClick={onLogin}
     >
       <ButtonWrapper>
-        <IconWrapper>
-          <UserIcon />
-        </IconWrapper>
+        <StyledAvatar />
         {t('labels.signin')}
       </ButtonWrapper>
     </StyledButton>
   );
 
-  const usetTitle = (
-    <>
+  const userTitle = (
+    <TitleWrapper isOpen={dropdownOpen}>
       <StyledAvatar src={user?.photoURL} />
       <Caps10Bold>
         {user?.email || 'anonymous'}
       </Caps10Bold>
-    </>
+    </TitleWrapper>
   );
 
   return (
     <Wrapper className={className}>
-      <Dropdown title={usetTitle}>
+      <Dropdown title={userTitle} onToggleDropdown={handleToggleDropdown}>
         <DropdownMenuItem onClick={handleClickSettings}>
           <IconWrapper>
             <SettingsIcon />
@@ -79,9 +82,19 @@ export default React.memo(UserButton, areEqual);
 
 const Wrapper = styled.div``;
 
+const TitleWrapper = styled.div<{ isOpen: boolean }>`
+  opacity: ${({ isOpen }) => isOpen ? 0.5 : 1};
+  display: flex;
+  align-items: center;
+`;
+
 const StyledButton = styled(Button)`
   margin: 0 20px;
   border: none;
+
+  && {
+    padding: 0;
+  }
 `;
 
 const ButtonWrapper = styled.div`
@@ -105,6 +118,6 @@ const IconWrapper = styled.div`
   }
 `;
 
-const StyledAvatar = styled(Avatar)`
+const StyledAvatar = styled(Avatar).attrs({ width: '24px', height: '24px' })`
   margin-right: 8px;
 `;
