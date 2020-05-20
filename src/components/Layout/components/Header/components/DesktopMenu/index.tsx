@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { SCREEN_SIZE } from 'store-library/src/const';
 import { Caps11, WHITE, GRAY_100, buttonStyles, PURPLE_500 } from 'store-library/src/styles';
-import { DownloadIcon } from 'store-library/src/icons';
+import { DownloadFullIcon } from 'store-library/src/icons';
 
 import menuLinks from '../../menuLinks';
 import LocaleSwitcher from '../LocaleSwitcher';
@@ -36,7 +36,7 @@ const DesktopMenu = (props: Props) => {
         <StyledUserButton />
         <Link href="/download">
           <DownloadLink color={PURPLE_500}>
-            <DownloadIcon />
+            <DownloadFullIcon />
             {t('routes.download')}
           </DownloadLink>
         </Link>
@@ -88,8 +88,9 @@ const DownloadLink = styled.a`
   ${buttonStyles}
   display: flex;
   align-items: center;
+  padding: 10px 20px;
 
   svg {
-    margin-right: 4px;
+    margin-right: 6px;
   }
 `;

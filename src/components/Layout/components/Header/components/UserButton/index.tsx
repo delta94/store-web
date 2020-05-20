@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { UserContext } from '~/contexts';
 import { Button, Avatar, Dropdown } from 'store-library';
 import { Caps10Bold, GRAY_700, WHITE } from 'store-library/src/styles';
-import { UserIcon, LogoutIcon, SettingsIcon } from 'store-library/src/icons';
+import { LogoutIcon, SettingsIcon } from 'store-library/src/icons';
 import { DropdownMenuItem } from '~/styles/primitives';
 
 interface Props {
@@ -23,7 +23,7 @@ const UserButton = (props: Props) => {
     onLogout,
   } = useContext(UserContext);
 
-  const handleClickSettings = () => router.push('/settings'); 
+  const handleClickSettings = () => router.push('/settings');
 
   if (!user) return (
     <StyledButton
@@ -32,9 +32,7 @@ const UserButton = (props: Props) => {
       onClick={onLogin}
     >
       <ButtonWrapper>
-        <IconWrapper>
-          <UserIcon />
-        </IconWrapper>
+        <StyledAvatar src="" width="24px" height="24px" />
         {t('labels.signin')}
       </ButtonWrapper>
     </StyledButton>
@@ -82,6 +80,10 @@ const Wrapper = styled.div``;
 const StyledButton = styled(Button)`
   margin: 0 20px;
   border: none;
+
+  && {
+    padding: 0;
+  }
 `;
 
 const ButtonWrapper = styled.div`
