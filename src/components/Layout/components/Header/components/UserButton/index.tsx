@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
@@ -16,6 +16,7 @@ const UserButton = (props: Props) => {
   const { className } = props;
   const { t } = useTranslation();
   const router = useRouter();
+  const [dropdownOpen, setDropdownOpen] = useState(false);
   const {
     user,
     loading,
@@ -25,6 +26,10 @@ const UserButton = (props: Props) => {
 
   const handleClickSettings = () => router.push('/settings');
 
+  const handleToggleDropdown = (open: boolean) => {
+    setDropdownOpen(open);
+  }
+
   if (!user) return (
     <StyledButton
       color={GRAY_700}
@@ -32,7 +37,7 @@ const UserButton = (props: Props) => {
       onClick={onLogin}
     >
       <ButtonWrapper>
-        <StyledAvatar src="" width="24px" height="24px" />
+        <StyledAvatar />
         {t('labels.signin')}
       </ButtonWrapper>
     </StyledButton>
@@ -48,8 +53,8 @@ const UserButton = (props: Props) => {
   );
 
   return (
-    <Wrapper className={className}>
-      <Dropdown title={usetTitle}>
+    <Wrapper className={className} isOpen={dropdownOpen}>
+      <Dropdown title={usetTitle} onToggleDropdown={handleToggleDropdown}>
         <DropdownMenuItem onClick={handleClickSettings}>
           <IconWrapper>
             <SettingsIcon />
@@ -75,7 +80,9 @@ const areEqual = (prev: Props, next: Props) => prev === next;
 
 export default React.memo(UserButton, areEqual);
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div<{ isOpen: boolean }>`
+  opacity: ${({ isOpen }) => isOpen ? .5 : 1};
+`;
 
 const StyledButton = styled(Button)`
   margin: 0 20px;
@@ -107,6 +114,6 @@ const IconWrapper = styled.div`
   }
 `;
 
-const StyledAvatar = styled(Avatar)`
+const StyledAvatar = styled(Avatar).attrs({ width: '24px', height: '24px' })`
   margin-right: 8px;
 `;
