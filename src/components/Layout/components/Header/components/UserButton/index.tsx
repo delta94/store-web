@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useCallback } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
@@ -28,7 +28,7 @@ const UserButton = (props: Props) => {
 
   const handleToggleDropdown = (open: boolean) => {
     setDropdownOpen(open);
-  }
+  };
 
   if (!user) return (
     <StyledButton
@@ -43,18 +43,18 @@ const UserButton = (props: Props) => {
     </StyledButton>
   );
 
-  const usetTitle = (
-    <>
+  const getUserTitle = useCallback(() => (
+    <TitleWrapper isOpen={dropdownOpen}>
       <StyledAvatar src={user?.photoURL} />
       <Caps10Bold>
         {user?.email || 'anonymous'}
       </Caps10Bold>
-    </>
-  );
+    </TitleWrapper>
+  ), [dropdownOpen]);
 
   return (
-    <Wrapper className={className} isOpen={dropdownOpen}>
-      <Dropdown title={usetTitle} onToggleDropdown={handleToggleDropdown}>
+    <Wrapper className={className}>
+      <Dropdown title={getUserTitle()} onToggleDropdown={handleToggleDropdown}>
         <DropdownMenuItem onClick={handleClickSettings}>
           <IconWrapper>
             <SettingsIcon />
@@ -80,7 +80,9 @@ const areEqual = (prev: Props, next: Props) => prev === next;
 
 export default React.memo(UserButton, areEqual);
 
-const Wrapper = styled.div<{ isOpen: boolean }>`
+const Wrapper = styled.div``;
+
+const TitleWrapper = styled.div<{ isOpen: boolean }>`
   opacity: ${({ isOpen }) => isOpen ? .5 : 1};
 `;
 
