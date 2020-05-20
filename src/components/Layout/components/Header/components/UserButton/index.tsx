@@ -1,4 +1,4 @@
-import React, { useContext, useState, useCallback } from 'react';
+import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
@@ -43,14 +43,14 @@ const UserButton = (props: Props) => {
     </StyledButton>
   );
 
-  const getUserTitle = useCallback(() => (
+  const getUserTitle = () => (
     <TitleWrapper isOpen={dropdownOpen}>
       <StyledAvatar src={user?.photoURL} />
       <Caps10Bold>
         {user?.email || 'anonymous'}
       </Caps10Bold>
     </TitleWrapper>
-  ), [dropdownOpen]);
+  );
 
   return (
     <Wrapper className={className}>
@@ -84,6 +84,8 @@ const Wrapper = styled.div``;
 
 const TitleWrapper = styled.div<{ isOpen: boolean }>`
   opacity: ${({ isOpen }) => isOpen ? .5 : 1};
+  display: flex;
+  align-items: center;
 `;
 
 const StyledButton = styled(Button)`
