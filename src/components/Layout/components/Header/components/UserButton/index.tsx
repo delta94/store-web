@@ -43,7 +43,7 @@ const UserButton = (props: Props) => {
     </StyledButton>
   );
 
-  const getUserTitle = () => (
+  const userTitle = (
     <TitleWrapper isOpen={dropdownOpen}>
       <StyledAvatar src={user?.photoURL} />
       <Caps10Bold>
@@ -54,7 +54,7 @@ const UserButton = (props: Props) => {
 
   return (
     <Wrapper className={className}>
-      <Dropdown title={getUserTitle()} onToggleDropdown={handleToggleDropdown}>
+      <Dropdown title={userTitle} onToggleDropdown={handleToggleDropdown}>
         <DropdownMenuItem onClick={handleClickSettings}>
           <IconWrapper>
             <SettingsIcon />
@@ -83,7 +83,7 @@ export default React.memo(UserButton, areEqual);
 const Wrapper = styled.div``;
 
 const TitleWrapper = styled.div<{ isOpen: boolean }>`
-  opacity: ${({ isOpen }) => isOpen ? .5 : 1};
+  opacity: ${({ isOpen }) => isOpen ? 0.5 : 1};
   display: flex;
   align-items: center;
 `;
