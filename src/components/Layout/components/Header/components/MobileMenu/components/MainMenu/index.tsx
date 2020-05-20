@@ -38,7 +38,7 @@ const MainMenu = (props: Props) => {
         <>
           <MenuItem>
             <StyledAvatar width="24px" height="24px" src={user?.photoURL} />
-            {user?.email || 'anonymous'}
+            <UserName>{user?.email || 'anonymous'}</UserName>
           </MenuItem>
           <Divider />
         </>
@@ -100,8 +100,15 @@ const StyledLink = styled.a``;
 
 const StyledAvatar = styled(Avatar)`
   margin-right: 6px;
+  flex-shrink: 0;
 `;
 
 const SignInButton = styled(Button)`
   width: 100%;
+`;
+
+const UserName = styled.span`
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `;
