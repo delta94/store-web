@@ -26,6 +26,7 @@ export const MenuItem = styled(H3) <{ active?: boolean }>`
   margin: 0 0 18px 0;
   color: ${({ active }) => active ? WHITE : GRAY_100};
   text-transform: capitalize;
+  overflow: hidden;
   cursor: pointer;
 
   ${IconWrapper} {
