@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
-import { UserContext } from 'store-library/src/contexts';
+import { UserContext } from '~/contexts';
 import { Button, Avatar, Dropdown } from 'store-library';
 import { Caps10Bold, GRAY_700, WHITE } from 'store-library/src/styles';
 import { LogoutIcon, SettingsIcon } from 'store-library/src/icons';

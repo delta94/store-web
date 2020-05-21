@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Container, PageModule, GET_STORE_FRONT } from 'store-library';
 import { PageModule as PageModuleProps } from 'store-library/src/types';
 import { useQuery } from '@apollo/react-hooks';
+import { useRouter } from 'next/router';
 
 interface Props {
   className?: string;
@@ -11,6 +12,15 @@ interface Props {
 const Home = (props: Props) => {
   const { className } = props;
   const { data } = useQuery(GET_STORE_FRONT);
+  const router = useRouter();
+
+  const handleCardClick = (slug: string) => {
+    router.push(
+      `/game?slug=${slug}`,
+      `/game/${slug}`,
+      { shallow: true },
+    );
+  };
 
   const { blocks = [] } = data?.store?.storefront || {};
 
@@ -24,6 +34,7 @@ const Home = (props: Props) => {
               type={type}
               items={items}
               title={title}
+              onCardClick={handleCardClick}
             />
           ))}
         </Content>
