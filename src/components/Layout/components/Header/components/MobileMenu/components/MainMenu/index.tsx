@@ -6,7 +6,7 @@ import { useRouter } from 'next/router';
 import { Avatar, Button } from 'store-library';
 import { LanguagesIcon, SettingsIcon, LogoutIcon } from 'store-library/src/icons';
 import { LANGUAGES } from 'store-library/src/const';
-import { UserContext } from '~/contexts';
+import { UserContext } from 'store-library/src/contexts';
 
 import { MenuItem, Divider, IconWrapper } from '../../styles';
 import menuLinks from '../../../../menuLinks';

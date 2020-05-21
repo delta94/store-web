@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { DownloadLauncherWrapper, DownloadLauncherContent } from '~/styles/primitives';
 import { WHITE, H3, GRAY_100, PURPLE_500 } from 'store-library/src/styles';
 import { parse } from 'bowser';
-import { UserContext } from '~/contexts';
+import { UserContext } from 'store-library/src/contexts';
 
 import Instructions from './components/Instructions';
 import DownloadHint from './components/DownloadHint';

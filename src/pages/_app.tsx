@@ -4,12 +4,13 @@ import { createGlobalStyle } from 'styled-components';
 import { ApolloProvider, useQuery } from '@apollo/react-hooks';
 import { logout, login } from '~/auth';
 import Layout from '~/components/Layout';
-import { UserContext } from '~/contexts';
+import { UserContext, RouterContext } from 'store-library/src/contexts';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import { apolloClient, GET_USER } from 'store-library';
 import { I18nextProvider } from 'react-i18next';
 
 import i18n from 'store-library/src/i18n';
+import { useRouter } from 'next/router';
 
 class MyApp extends App {
   render() {
@@ -34,6 +35,7 @@ const AppWithContext = (props: any) => {
   const { children } = props;
   const { loading, data } = useQuery(GET_USER, { fetchPolicy: 'network-only' });
   const user = data?.auth?.profile || null;
+  const router = useRouter();
 
   const onLogout = () => {
     logout();
@@ -43,6 +45,10 @@ const AppWithContext = (props: any) => {
     login();
   };
 
+  const navigate = (url: string) => {
+    router.push(url);
+  };
+
   const userContextValue = {
     user,
     loading,
@@ -50,9 +56,13 @@ const AppWithContext = (props: any) => {
     onLogout,
   };
 
+  const routerContextValue = { navigate };
+
   return (
     <UserContext.Provider value={userContextValue}>
-      {children}
+      <RouterContext.Provider value={routerContextValue}>
+        {children}
+      </RouterContext.Provider>
     </UserContext.Provider>
   );
 };
