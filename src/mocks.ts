@@ -173,8 +173,8 @@ export const game: Game = {
   },
   ratings: [
     {
-      agency: 'PEGI', 
-      imageUrl: 'https://pegi.info/sites/default/files/styles/medium/public/2017-03/pegi18.png?itok=2iF_eHO6',
+      agency: 'PEGI',
+      imageURL: 'https://pegi.info/sites/default/files/styles/medium/public/2017-03/pegi18.png?itok=2iF_eHO6',
     },
   ],
   license: '© 2012-2019 Sony Interactive Entertainment LLC. Journey is a trademark of Sony Interactive Entertainment LLC. Developed by thatgamecompany',
