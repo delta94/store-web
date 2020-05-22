@@ -3,8 +3,9 @@ import Game from '~/components/Game';
 import { GET_GAME } from 'store-library/src/api';
 import { useRouter } from 'next/router';
 import { useQuery } from '@apollo/react-hooks';
-import { Container, Skeleton } from 'store-library';
+import { Container, Skeleton, Spinner } from 'store-library';
 import { Game as GameType } from 'store-library/src/types';
+import styled from 'styled-components';
 
 const GamePage = () => {
   const router = useRouter();
@@ -12,9 +13,9 @@ const GamePage = () => {
   const { data, error, loading } = useQuery(GET_GAME, { variables: { slug } });
 
   if (loading) return (
-    <Container>
-      <Skeleton width="100%" height="80vh" />
-    </Container>
+    <SpinnerWrapper>
+      <Spinner size={60} />
+    </SpinnerWrapper>
   );
 
   const game: GameType = data?.store?.gameBySlug;
@@ -28,3 +29,9 @@ const GamePage = () => {
 };
 
 export default React.memo(GamePage);
+
+const SpinnerWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-top: 20%;
+`;
