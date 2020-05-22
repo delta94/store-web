@@ -6533,7 +6533,7 @@ static-extend@^0.1.1:
 
 "store-library@https://github.com/qilin/store-library#QIL-10435":
   version "1.1.13"
-  resolved "https://github.com/qilin/store-library#3916aa44efe5a97c2afc03a364c7e2bb5283b667"
+  resolved "https://github.com/qilin/store-library#ac9fc8af6e4b04964f1985dc6a873c18bbb68a26"
 
 stream-browserify@^2.0.1:
   version "2.0.2"
