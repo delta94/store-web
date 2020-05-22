@@ -3,7 +3,7 @@ import Game from '~/components/Game';
 import { GET_GAME } from 'store-library/src/api';
 import { useRouter } from 'next/router';
 import { useQuery } from '@apollo/react-hooks';
-import { Container, Skeleton, Spinner } from 'store-library';
+import { Spinner } from 'store-library';
 import { Game as GameType } from 'store-library/src/types';
 import styled from 'styled-components';
 
