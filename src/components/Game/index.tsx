@@ -8,33 +8,18 @@ import {
   Container,
   Grid,
   BasicInfoBlock,
-  Skeleton,
 } from 'store-library';
-import { GET_GAME } from 'store-library/src/api';
-import { useRouter } from 'next/router';
-import { useQuery } from '@apollo/react-hooks';
+import { Game as GameType } from 'store-library/src/types';
 
 const { Row, Col } = Grid;
 
-const Game = () => {
-  const router = useRouter();
-  const { slug } = router.query;
-  const { data, error, loading } = useQuery(GET_GAME, { variables: { slug } });
+interface Props {
+  game: GameType;
+}
 
-  if (error) console.log(error); // router.push('/404');
-
-  if (loading) return (
-    <Container>
-      <Skeleton width="100%" height="80vh" />
-    </Container>
-  );
-
-  const game: any = data?.store?.gameBySlug;
-
-  if (!game) router.push('/');
+const Game = (props: Props) => {
+  const { game } = props;
   const { description, requirements } = game;
-
-  console.log(data);
 
   return (
     <Wrapper>
@@ -59,25 +44,6 @@ const Game = () => {
     </Wrapper>
   );
 };
-
-// Game.getInitialProps = async ({ query }: NextPageContext) => {
-//   const { slug } = query;
-//   let game: GameType = mockGame;
-
-//   try {
-//     const data: any = await apolloClient.query({
-//       query: GET_GAME,
-//       variables: { slug },
-//     });
-
-//     console.log(data);
-//     game = data;
-//   } catch (err) {
-//     console.log(err.message);
-//   }
-
-//   return { game };
-// };
 
 export default Game;
 
