@@ -48,6 +48,7 @@ export const game: Game = {
     },
   ],
   media: {
+    covers: {},
     screenshots: [
       {
         url:
