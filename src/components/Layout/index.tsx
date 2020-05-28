@@ -13,7 +13,7 @@ interface Props {
 
 const Layout = (props: Props) => {
   const { children } = props;
-  const [isOnline, setOnline] = useState(false);
+  const [isOnline, setOnline] = useState(true);
 
   useEffect(() => {
     setOnline(navigator.onLine);
