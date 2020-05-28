@@ -1,18 +1,36 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Container, PageModule, GET_STORE_FRONT } from 'store-library';
+import { Container, PageModule, GET_STORE_FRONT, apolloClient } from 'store-library';
 import { PageModule as PageModuleProps } from 'store-library/src/types';
-import { useQuery } from '@apollo/react-hooks';
+import { useQuery, useLazyQuery } from '@apollo/react-hooks';
 import { useRouter } from 'next/router';
+import { GetServerSideProps } from 'next';
+import { detectBot } from '~/helpers';
 
 interface Props {
   className?: string;
+  blocks: PageModuleProps[] | null;
 }
 
 const Home = (props: Props) => {
   const { className } = props;
-  const { data } = useQuery(GET_STORE_FRONT);
+  const [blocks, setBlocks] = useState(props.blocks);
+  const [loadBlocks, { called, loading, data }] = useLazyQuery(GET_STORE_FRONT);
   const router = useRouter();
+
+  useEffect(() => {
+    if (blocks) return;
+
+    if (!called) {
+      loadBlocks();
+      return;
+    }
+
+    if (loading) return;
+
+    const newBlocks = data?.store?.storefront.blocks || [];
+    setBlocks(newBlocks);
+  }, [called, loading]);
 
   const handleCardClick = (slug: string) => {
     router.push(
@@ -22,7 +40,7 @@ const Home = (props: Props) => {
     );
   };
 
-  const { blocks = [] } = data?.store?.storefront || {};
+  if (!blocks) return null;
 
   return (
     <Wrapper className={className}>
@@ -54,3 +72,24 @@ const Wrapper = styled.div`
 const Content = styled.div`
   padding-top: 30px;
 `;
+
+export const getServerSideProps: GetServerSideProps = async context => {
+  const userAgent = context.req.headers['user-agent'];
+  const isBot = detectBot(userAgent);
+
+  let blocks: PageModuleProps[] | null = null;
+
+  if (isBot) {
+    try {
+      const { data } = await apolloClient.query({
+        query: GET_STORE_FRONT,
+      });
+
+      blocks = data?.store?.storefront.blocks;
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  return { props: { blocks } };
+};
