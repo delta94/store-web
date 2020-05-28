@@ -1,9 +1,10 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { GRAY_900 } from 'store-library';
+import { GRAY_900, RED_500 } from 'store-library/src/styles';
 
 import Footer from './components/Footer';
 import Header from './components/Header';
+import CustomHead from './components/CustomHead';
 
 interface Props {
   className?: string;
@@ -12,11 +13,24 @@ interface Props {
 
 const Layout = (props: Props) => {
   const { children } = props;
+  const [isOnline, setOnline] = useState(false);
+
+  useEffect(() => {
+    setOnline(navigator.onLine);
+  }, []);
+
+  const offlineMessage = (
+    <OfflineMessage>
+      You are offline!
+    </OfflineMessage>
+  );
+
   return (
     <Wrapper>
+      <CustomHead />
       <Header />
       <Main>
-        {children}
+        {isOnline ? children : offlineMessage}
       </Main>
       <Footer />
     </Wrapper>
@@ -38,4 +52,10 @@ const Main = styled.main`
   background-color: ${GRAY_900};
   padding-top: 48px;
   overflow: hidden;
+`;
+
+const OfflineMessage = styled.h2`
+  color: ${RED_500};
+  padding-top: 36px;
+  text-align: center;
 `;

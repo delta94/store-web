@@ -1,11 +1,17 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path');
 const withTM = require('next-transpile-modules')(['store-library']);
+const withPWA = require('next-pwa');
 
-module.exports = withTM({
+module.exports = withPWA(withTM({
   env: {
     API_URL: 'https://store.tst.qilin.super.com/api',
     STORE_NAME: 'Qilin',
+    STORE_DESCRIPTION: `A curated digital storefront for PC and Mac, 
+    designed with both players and creators in mind.`,
+  },
+  pwa: {
+    dest: 'public',
   },
   webpack: (config, options) => {
     config.resolve.alias['~'] = path.resolve(__dirname, 'src');
@@ -19,4 +25,4 @@ module.exports = withTM({
 
     return config;
   },
-});
+}));
