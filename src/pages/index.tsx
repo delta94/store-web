@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Container, PageModule, GET_STORE_FRONT, apolloClient } from 'store-library';
-import { PageModule as PageModuleProps } from 'store-library/src/types';
-import { useQuery, useLazyQuery } from '@apollo/react-hooks';
-import { useRouter } from 'next/router';
 import { GetServerSideProps } from 'next';
+import { useRouter } from 'next/router';
+import { useLazyQuery } from '@apollo/react-hooks';
+import { Container, PageModule } from 'store-library';
+import { GET_STORE_FRONT, apolloClient } from 'store-library/src/api';
+import { PageModule as PageModuleProps } from 'store-library/src/types';
 import { detectBot } from '~/helpers';
 
 interface Props {
