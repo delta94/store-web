@@ -32,10 +32,14 @@ export const megabytesToSize = (megabytes: number) => {
 
 export const getCookie = (name: string) => {
   if (isServerSide) return;
-  
+
   const matches = document.cookie.match(new RegExp(
     // eslint-disable-next-line
     `(?:^|; )${name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1')}=([^;]*)`
   ));
   return matches ? decodeURIComponent(matches[1]) : undefined;
+};
+
+export const detectBot = (userAgent = '') => {
+  return /bot|googlebot|crawler|spider|robot|crawling/i.test(userAgent);
 };
