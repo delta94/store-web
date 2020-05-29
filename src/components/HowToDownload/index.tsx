@@ -13,7 +13,7 @@ interface Props {
   className?: string;
 }
 
-const DOWNLOAD_LINK = '/launcher.txt';
+const DOWNLOAD_LINK = 'http://s3-eu-west-1.amazonaws.com/cdn.qilin.super.com/QilinLauncher+Web+Setup+0.10.0.exe';
 
 const HowToDownload = (props: Props) => {
   const { className } = props;
