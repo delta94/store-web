@@ -20,3 +20,10 @@ export const logout = () => {
 
   window.location.href = logoutUrl;
 };
+
+export const restoreAuthSession = () => {
+  const currentUrl = window.location.href;
+  const restoreSessionUrl = `${baseLoginUrl}?redirect=${currentUrl}&prompt=none`;
+
+  window.location.href = restoreSessionUrl;
+};

@@ -2,13 +2,14 @@ import React from 'react';
 import App from 'next/app';
 import { createGlobalStyle } from 'styled-components';
 import { ApolloProvider, useQuery } from '@apollo/react-hooks';
-import { logout, login } from '~/auth';
-import Layout from '~/components/Layout';
-import { UserContext } from '~/contexts';
-import 'pure-react-carousel/dist/react-carousel.es.css';
-import { apolloClient, GET_USER } from 'store-library';
 import { I18nextProvider } from 'react-i18next';
+import 'pure-react-carousel/dist/react-carousel.es.css';
+import { GET_USER } from 'store-library/src/api';
 import i18n from 'store-library/src/i18n';
+import { logout, login } from '~/auth';
+import apolloClient from '~/apolloClient';
+import { UserContext } from '~/contexts';
+import Layout from '~/components/Layout';
 
 class MyApp extends App {
   render() {
