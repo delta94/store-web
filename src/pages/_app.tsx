@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import App from 'next/app';
 import { createGlobalStyle } from 'styled-components';
-import { ApolloProvider, useQuery } from '@apollo/react-hooks';
+import { ApolloProvider, useQuery, useLazyQuery } from '@apollo/react-hooks';
 import { I18nextProvider } from 'react-i18next';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import { GET_USER } from 'store-library/src/api';
@@ -14,7 +14,6 @@ import Layout from '~/components/Layout';
 class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
-    if (typeof window !== 'undefined' && window.parent) return <Component {...pageProps} />;
 
     return (
       <ApolloProvider client={apolloClient}>
@@ -33,8 +32,15 @@ class MyApp extends App {
 
 const AppWithContext = (props: any) => {
   const { children } = props;
-  const { loading, data } = useQuery(GET_USER, { fetchPolicy: 'network-only' });
+  const [getUser, { called, loading, data }] = useLazyQuery(GET_USER, { fetchPolicy: 'network-only' });
   const user = data?.auth?.profile || null;
+
+  useEffect(() => {
+    const isIframe = window.parent;
+    if (called || isIframe) return;
+
+    getUser();
+  }, [called]);
 
   const onLogout = () => {
     logout();
