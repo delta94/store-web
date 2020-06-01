@@ -14,6 +14,7 @@ import Layout from '~/components/Layout';
 class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props;
+    if (typeof window !== 'undefined' && window.parent) return <Component {...pageProps} />;
 
     return (
       <ApolloProvider client={apolloClient}>
