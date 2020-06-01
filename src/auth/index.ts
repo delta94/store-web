@@ -50,7 +50,6 @@ export const restoreAuthSession = async () => {
 
     const checkMessage = (event: MessageEvent) => {
       const { data } = event;
-      console.log(data);
       const { error, restorePassed } = data;
 
       if (!restorePassed) return;

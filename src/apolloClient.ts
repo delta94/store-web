@@ -16,6 +16,8 @@ const customFetch = async (uri: Request | string, options: RequestInit | undefin
   const response = await fetch(uri, options);
   if (response.status === 474) {
     await restoreAuthSession();
+
+    return fetch(uri, options);
   }
 
   return response;
