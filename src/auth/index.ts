@@ -39,7 +39,7 @@ export const restoreAuthSession = async () => {
     }
 
     isRefreshing = true;
-    const redirectUrl = window.location.host;
+    const redirectUrl = window.location.origin;
     const restoreSessionUrl = `${baseLoginUrl}?redirect=${redirectUrl}/auth-restore&prompt=none`;
     const authFrame = document.createElement('iframe');
     authFrame.width = '100px';
