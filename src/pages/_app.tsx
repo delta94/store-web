@@ -36,11 +36,11 @@ const AppWithContext = (props: any) => {
   const user = data?.auth?.profile || null;
 
   useEffect(() => {
-    const isIframe = window.parent;
-    if (called || isIframe) return;
+    const isIframe = window.parent !== window;
+    if (isIframe) return;
 
     getUser();
-  }, [called]);
+  }, []);
 
   const onLogout = () => {
     logout();

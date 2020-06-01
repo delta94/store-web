@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 const AuthRestore = () => {
   const router = useRouter();
   useEffect(() => {
-    const isIframe = window.parent;
+    const isIframe = window.parent !== window;
 
     if (!isIframe) {
       router.push('/404');
