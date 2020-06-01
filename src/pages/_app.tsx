@@ -19,7 +19,12 @@ class MyApp extends App {
     if (!isIframe) return;
     const error = getUrlParameter('error');
 
-    window.parent.postMessage(error, '*');
+    const message = {
+      restorePassed: true,
+      error,
+    };
+
+    window.parent.postMessage(message, '*');
   }
 
   render() {

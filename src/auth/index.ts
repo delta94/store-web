@@ -51,8 +51,11 @@ export const restoreAuthSession = async () => {
     const checkMessage = (event: MessageEvent) => {
       const { data } = event;
       console.log(data);
+      const { error, restorePassed } = data;
 
-      resolve(data === LOGIN_REQUIRED);
+      if (!restorePassed) return;
+
+      resolve(error === LOGIN_REQUIRED);
       resolvePendingRequests();
 
       isRefreshing = false;
