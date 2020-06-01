@@ -10,23 +10,8 @@ import { logout, login } from '~/auth';
 import apolloClient from '~/apolloClient';
 import { UserContext } from '~/contexts';
 import Layout from '~/components/Layout';
-import { getUrlParameter } from '~/helpers';
 
 class MyApp extends App {
-  componentDidMount() {
-    const isIframe = window.parent;
-
-    if (!isIframe) return;
-    const error = getUrlParameter('error');
-
-    const message = {
-      restorePassed: true,
-      error,
-    };
-
-    window.parent.postMessage(message, '*');
-  }
-
   render() {
     const { Component, pageProps } = this.props;
 
