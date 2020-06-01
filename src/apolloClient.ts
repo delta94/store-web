@@ -15,7 +15,7 @@ const fragmentMatcher = new IntrospectionFragmentMatcher({
 const customFetch = async (uri: Request | string, options: RequestInit | undefined) => {
   const response = await fetch(uri, options);
   if (response.status === 474) {
-    restoreAuthSession();
+    await restoreAuthSession();
   }
 
   return response;
