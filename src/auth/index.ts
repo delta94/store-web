@@ -3,6 +3,14 @@ const API_URL = process.env.API_URL;
 const baseLoginUrl = `${API_URL}/v1/auth/login`;
 const baseLogoutUrl = `${API_URL}/v1/auth/logout`;
 
+let isRefreshing = false;
+let pendingRequests: (() => void)[] = [];
+
+const resolvePendingRequests = () => {
+  pendingRequests.map(callback => callback());
+  pendingRequests = [];
+};
+
 export const LOGIN_REQUIRED = 'login_required';
 
 export const login = () => {
@@ -23,9 +31,16 @@ export const logout = () => {
   window.location.href = logoutUrl;
 };
 
-export const restoreAuthSession = async (win = window) => {
+export const restoreAuthSession = async () => {
   const authRestorePromise = new Promise(resolve => {
-    const currentUrl = win.location.href;
+    if (isRefreshing) {
+      pendingRequests.push(() => resolve(false));
+      return;
+    }
+
+    isRefreshing = true;
+
+    const currentUrl = window.location.href;
     const restoreSessionUrl = `${baseLoginUrl}?redirect=${currentUrl}&prompt=none`;
     const authFrame = document.createElement('iframe');
     authFrame.width = '100px';
@@ -35,8 +50,12 @@ export const restoreAuthSession = async (win = window) => {
 
     const checkMessage = (event: MessageEvent) => {
       const { data } = event;
+      console.log(data);
 
       resolve(data === LOGIN_REQUIRED);
+      resolvePendingRequests();
+
+      isRefreshing = false;
 
       window.removeEventListener('message', checkMessage);
     };
