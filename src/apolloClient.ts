@@ -18,7 +18,7 @@ const customFetch = async (uri: Request | string, options: RequestInit | undefin
     restoreAuthSession();
   }
 
-  return fetch(uri, options);
+  return response;
 };
 
 const cache = new InMemoryCache({ fragmentMatcher });
