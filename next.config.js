@@ -15,7 +15,7 @@ module.exports = withPWA(withTM({
   pwa: {
     dest: 'public',
     disable: !isProd,
-    navigateFallbackBlacklist: [
+    navigateFallbackDenylist: [
       new RegExp('^/api'),
     ],
   },
