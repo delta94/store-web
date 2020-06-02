@@ -47,7 +47,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
         variables: { slug },
       });
 
-      game = data?.store?.gameBySlug;
+      game = data?.gameBySlug;
     } catch (error) {
       console.error(error);
     }

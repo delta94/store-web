@@ -18,7 +18,7 @@ const GamePage = () => {
     </SpinnerWrapper>
   );
 
-  const game: GameType = data?.store?.gameBySlug;
+  const game: GameType = data?.gameBySlug;
 
   if (error || !game) {
     router.push('/404');

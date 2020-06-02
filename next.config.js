@@ -3,6 +3,8 @@ const path = require('path');
 const withTM = require('next-transpile-modules')(['store-library']);
 const withPWA = require('next-pwa');
 
+const isProd = process.env.NODE_ENV === 'production';
+
 module.exports = withPWA(withTM({
   env: {
     API_URL: 'https://store.tst.qilin.super.com/api',
@@ -12,6 +14,7 @@ module.exports = withPWA(withTM({
   },
   pwa: {
     dest: 'public',
+    disable: !isProd,
   },
   webpack: (config, options) => {
     config.resolve.alias['~'] = path.resolve(__dirname, 'src');
