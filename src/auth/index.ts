@@ -12,6 +12,7 @@ const resolvePendingRequests = () => {
 };
 
 export const LOGIN_REQUIRED = 'login_required';
+export const HAS_SESSION = 'has_session';
 
 export const login = () => {
   if (typeof window === 'undefined') return;
@@ -29,6 +30,15 @@ export const logout = () => {
   const logoutUrl = `${baseLogoutUrl}?redirect=${redirectUrl}`;
 
   window.location.href = logoutUrl;
+};
+
+export const restoreSessionOnEnter = () => {
+  if (typeof window === 'undefined') return;
+
+  const redirectUrl = window.location.href;
+  const restoreSessionUrl = `${baseLoginUrl}?redirect=${redirectUrl}&prompt=none`;
+
+  window.location.href = restoreSessionUrl;
 };
 
 const createAuthFrame = () => {
