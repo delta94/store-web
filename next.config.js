@@ -15,6 +15,9 @@ module.exports = withPWA(withTM({
   pwa: {
     dest: 'public',
     disable: !isProd,
+    navigateFallbackBlacklist: [
+      new RegExp('^/api'),
+    ],
   },
   webpack: (config, options) => {
     config.resolve.alias['~'] = path.resolve(__dirname, 'src');
