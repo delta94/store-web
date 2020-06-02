@@ -7731,7 +7731,7 @@ static-extend@^0.1.1:
 
 "store-library@https://github.com/qilin/store-library#features/changes-queries-by-backend-refactoring":
   version "1.2.0"
-  resolved "https://github.com/qilin/store-library#b61abcc23be7a9ef68d78c70f6d0701f7a17cfc9"
+  resolved "https://github.com/qilin/store-library#dc54f0a14a844c0f90fe018bef19092e8cf51064"
 
 stream-browserify@^2.0.1:
   version "2.0.2"
