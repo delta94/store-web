@@ -10,7 +10,8 @@ import { logout, login, HAS_SESSION, restoreSessionOnEnter } from '~/auth';
 import apolloClient from '~/apolloClient';
 import { UserContext } from '~/contexts';
 import Layout from '~/components/Layout';
-import { getCookie } from '~/helpers';
+import { getCookie, isProd } from '~/helpers';
+import ErrorBoundary from '~/components/ErrorBoundary';
 
 class MyApp extends App {
   render() {
@@ -21,7 +22,9 @@ class MyApp extends App {
         <I18nextProvider i18n={i18n as any}>
           <AppWithContext>
             <Layout>
-              <Component {...pageProps} />
+              <ErrorBoundary>
+                <Component {...pageProps} />
+              </ErrorBoundary>
             </Layout>
             <GlobalStyle />
           </AppWithContext>
@@ -41,7 +44,7 @@ const AppWithContext = (props: any) => {
     const isIframe = window.parent !== window;
     if (isIframe) return;
 
-    const hasSession = getCookie(HAS_SESSION);
+    const hasSession = !isProd || getCookie(HAS_SESSION);
 
     if (!hasSession) {
       restoreSessionOnEnter();
