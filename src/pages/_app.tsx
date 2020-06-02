@@ -32,7 +32,7 @@ class MyApp extends App {
 
 const AppWithContext = (props: any) => {
   const { children } = props;
-  const [getUser, { called, loading, data }] = useLazyQuery(GET_USER, { fetchPolicy: 'network-only' });
+  const [getUser, { loading, data }] = useLazyQuery(GET_USER, { fetchPolicy: 'network-only' });
   const user = data?.auth?.profile || null;
 
   useEffect(() => {
