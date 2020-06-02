@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import App from 'next/app';
 import { createGlobalStyle } from 'styled-components';
-import { ApolloProvider, useQuery, useLazyQuery } from '@apollo/react-hooks';
+import { ApolloProvider, useLazyQuery } from '@apollo/react-hooks';
 import { I18nextProvider } from 'react-i18next';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import { GET_USER } from 'store-library/src/api';

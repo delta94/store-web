@@ -31,6 +31,17 @@ export const logout = () => {
   window.location.href = logoutUrl;
 };
 
+const createAuthFrame = () => {
+  const redirectUrl = window.location.origin;
+  const restoreSessionUrl = `${baseLoginUrl}?redirect=${redirectUrl}/auth-restore&prompt=none`;
+  const authFrame = document.createElement('iframe');
+  authFrame.width = '0px';
+  authFrame.height = '0px';
+  authFrame.src = restoreSessionUrl;
+
+  return authFrame;
+};
+
 export const restoreAuthSession = async () => {
   const authRestorePromise = new Promise(resolve => {
     if (isRefreshing) {
@@ -39,12 +50,8 @@ export const restoreAuthSession = async () => {
     }
 
     isRefreshing = true;
-    const redirectUrl = window.location.origin;
-    const restoreSessionUrl = `${baseLoginUrl}?redirect=${redirectUrl}/auth-restore&prompt=none`;
-    const authFrame = document.createElement('iframe');
-    authFrame.width = '100px';
-    authFrame.height = '100px';
-    authFrame.src = restoreSessionUrl;
+    const authFrame = createAuthFrame();
+
     document.body.append(authFrame);
 
     const checkMessage = (event: MessageEvent) => {
@@ -52,6 +59,8 @@ export const restoreAuthSession = async () => {
       const { error, restorePassed } = data;
 
       if (!restorePassed) return;
+
+      authFrame.remove();
 
       resolve(error === LOGIN_REQUIRED);
       resolvePendingRequests();
