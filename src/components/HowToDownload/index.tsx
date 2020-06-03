@@ -1,19 +1,18 @@
-import React, { useContext, useRef, useEffect, useState } from 'react';
+import React, { useContext, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { DownloadLauncherWrapper, DownloadLauncherContent } from '~/styles/primitives';
 import { WHITE, H3, GRAY_100, PURPLE_500 } from 'store-library/src/styles';
-import { parse } from 'bowser';
 import { UserContext } from '~/contexts';
+import useLauncherDownload from '~/hooks/useLauncherDownload';
 
 import Instructions from './components/Instructions';
 import DownloadHint from './components/DownloadHint';
+import PageLoading from '../PageLoading';
 
 interface Props {
   className?: string;
 }
-
-const DOWNLOAD_LINK = 'http://s3-eu-west-1.amazonaws.com/cdn.qilin.super.com/QilinLauncher+Web+Setup+0.10.0.exe';
 
 const HowToDownload = (props: Props) => {
   const { className } = props;
@@ -21,14 +20,15 @@ const HowToDownload = (props: Props) => {
   const linkRef = useRef<HTMLAnchorElement>(null);
   const { user } = useContext(UserContext);
   const isUserSigned = !!user;
-  const [meta, setMeta] = useState<Bowser.Parser.ParsedResult>();
-  const { browser } = meta || {};
+  const { loading, launcher, browserName } = useLauncherDownload();
 
   useEffect(() => {
-    const newMeta = parse(window.navigator.userAgent);
-    setMeta(newMeta);
+    if (!linkRef || !launcher?.url) return;
+
     linkRef?.current?.click();
-  }, []);
+  }, [loading]);
+
+  if (loading) return <PageLoading />;
 
   return (
     <DownloadLauncherWrapper className={className}>
@@ -37,7 +37,7 @@ const HowToDownload = (props: Props) => {
           {t('titles.downloads_thanks')}
         </Title>
         <NotStarted>
-          <ClickHere ref={linkRef} href={DOWNLOAD_LINK} download>
+          <ClickHere ref={linkRef} href={launcher.url} download>
             {t('labels.click_here')}
           </ClickHere>
           {' '}
@@ -45,7 +45,7 @@ const HowToDownload = (props: Props) => {
         </NotStarted>
         <Instructions authorized={isUserSigned} />
       </DownloadLauncherContent>
-      <DownloadHint browser={browser?.name} />
+      <DownloadHint browser={browserName} />
     </DownloadLauncherWrapper>
   );
 };
