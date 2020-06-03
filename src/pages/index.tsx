@@ -29,7 +29,7 @@ const Home = (props: Props) => {
 
     if (loading) return;
 
-    const newBlocks = data?.store?.storefront.blocks || [];
+    const newBlocks = data?.storefront.blocks || [];
     setBlocks(newBlocks);
   }, [called, loading]);
 
@@ -86,7 +86,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
         query: GET_STORE_FRONT,
       });
 
-      blocks = data?.store?.storefront.blocks;
+      blocks = data?.storefront?.blocks;
     } catch (error) {
       console.error(error);
     }
