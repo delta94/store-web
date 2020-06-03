@@ -15,9 +15,15 @@ module.exports = withPWA(withTM({
   pwa: {
     dest: 'public',
     disable: !isProd,
-    navigateFallback: '/index.html',
-    navigateFallbackDenylist: [
-      new RegExp('^/api'),
+    runtimeCaching: [
+      {
+        urlPattern: '/',
+        handler: 'networkFirst',
+      },
+      {
+        urlPattern: new RegExp('^/api'),
+        handler: 'networkOnly',
+      },
     ],
   },
   webpack: (config, options) => {
