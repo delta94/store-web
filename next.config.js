@@ -18,11 +18,11 @@ module.exports = withPWA(withTM({
     runtimeCaching: [
       {
         urlPattern: '/',
-        handler: 'networkFirst',
+        handler: 'NetworkFirst',
       },
       {
         urlPattern: new RegExp('^/api'),
-        handler: 'networkOnly',
+        handler: 'NetworkOnly',
       },
     ],
   },
