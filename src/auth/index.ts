@@ -38,6 +38,8 @@ export const restoreSessionOnEnter = () => {
   const redirectUrl = window.location.href;
   const restoreSessionUrl = `${baseLoginUrl}?redirect=${redirectUrl}&prompt=none`;
 
+  document.cookie = `${HAS_SESSION}=true`;
+
   window.location.href = restoreSessionUrl;
 };
 
@@ -45,6 +47,7 @@ const createAuthFrame = () => {
   const redirectUrl = window.location.origin;
   const restoreSessionUrl = `${baseLoginUrl}?redirect=${redirectUrl}/auth-restore&prompt=none`;
   const authFrame = document.createElement('iframe');
+
   authFrame.width = '0px';
   authFrame.height = '0px';
   authFrame.src = restoreSessionUrl;

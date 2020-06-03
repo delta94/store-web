@@ -10,7 +10,7 @@ import { logout, login, HAS_SESSION, restoreSessionOnEnter } from '~/auth';
 import apolloClient from '~/apolloClient';
 import { UserContext } from '~/contexts';
 import Layout from '~/components/Layout';
-import { getCookie, isProd } from '~/helpers';
+import { getCookie } from '~/helpers';
 import ErrorBoundary from '~/components/ErrorBoundary';
 
 class MyApp extends App {
@@ -41,9 +41,10 @@ const AppWithContext = (props: any) => {
 
   useEffect(() => {
     const isIframe = window.parent !== window;
+
     if (isIframe) return;
 
-    const hasSession = !isProd || getCookie(HAS_SESSION);
+    const hasSession = getCookie(HAS_SESSION);
 
     if (!hasSession) {
       restoreSessionOnEnter();

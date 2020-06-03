@@ -43,5 +43,3 @@ export const getCookie = (name: string) => {
 export const detectBot = (userAgent = '') => {
   return /bot|googlebot|crawler|spider|robot|crawling/i.test(userAgent);
 };
-
-export const isProd = process.env.NODE_ENV === 'production';
