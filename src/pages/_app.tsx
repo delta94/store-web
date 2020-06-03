@@ -7,11 +7,11 @@ import 'pure-react-carousel/dist/react-carousel.es.css';
 import { GET_USER } from 'store-library/src/api';
 import i18n from 'store-library/src/i18n';
 import { logout, login, HAS_SESSION, restoreSessionOnEnter } from '~/auth';
+import ErrorBoundary from '~/components/ErrorBoundary';
 import apolloClient from '~/apolloClient';
 import { UserContext } from '~/contexts';
 import Layout from '~/components/Layout';
 import { getCookie } from '~/helpers';
-import ErrorBoundary from '~/components/ErrorBoundary';
 
 class MyApp extends App {
   render() {
