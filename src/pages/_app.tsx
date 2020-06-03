@@ -38,18 +38,16 @@ const AppWithContext = (props: any) => {
   const { children } = props;
   const [getUser, { loading, data }] = useLazyQuery(GET_USER, { fetchPolicy: 'network-only' });
   const user = data?.profile || null;
+  const hasSession = getCookie(HAS_SESSION);
+
+  if (!hasSession) {
+    restoreSessionOnEnter();
+  }
 
   useEffect(() => {
     const isIframe = window.parent !== window;
 
     if (isIframe) return;
-
-    const hasSession = getCookie(HAS_SESSION);
-
-    if (!hasSession) {
-      restoreSessionOnEnter();
-      return;
-    }
 
     getUser();
   }, []);
