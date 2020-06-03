@@ -7729,9 +7729,9 @@ static-extend@^0.1.1:
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.5.0.tgz#161c7dac177659fd9811f43771fa99381478628c"
   integrity sha1-Fhx9rBd2Wf2YEfQ3cfqZOBR4Yow=
 
-"store-library@https://github.com/qilin/store-library#features/changes-queries-by-backend-refactoring":
-  version "1.2.0"
-  resolved "https://github.com/qilin/store-library#dc54f0a14a844c0f90fe018bef19092e8cf51064"
+"store-library@https://github.com/qilin/store-library#v1.2.2":
+  version "1.2.2"
+  resolved "https://github.com/qilin/store-library#992297d7f992f9bd8d273ab0eda9315a3e92d862"
 
 stream-browserify@^2.0.1:
   version "2.0.2"
