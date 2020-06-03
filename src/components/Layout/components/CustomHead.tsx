@@ -19,6 +19,7 @@ const CustomHead = () => (
       content="minimum-scale=1, initial-scale=1, width=device-width"
     />
 
+    <title>{storeName}</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.json" />
     <link rel="shortcut icon" href="/icons/favicon.ico" />
