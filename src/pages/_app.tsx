@@ -6,12 +6,12 @@ import { I18nextProvider } from 'react-i18next';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import { GET_USER } from 'store-library/src/api';
 import i18n from 'store-library/src/i18n';
+import ErrorBoundary from '~/components/ErrorBoundary';
 import { logout, login, HAS_SESSION, restoreSessionOnEnter } from '~/auth';
 import apolloClient from '~/apolloClient';
 import { UserContext } from '~/contexts';
 import Layout from '~/components/Layout';
 import { getCookie } from '~/helpers';
-import ErrorBoundary from '~/components/ErrorBoundary';
 
 class MyApp extends App {
   render() {
@@ -38,18 +38,16 @@ const AppWithContext = (props: any) => {
   const { children } = props;
   const [getUser, { loading, data }] = useLazyQuery(GET_USER, { fetchPolicy: 'network-only' });
   const user = data?.profile || null;
+  const hasSession = getCookie(HAS_SESSION);
+
+  if (!hasSession) {
+    restoreSessionOnEnter();
+  }
 
   useEffect(() => {
     const isIframe = window.parent !== window;
 
     if (isIframe) return;
-
-    const hasSession = getCookie(HAS_SESSION);
-
-    if (!hasSession) {
-      restoreSessionOnEnter();
-      return;
-    }
 
     getUser();
   }, []);

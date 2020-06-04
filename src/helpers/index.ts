@@ -43,3 +43,15 @@ export const getCookie = (name: string) => {
 export const detectBot = (userAgent = '') => {
   return /bot|googlebot|crawler|spider|robot|crawling/i.test(userAgent);
 };
+
+export const capitalize = (word: string) => {
+  if (!word) return word;
+
+  return word[0].toUpperCase() + word.slice(1);
+};
+
+export const uncapitalize = (word: string) => {
+  if (!word) return word;
+
+  return word[0].toLowerCase() + word.slice(1);
+};
