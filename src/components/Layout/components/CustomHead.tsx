@@ -16,7 +16,7 @@ const CustomHead = () => (
     <meta name="theme-color" content="#FFFFFF" />
     <meta
       name="viewport"
-      content="minimum-scale=1, initial-scale=1, width=device-width"
+      content="width=device-width, initial-scale=1, user-scalable=0"
     />
 
     <title>{storeName}</title>
