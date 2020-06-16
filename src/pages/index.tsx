@@ -7,6 +7,7 @@ import { Container, PageModule } from 'store-library';
 import { GET_STORE_FRONT, apolloClient } from 'store-library/src/api';
 import { PageModule as PageModuleProps } from 'store-library/src/types';
 import { detectBot } from '~/helpers';
+import SearchFilter from '~/components/SearchFilter';
 
 interface Props {
   className?: string;
@@ -46,17 +47,16 @@ const Home = (props: Props) => {
   return (
     <Wrapper className={className}>
       <Container>
-        <Content>
-          {(blocks as PageModuleProps[]).map(({ type, items, title }, i) => (
-            <PageModule
-              key={`${i}_${type}`}
-              type={type}
-              items={items}
-              title={title}
-              onCardClick={handleCardClick}
-            />
-          ))}
-        </Content>
+        <SearchFilter onResultItemClick={handleCardClick} />
+        {(blocks as PageModuleProps[]).map(({ type, items, title }, i) => (
+          <PageModule
+            key={`${i}_${type}`}
+            type={type}
+            items={items}
+            title={title}
+            onCardClick={handleCardClick}
+          />
+        ))}
       </Container>
     </Wrapper>
   );
@@ -68,10 +68,6 @@ export default React.memo(Home, areEqual);
 
 const Wrapper = styled.div`
   color: white;
-`;
-
-const Content = styled.div`
-  padding-top: 30px;
 `;
 
 export const getServerSideProps: GetServerSideProps = async context => {
