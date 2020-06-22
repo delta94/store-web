@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { useQuery } from '@apollo/react-hooks';
 import { Game as GameType } from 'store-library/src/types';
 import PageLoading from '~/components/PageLoading';
+import SearchFilter from '~/components/SearchFilter';
 
 const GamePage = () => {
   const router = useRouter();
@@ -20,7 +21,12 @@ const GamePage = () => {
     return null;
   }
 
-  return <Game game={game} />;
+  return (
+    <>
+      <SearchFilter />
+      <Game game={game} />
+    </>
+  );
 };
 
 export default React.memo(GamePage);
