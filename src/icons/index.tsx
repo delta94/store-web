@@ -1,0 +1,5 @@
+export { default as EulaHistoryIcon } from './EulaHistoryIcon'
+export { default as LinkedAccountsIcon } from './LinkedAccountsIcon'
+export { default as OrdersHistoryIcon } from './OrdersHistoryIcon'
+export { default as PersonalInformationIcon } from './PersonalInformationIcon'
+export { default as SignInSecurityIcon } from './SignInSecurityIcon'
