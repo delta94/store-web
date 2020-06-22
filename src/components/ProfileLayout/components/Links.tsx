@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import { SCREEN_SIZE, WHITE, GRAY_100, GRAY_700, PURPLE_500, ArrowDownIcon } from 'store-library';
+import { WHITE, GRAY_100, GRAY_700, PURPLE_500 } from 'store-library/src/styles';
+import { ArrowDownIcon } from 'store-library/src/icons';
+import { SCREEN_SIZE } from 'store-library/src/const';
 import { useRouter } from 'next/router';
-import profileLinks from '../profileLinks';
 import Link from 'next/link';
+
+import profileLinks from '../profileLinks';
 
 interface Props {
   className?: string;
@@ -14,13 +17,7 @@ const Links = (props: Props) => {
   const { className } = props;
   const { t } = useTranslation();
   const { pathname } = useRouter();
-  const [mobileOpen, setMobileOpen] = useState(false)
-  const links = [...profileLinks].sort((a, b) => {
-    if (a.href === pathname) return -1;
-    if (b.href === pathname) return 1;
-
-    return 0;
-  });
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const toggleOpen = () => setMobileOpen(!mobileOpen);
   const closeLinks = () => setMobileOpen(false);
