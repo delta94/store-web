@@ -4,7 +4,7 @@ import SearchFilter from '~/components/SearchFilter';
 import apolloClient from '~/apolloClient';
 import { useRouter } from 'next/router';
 
-const CatalogPage = () => {
+const GamesPage = () => {
   const [showFiltersModal, setShowFiltersModal] = useState(false);
   const [filterCount, setFilterCount] = useState<number>();
   const router = useRouter();
@@ -39,4 +39,4 @@ const CatalogPage = () => {
   );
 };
 
-export default React.memo(CatalogPage);
+export default React.memo(GamesPage);

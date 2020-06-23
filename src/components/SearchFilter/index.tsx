@@ -24,7 +24,7 @@ interface Props {
 const SearchFilter = (props: Props) => {
   const { onShowFiltersModal, className, filterCount } = props;
   const router = useRouter();
-  const isCatalogPage = router.pathname === '/catalog';
+  const isCatalogPage = router.pathname === '/games';
 
   const handleSearchItemClick = (slug: string) => {
     router.push(
@@ -40,7 +40,7 @@ const SearchFilter = (props: Props) => {
       return;
     }
 
-    router.push('/catalog');
+    router.push('/games');
   };
 
   return (
