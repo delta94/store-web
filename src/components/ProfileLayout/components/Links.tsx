@@ -59,7 +59,12 @@ export default React.memo(Links, areEqual);
 const Wrapper = styled.div`
   width: 100%;
   padding: 8px 16px;
+  flex-shrink: 0;
   outline: 0;
+
+  @media only screen and (min-width: ${SCREEN_SIZE.LAUNCHER}) {
+    padding: 8px 0;
+  }
 
   @media only screen and (min-width: ${SCREEN_SIZE.LAPTOP}) {
     width: 224px;

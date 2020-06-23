@@ -39,6 +39,8 @@ const Wrapper = styled.div`
 `;
 
 const Content = styled.div`
+  flex-grow: 1;
+  
   @media only screen and (min-width: ${SCREEN_SIZE.LAPTOP}) {
     margin-left: 16px;
   }

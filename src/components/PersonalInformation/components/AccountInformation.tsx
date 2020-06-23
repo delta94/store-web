@@ -1,6 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
+import { ProfileWrapper, ProfileTitle, ProfileSubtitle, ProfileButton } from '~/styles/primitives';
+
+import { Line } from '../common';
 
 interface Props {
   className?: string;
@@ -11,16 +13,22 @@ const AccountInformation = (props: Props) => {
   const { t } = useTranslation();
 
   return (
-    <Wrapper className={className}>
-
-    </Wrapper>
+    <ProfileWrapper className={className}>
+      <ProfileTitle>
+        {t('profile.account_information.title')}
+      </ProfileTitle>
+      <Line>
+        <ProfileSubtitle>
+          {t('profile.account_information.description')}
+        </ProfileSubtitle>
+        <ProfileButton color="transparent">
+          {t('profile.account_information.download_data')}
+        </ProfileButton>
+      </Line>
+    </ProfileWrapper>
   );
 };
 
 const areEqual = (prev: Props, next: Props) => prev === next;
 
 export default React.memo(AccountInformation, areEqual);
-
-const Wrapper = styled.div`
-  
-`;
