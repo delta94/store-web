@@ -10,16 +10,14 @@ import {
   ProfileDivider,
   ProfileButton,
 } from '~/styles/primitives';
-import { GET_PERSONAL_INFORMATION, UPDATE_PERSONAL_INFORMATION } from 'store-library/src/api';
 import { Grid } from 'store-library';
 import DateSelect from '~/components/DateSelect';
-import { useQuery, useMutation } from '@apollo/react-hooks';
 
 const { Col, Row } = Grid;
 const formFields = [
   'firstName',
   'lastName',
-  'phone',
+  // 'phone',
   'language',
   'currency',
   'address1',
@@ -27,37 +25,69 @@ const formFields = [
   'city',
   'zip',
   'country',
+  'state',
 ];
 
 const userLanguages = ['English', 'Spanish', 'Russian'];
 const currencies = ['USD', 'EUR', 'RUB', 'BTC'];
 
+interface Profile {
+  firstName: string;
+  lastName: string;
+  phone: string;
+  state: string;
+  birthdate: string;
+  language: string;
+  currency: string;
+  address1: string;
+  address2: string;
+  city: string;
+  zip: string;
+  country: string;
+}
+
 interface Props {
   className?: string;
+  profile: Profile;
+  onUpdateProfile: (user: Record<string, any>) => void;
 }
 
 const Personal = (props: Props) => {
-  const { className } = props;
+  const { className, profile, onUpdateProfile } = props;
+  const {
+    firstName,
+    lastName,
+    language,
+    address1,
+    address2,
+    birthdate: initBirthdate,
+    city,
+    country,
+    state,
+    currency,
+    phone,
+    zip,
+  } = profile;
   const { t } = useTranslation();
-  const [birthdate, setBirrthdate] = useState(new Date());
-  const { data, loading, error, refetch } = useQuery(GET_PERSONAL_INFORMATION);
-  const [updateProfile] = useMutation(UPDATE_PERSONAL_INFORMATION);
-  console.log(data);
+  const [birthdate, setBirrthdate] = useState(
+    initBirthdate ? new Date(initBirthdate.slice(0, 10)) : new Date(),
+  );
 
   const handleFormSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const variables: Record<string, any> = { date: birthdate };
+    const user: Record<string, any> = { birthdate: birthdate.toISOString(), photoURL: '' };
 
     formFields.forEach(field => {
-      const value = event.currentTarget[field]?.value;
+      const value = event.currentTarget[field]?.value || '';
 
-      if (!value) return;
+      // if (!value) return;
 
-      variables[field] = value;
+      user[field] = value;
     });
 
-    console.log(variables);
+    console.log(user);
+    onUpdateProfile(user);
   };
 
   return (
@@ -72,17 +102,17 @@ const Personal = (props: Props) => {
         <Row gap="16px">
           <Col sm={6}>
             <ProfileLabel>{t('profile.personal.first_name')}</ProfileLabel>
-            <ProfileInput name="firstName" required />
+            <ProfileInput name="firstName" defaultValue={firstName} />
           </Col>
           <Col sm={6}>
             <ProfileLabel>{t('profile.personal.last_name')}</ProfileLabel>
-            <ProfileInput name="lastName" required />
+            <ProfileInput name="lastName" defaultValue={lastName} />
           </Col>
         </Row>
         <Row gap="16px">
           <Col sm={6}>
             <ProfileLabel>{t('profile.personal.phone_number')}</ProfileLabel>
-            <ProfileInput name="phone" />
+            <ProfileInput name="phone" defaultValue={phone} />
           </Col>
           <Col sm={6}>
             <ProfileLabel>{t('profile.personal.birthday')}</ProfileLabel>
@@ -96,7 +126,7 @@ const Personal = (props: Props) => {
         <Row gap="16px">
           <Col sm={6}>
             <ProfileLabel>{t('profile.personal.preferred_language')}</ProfileLabel>
-            <ProfileSelect name="language">
+            <ProfileSelect name="language" defaultValue={language}>
               {userLanguages.map(lang => (
                 <option key={lang}>{lang}</option>
               ))}
@@ -104,7 +134,7 @@ const Personal = (props: Props) => {
           </Col>
           <Col sm={6}>
             <ProfileLabel>{t('profile.personal.preferred_currency')}</ProfileLabel>
-            <ProfileSelect name="currency">
+            <ProfileSelect name="currency" defaultValue={currency}>
               {currencies.map(currency => (
                 <option key={currency}>{currency}</option>
               ))}
@@ -118,31 +148,31 @@ const Personal = (props: Props) => {
         <Row gap="16px">
           <Col sm={6}>
             <ProfileLabel>{t('profile.personal.address_line_1')}</ProfileLabel>
-            <ProfileInput name="address1" />
+            <ProfileInput name="address1" defaultValue={address1} />
           </Col>
           <Col sm={6}>
             <ProfileLabel>{t('profile.personal.address_line_2')}</ProfileLabel>
-            <ProfileInput name="address2" />
+            <ProfileInput name="address2" defaultValue={address2} />
           </Col>
         </Row>
         <Row gap="16px">
           <Col sm={6}>
             <ProfileLabel>{t('profile.personal.city')}</ProfileLabel>
-            <ProfileInput name="city" />
+            <ProfileInput name="city" defaultValue={city} />
           </Col>
           <Col xs={6} sm={3}>
             <ProfileLabel>{t('profile.personal.region')}</ProfileLabel>
-            <ProfileInput name="state" />
+            <ProfileInput name="state" defaultValue={state} />
           </Col>
           <Col xs={6} sm={3}>
             <ProfileLabel>{t('profile.personal.postal_code')}</ProfileLabel>
-            <ProfileInput name="zip" />
+            <ProfileInput name="zip" defaultValue={zip} />
           </Col>
         </Row>
         <Row gap="16px">
           <Col sm={6}>
             <ProfileLabel>{t('profile.personal.country')}</ProfileLabel>
-            <ProfileInput name="country" />
+            <ProfileInput name="country" defaultValue={country} />
           </Col>
         </Row>
         <ProfileButton>

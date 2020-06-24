@@ -1,6 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
-import { useTranslation } from 'react-i18next';
 import ProfileLayout from '~/components/ProfileLayout';
 import PersonalInformation from '~/components/PersonalInformation';
 
@@ -8,10 +6,7 @@ interface Props {
   className?: string;
 }
 
-const PersonalInformationPage = (props: Props) => {
-  const { className } = props;
-  const { t } = useTranslation();
-
+const PersonalInformationPage = () => {
   return (
     <ProfileLayout>
       <PersonalInformation />

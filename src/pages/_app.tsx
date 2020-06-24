@@ -36,7 +36,7 @@ class MyApp extends App {
 
 const AppWithContext = (props: any) => {
   const { children } = props;
-  const [getUser, { loading, data }] = useLazyQuery(GET_USER, { fetchPolicy: 'network-only' });
+  const [getUser, { loading, data, called }] = useLazyQuery(GET_USER, { fetchPolicy: 'network-only' });
   const user = data?.profile || null;
   const hasSession = getCookie(HAS_SESSION);
 
@@ -44,13 +44,13 @@ const AppWithContext = (props: any) => {
     restoreSessionOnEnter();
   }
 
-  useEffect(() => {
+  if (typeof window !== 'undefined') {
     const isIframe = window.parent !== window;
 
-    if (isIframe) return;
-
-    getUser();
-  }, []);
+    if (!isIframe && !called) {
+      getUser();
+    }
+  }
 
   const onLogout = () => {
     logout();
@@ -62,7 +62,7 @@ const AppWithContext = (props: any) => {
 
   const userContextValue = {
     user,
-    loading,
+    loading: !called || loading,
     onLogin,
     onLogout,
   };

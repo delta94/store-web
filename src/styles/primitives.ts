@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { WHITE_01, GRAY_700, WHITE, H2Bold, Caption13, Caps10, GRAY_100 } from 'store-library/src/styles';
+import { WHITE_01, GRAY_700, WHITE, H2Bold, Caption13, Caps10, GRAY_100, PURPLE_500 } from 'store-library/src/styles';
 import { SCREEN_SIZE, Button } from 'store-library';
 
 export const DropdownMenuItem = styled.div`
@@ -73,6 +73,10 @@ export const ProfileInput = styled.input`
   font-size: 13px;
   line-height: 18px;
   margin-bottom: 16px;
+
+  :focus {
+    border-color: ${PURPLE_500};
+  }
 `;
 
 export const ProfileSelect = styled.select`
@@ -92,6 +96,10 @@ export const ProfileSelect = styled.select`
   font-size: 13px;
   line-height: 18px;
   margin-bottom: 16px;
+
+  :focus {
+    border-color: ${PURPLE_500};
+  }
 `;
 
 export const ProfileDivider = styled.div`
