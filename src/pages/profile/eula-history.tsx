@@ -7,17 +7,14 @@ interface Props {
   className?: string;
 }
 
-const EulaHistory = (props: Props) => {
-  const { className } = props;
-  const { t } = useTranslation();
-
+const EulaHistoryPage = (props: Props) => {
   return (
     <ProfileLayout>
-      PersonalInformation
+      <EulaHistory />
     </ProfileLayout>
   );
 };
 
 const areEqual = (prev: Props, next: Props) => prev === next;
 
-export default React.memo(EulaHistory, areEqual);
+export default React.memo(EulaHistoryPage, areEqual);
