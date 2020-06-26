@@ -3,7 +3,7 @@ import { Catalog } from 'store-library';
 import SearchFilter from '~/components/SearchFilter';
 import apolloClient from '~/apolloClient';
 import { useRouter } from 'next/router';
-import { Filter } from 'store-library/src/components/Catalog/types';
+import { ActiveFilter } from 'store-library/src/components/Catalog/types';
 import { getUrlParameter } from '~/helpers';
 
 const GamesPage = () => {
@@ -27,7 +27,7 @@ const GamesPage = () => {
     );
   };
 
-  const handleChangeFilter = ({ sortType, platforms, features, genres, offset, limit }: Filter) => {
+  const handleChangeFilter = ({ sortType, platforms, features, genres, offset, limit }: ActiveFilter) => {
     const query: Record<string, string | number> = {
       sortType,
       offset,
@@ -35,15 +35,15 @@ const GamesPage = () => {
     };
 
     if (platforms.length) {
-      query.platforms = platforms.map(({ id }) => id).join(',');
+      query.platforms = platforms.join(',');
     }
 
     if (features.length) {
-      query.features = features.map(({ id }) => id).join(',');
+      query.features = features.join(',');
     }
 
     if (genres.length) {
-      query.genres = genres.map(({ id }) => id).join(',');
+      query.genres = genres.join(',');
     }
 
     router.push(
