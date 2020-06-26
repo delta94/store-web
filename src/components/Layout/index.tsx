@@ -44,14 +44,13 @@ const Wrapper = styled.div`
   flex-direction: column;
   min-height: 100vh;
   overflow-y: auto;
-  overflow-x: hidden;
 `;
 
 const Main = styled.main`
   flex-grow: 1;
   background-color: ${GRAY_900};
   padding-top: 48px;
-  overflow: hidden;
+  overflow-x: hidden;
 `;
 
 const OfflineMessage = styled.h2`
