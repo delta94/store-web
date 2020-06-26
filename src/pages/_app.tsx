@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import App from 'next/app';
 import { createGlobalStyle } from 'styled-components';
 import { ApolloProvider, useLazyQuery } from '@apollo/react-hooks';

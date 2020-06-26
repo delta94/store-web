@@ -81,12 +81,11 @@ const Personal = (props: Props) => {
     formFields.forEach(field => {
       const value = event.currentTarget[field]?.value || '';
 
-      // if (!value) return;
+      if (!value) return;
 
       user[field] = value;
     });
 
-    console.log(user);
     onUpdateProfile(user);
   };
 
