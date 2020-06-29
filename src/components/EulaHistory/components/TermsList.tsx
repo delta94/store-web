@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { GRAY_100, WHITE_01, Caps10, WHITE, Caption13, Grid, DownloadIcon, PURPLE_500 } from 'store-library';
+import EmptyList from './EmptyList';
 
 const { Row, Col } = Grid;
 
@@ -30,50 +31,57 @@ const TermsList = (props: Props) => {
   const { className, terms } = props;
   const { t } = useTranslation();
 
+  if (!terms.length) {
+    return (
+      <Wrapper>
+        <EmptyList />
+      </Wrapper>
+    );
+  }
+
   return (
     <Wrapper className={className}>
-      <StyledRow gap="16px" heading>
-        <StyledCol xs={7}>
-          <Caps10>{t('profile.eula.name')}</Caps10>
-        </StyledCol>
-        <StyledCol xs={5}>
-          <Row>
-            <StyledCol xs={4}>
+      <Table>
+        <thead>
+          <TR>
+            <TH>
+              <Caps10>{t('profile.eula.name')}</Caps10>
+            </TH>
+            <TH>
               <Caps10>{t('profile.eula.language')}</Caps10>
-            </StyledCol>
-            <StyledCol xs={4}>
+            </TH>
+            <TH>
               <Caps10>{t('profile.eula.date')}</Caps10>
-            </StyledCol>
-            <StyledCol xs={4}>
+            </TH>
+            <TH>
               <Caps10>{t('profile.eula.download')}</Caps10>
-            </StyledCol>
-          </Row>
-        </StyledCol>
-      </StyledRow>
-      {terms.map(({ name, language, date, url, id }) => (
-        <StyledRow key={id} gap="16px">
-          <StyledCol xs={7}>
-            <Caption13>{name}</Caption13>
-          </StyledCol>
-          <StyledCol xs={5}>
-            <Row>
-              <StyledCol xs={4}>
+            </TH>
+          </TR>
+
+        </thead>
+        <tbody>
+          {terms.map(({ name, language, date, url, id }) => (
+            <TR key={id}>
+              <TD>
+                <Caption13>{name}</Caption13>
+              </TD>
+              <TD>
                 <Caption13>{language}</Caption13>
-              </StyledCol>
-              <StyledCol xs={4}>
+              </TD>
+              <TD>
                 <Caption13>{formatDate(date)}</Caption13>
-              </StyledCol>
-              <StyledCol xs={4}>
+              </TD>
+              <TD>
                 <Caption13>
                   <IconWrapper href={url} download>
                     <DownloadIcon />
                   </IconWrapper>
                 </Caption13>
-              </StyledCol>
-            </Row>
-          </StyledCol>
-        </StyledRow>
-      ))}
+              </TD>
+            </TR>
+          ))}
+        </tbody>
+      </Table>
     </Wrapper>
   );
 };
@@ -83,25 +91,36 @@ const areEqual = (prev: Props, next: Props) => prev === next;
 export default React.memo(TermsList, areEqual);
 
 const Wrapper = styled.div`
-  min-height: 656px;
+  min-height: 50vh;
+  position: relative;
 `;
 
-const StyledRow = styled(Row) <{ heading?: boolean }>`
-  color: ${({ heading }) => heading ? GRAY_100 : WHITE};
-  padding: 12px 0;
-
-  ${({ heading }) => !heading && `border-bottom: 1px solid ${WHITE_01};`}
+const Table = styled.table`
+  width: 100%;
+`;
+const TR = styled.tr`
+`;
+const TH = styled.th`
+  padding: 12px 16px 12px 0;
+  text-align: start;
+  color: ${GRAY_100};
 `;
 
-const StyledCol = styled(Col)`
-  word-wrap: break-word;
+const TD = styled.td`
+  padding: 12px 16px 12px 0;
+  vertical-align: top;
+  text-align: start;
+  border-bottom: 1px solid ${WHITE_01};
 `;
 
 const IconWrapper = styled.a`
-  display: block;
-  width: 11px;
-  margin: 0 auto;
+  display: flex;
+  height: 18px;
 
+  svg {
+    margin: auto;
+  }
+  
   path {
     stroke: ${PURPLE_500}
   }

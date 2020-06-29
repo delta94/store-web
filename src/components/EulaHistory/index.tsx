@@ -20,7 +20,7 @@ const EulaHistory = () => {
       <ProfileSubtitle>
         {t('profile.eula.description')}
       </ProfileSubtitle>
-      <TermsList terms={mockTerms} />
+      <TermsList terms={Math.random() > 0.5 ? mockTerms : []} />
     </ProfileWrapper>
   );
 };
