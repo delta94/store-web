@@ -1,10 +1,13 @@
 import React, { ReactNode, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { GRAY_900, RED_500 } from 'store-library/src/styles';
+import { useTranslation } from 'react-i18next';
 
 import Footer from './components/Footer';
 import Header from './components/Header';
 import CustomHead from './components/CustomHead';
+
+const CURRENT_LANG_KEY = 'i18nextLng';
 
 interface Props {
   className?: string;
@@ -14,9 +17,20 @@ interface Props {
 const Layout = (props: Props) => {
   const { children } = props;
   const [isOnline, setOnline] = useState(true);
+  const { i18n } = useTranslation();
+
+  i18n.on('languageChanged', lang => {
+    localStorage.setItem(CURRENT_LANG_KEY, lang);
+  });
 
   useEffect(() => {
     setOnline(navigator.onLine);
+
+    const currentLang = localStorage.getItem(CURRENT_LANG_KEY);
+
+    if (currentLang) {
+      i18n.changeLanguage(currentLang);
+    }
   }, []);
 
   const offlineMessage = (
