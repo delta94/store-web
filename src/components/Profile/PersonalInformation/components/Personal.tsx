@@ -1,5 +1,8 @@
 import React, { useState, FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
+import { Grid } from 'store-library';
+import DateSelect from '~/components/DateSelect';
+
 import {
   ProfileWrapper,
   ProfileTitle,
@@ -9,15 +12,13 @@ import {
   ProfileSelect,
   ProfileDivider,
   ProfileButton,
-} from '~/styles/primitives';
-import { Grid } from 'store-library';
-import DateSelect from '~/components/DateSelect';
+} from '../../styles';
 
 const { Col, Row } = Grid;
 const formFields = [
   'firstName',
   'lastName',
-  // 'phone',
+  'phone',
   'language',
   'currency',
   'address1',

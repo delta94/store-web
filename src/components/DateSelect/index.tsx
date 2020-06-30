@@ -1,8 +1,9 @@
 import React, { ChangeEvent } from 'react';
 import styled from 'styled-components';
-import { ProfileSelect } from '~/styles/primitives';
 import { useTranslation } from 'react-i18next';
 import { Grid } from 'store-library';
+
+import { ProfileSelect } from '../Profile/styles';
 
 const { Row, Col } = Grid;
 

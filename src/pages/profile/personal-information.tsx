@@ -1,6 +1,6 @@
 import React from 'react';
 import ProfileLayout from '~/components/ProfileLayout';
-import PersonalInformation from '~/components/PersonalInformation';
+import PersonalInformation from '~/components/Profile/PersonalInformation';
 
 interface Props {
   className?: string;
