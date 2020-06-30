@@ -1,23 +1,19 @@
 import React from 'react';
-import styled from 'styled-components';
-import { useTranslation } from 'react-i18next';
-import ProfileLayout from '~/components/ProfileLayout';
+import ProfileLayout from '~/components/Profile/ProfileLayout';
+import PersonalInformation from '~/components/Profile/PersonalInformation';
 
 interface Props {
   className?: string;
 }
 
-const PersonalInformation = (props: Props) => {
-  const { className } = props;
-  const { t } = useTranslation();
-
+const PersonalInformationPage = () => {
   return (
     <ProfileLayout>
-      PersonalInformation
+      <PersonalInformation />
     </ProfileLayout>
   );
 };
 
 const areEqual = (prev: Props, next: Props) => prev === next;
 
-export default React.memo(PersonalInformation, areEqual);
+export default React.memo(PersonalInformationPage, areEqual);

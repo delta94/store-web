@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
-import ProfileLayout from '~/components/ProfileLayout';
+import ProfileLayout from '~/components/Profile/ProfileLayout';
 
 interface Props {
   className?: string;
