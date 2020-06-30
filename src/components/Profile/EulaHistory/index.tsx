@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { ProfileWrapper, ProfileTitle, ProfileSubtitle } from '~/styles/primitives';
 
+import { ProfileWrapper, ProfileTitle, ProfileSubtitle } from '../styles';
 import TermsList from './components/TermsList';
 import mockTerms from './mockTerms';
 
