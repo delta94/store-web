@@ -1,5 +1,5 @@
 import React from 'react';
-import ProfileLayout from '~/components/ProfileLayout';
+import ProfileLayout from '~/components/Profile/ProfileLayout';
 import PersonalInformation from '~/components/Profile/PersonalInformation';
 
 interface Props {

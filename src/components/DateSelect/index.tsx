@@ -56,7 +56,7 @@ const DateSelect = (props: Props) => {
             onChange={handleChange}
           >
             {Array(12).fill(0).map((_, i) => (
-              <option key={i} value={i}>{t(`profile.months.${i}`)}</option>
+              <option key={i} value={i}>{t(`months.${i}`)}</option>
             ))}
           </ProfileSelect>
         </Col>
