@@ -23,6 +23,27 @@ const CustomHead = () => (
     <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.json" />
     <link rel="shortcut icon" href="/icons/favicon.ico" />
+    <script
+      dangerouslySetInnerHTML={{
+        __html: `
+        if (!window.qu) {
+          window.qu = function () {
+            qu.q.push(arguments);
+          };
+          qu.q = qu.q || [];
+          script = document.createElement('script');
+          script.async = 1;
+          script.src = 'https://uttu.tst.qilin.super.com/qilin-uttu.js';
+          firstScript = document.scripts[0];
+          firstScript.parentNode.insertBefore(script, firstScript);
+        }
+
+        qu('init', {
+          collectorUrl: 'https://uttu.tst.qilin.super.com/track',
+          siteId: '${storeName}'
+        });
+      ` }}
+    />
   </Head>
 );
 

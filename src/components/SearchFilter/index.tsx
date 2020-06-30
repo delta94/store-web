@@ -28,7 +28,7 @@ const SearchFilter = (props: Props) => {
 
   const handleSearchItemClick = (slug: string) => {
     router.push(
-      `/game?slug=${slug}`,
+      `/game?slug=${slug}&fromSearch=true`,
       `/game/${slug}`,
       { shallow: true },
     );

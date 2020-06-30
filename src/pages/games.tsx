@@ -27,7 +27,7 @@ const GamesPage = () => {
     );
   };
 
-  const handleChangeFilter = ({ sortType, platforms, features, genres, offset, limit }: ActiveFilter) => {
+  const handleChangeFilter = ({ sortType, platforms, features, languages, genres, offset, limit }: ActiveFilter) => {
     const query: Record<string, string | number> = {
       sortType,
       offset,
@@ -46,6 +46,10 @@ const GamesPage = () => {
       query.genres = genres.join(',');
     }
 
+    if (languages.length) {
+      query.languages = languages.join(',');
+    }
+
     router.push(
       '/games',
       { query },
@@ -55,6 +59,7 @@ const GamesPage = () => {
   const genresParam = getUrlParameter('genres');
   const featuresParam = getUrlParameter('features');
   const platformsParam = getUrlParameter('platforms');
+  const languagesParam = getUrlParameter('languages');
   const limitParam = getUrlParameter('limit');
   const offsetParam = getUrlParameter('offset');
 
@@ -62,6 +67,7 @@ const GamesPage = () => {
     genres: genresParam?.length ? genresParam.split(',') : [],
     features: featuresParam?.length ? featuresParam.split(',') : [],
     platforms: platformsParam?.length ? platformsParam.split(',') : [],
+    languages: languagesParam?.length ? languagesParam.split(',') : [],
     limit: limitParam ? Number(limitParam) : 50,
     offset: offsetParam ? Number(offsetParam) : 0,
     sortType: getUrlParameter('sortType') || 'releaseDate',
