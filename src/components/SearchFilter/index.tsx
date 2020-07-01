@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { Search } from 'store-library';
@@ -112,7 +112,7 @@ const FilterButton = styled.div<{ isCatalogPage: boolean }>`
     display: none;
   }
 
-  @media only screen and (min-width: ${SCREEN_SIZE.TABLET}) {
+  @media only screen and (min-width: ${SCREEN_SIZE.LAUNCHER}) {
     ${({ isCatalogPage }) => isCatalogPage && 'display: none;'}
     background: none;
     width: auto;
