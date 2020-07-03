@@ -8,10 +8,11 @@ import { detectBot } from '~/helpers';
 
 interface Props {
   game: GameType | null;
+  isError: boolean;
 }
 
 const GamePage = (props: Props) => {
-  const { game } = props;
+  const { game, isError } = props;
   const router = useRouter();
   const slug = router.query.slug;
 
@@ -20,6 +21,11 @@ const GamePage = (props: Props) => {
 
     if (!slug) {
       router.push('/404');
+      return;
+    }
+
+    if (isError) {
+      router.push('/_error');
       return;
     }
 
@@ -37,21 +43,27 @@ export const getServerSideProps: GetServerSideProps = async context => {
   const slug = context.params?.slug;
   const userAgent = context.req.headers['user-agent'];
   const isBot = detectBot(userAgent);
+  let isError = false;
 
   let game: GameType | null = null;
 
   if (isBot) {
     try {
-      const { data } = await apolloClient.query({
+      const { data, errors } = await apolloClient.query({
         query: GET_GAME,
         variables: { slug },
       });
 
+      if (errors) {
+        isError = true;
+      }
+
       game = data?.gameBySlug;
     } catch (error) {
       console.error(error);
+      isError = true;
     }
   }
 
-  return { props: { game } };
+  return { props: { game, isError } };
 };

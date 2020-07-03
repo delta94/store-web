@@ -12,12 +12,13 @@ import SearchFilter from '~/components/SearchFilter';
 interface Props {
   className?: string;
   blocks: PageModuleProps[] | null;
+  isError: boolean;
 }
 
 const Home = (props: Props) => {
-  const { className } = props;
+  const { className, isError } = props;
   const [blocks, setBlocks] = useState(props.blocks);
-  const [loadBlocks, { called, loading, data }] = useLazyQuery(GET_STORE_FRONT);
+  const [loadBlocks, { called, error, loading, data }] = useLazyQuery(GET_STORE_FRONT);
   const router = useRouter();
 
   useEffect(() => {
@@ -34,13 +35,22 @@ const Home = (props: Props) => {
     setBlocks(newBlocks);
   }, [called, loading]);
 
+  useEffect(() => {
+    if (isError) {
+      router.push('/_error');
+    }
+  }, []);
+
   const handleCardClick = (slug: string) => {
     router.push(
-      `/game?slug=${slug}`,
       `/game/${slug}`,
-      { shallow: true },
     );
   };
+
+  if (error) {
+    router.push('/_error');
+    return null;
+  }
 
   if (!blocks) return null;
 
@@ -75,18 +85,23 @@ export const getServerSideProps: GetServerSideProps = async context => {
   const isBot = detectBot(userAgent);
 
   let blocks: PageModuleProps[] | null = null;
+  let isError = false;
 
   if (isBot) {
     try {
-      const { data } = await apolloClient.query({
+      const { data, errors } = await apolloClient.query({
         query: GET_STORE_FRONT,
       });
 
+      if (errors) {
+        isError = true;
+      }
+
       blocks = data?.storefront?.blocks;
     } catch (error) {
-      console.error(error);
+      isError = true;
     }
   }
 
-  return { props: { blocks } };
+  return { props: { blocks, isError } };
 };

@@ -26,8 +26,22 @@ const GamePage = () => {
 
   const game: GameType = data?.gameBySlug;
 
-  if (error || !game) {
-    router.push('/404');
+  if (error) {
+    const { graphQLErrors, networkError } = error;
+
+    if (!game) {
+      router.push('/404');
+    }
+
+    if (networkError) {
+      console.log(networkError);
+      router.push('/_error');
+    }
+
+    if (graphQLErrors) {
+      console.log(graphQLErrors);
+    }
+
     return null;
   }
 
