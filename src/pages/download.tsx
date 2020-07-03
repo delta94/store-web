@@ -2,7 +2,16 @@ import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
-import { WHITE, PURPLE_500, buttonStyles, Caption13, WHITE_05, H3, GRAY_100 } from 'store-library/src/styles';
+import {
+  WHITE,
+  PURPLE_500,
+  buttonStyles,
+  Caption13,
+  WHITE_05,
+  H3,
+  GRAY_100,
+  Caps14Bold,
+} from 'store-library/src/styles';
 import { DownloadFullIcon } from 'store-library/src/icons';
 import { DownloadLauncherWrapper, DownloadLauncherContent } from '~/styles/primitives';
 
@@ -27,7 +36,7 @@ const Download = (props: Props) => {
         <Link href="/how-to-download">
           <DownloadLink color={PURPLE_500}>
             <DownloadFullIcon />
-            {t('labels.download_for_free')}
+            <Caps14Bold>{t('labels.download_for_free')}</Caps14Bold>
           </DownloadLink>
         </Link>
         <Available>

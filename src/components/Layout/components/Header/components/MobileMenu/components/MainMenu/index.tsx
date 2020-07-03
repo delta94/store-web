@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { Avatar, Button } from 'store-library';
+import { Avatar, Button, Caps11Bold, WHITE, PURPLE_500 } from 'store-library';
 import { LanguagesIcon, SettingsIcon, LogoutIcon } from 'store-library/src/icons';
 import { LANGUAGES } from 'store-library/src/const';
 import { UserContext } from '~/contexts';
@@ -37,8 +37,10 @@ const MainMenu = (props: Props) => {
       {isUserSignedIn && (
         <>
           <MenuItem>
-            <StyledAvatar width="24px" height="24px" src={user?.photoURL} />
-            <UserName>{user?.email || 'anonymous'}</UserName>
+            <StyledAvatar width="24px" height="24px" src={user?.photoURL} backgroundColor={PURPLE_500} />
+            <UserName>
+              <Caps11Bold>{user?.email || 'anonymous'}</Caps11Bold>
+            </UserName>
           </MenuItem>
           <Divider />
         </>
@@ -85,7 +87,7 @@ const MainMenu = (props: Props) => {
       )}
       {!isUserSignedIn && (
         <SignInButton onClick={onLogin} loading={loading}>
-          {t('labels.signin')}
+          <Caps11Bold>{t('labels.signin')}</Caps11Bold>
         </SignInButton>
       )}
     </MenuWrapper>
@@ -101,6 +103,11 @@ const StyledLink = styled.a``;
 const StyledAvatar = styled(Avatar)`
   margin-right: 6px;
   flex-shrink: 0;
+
+  path {
+    fill: ${WHITE};
+    fill-opacity: 1;
+  }
 `;
 
 const SignInButton = styled(Button)`
@@ -108,6 +115,7 @@ const SignInButton = styled(Button)`
 `;
 
 const UserName = styled.span`
+  color: ${WHITE};
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
