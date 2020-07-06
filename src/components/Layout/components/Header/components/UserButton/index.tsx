@@ -24,7 +24,7 @@ const UserButton = (props: Props) => {
     onLogout,
   } = useContext(UserContext);
 
-  const handleClickSettings = () => router.push('/settings');
+  const handleClickSettings = () => router.push('/profile');
 
   const handleToggleDropdown = (open: boolean) => {
     setDropdownOpen(open);

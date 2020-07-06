@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { WHITE_01, PURPLE_500, Caption13 } from 'store-library/src/styles';
 import { DownloadIcon } from 'store-library/src/icons';
 import { LegalDocument } from 'store-library/src/types';
+import { useTranslation } from 'react-i18next';
 
 const formatDate = (isoString = '') => {
   const date = new Date(isoString.slice(0, 10));
@@ -20,6 +21,7 @@ interface Props {
 const ListItem = (props: Props) => {
   const { className, legalDocument } = props;
   const { language, title, signedAt } = legalDocument;
+  const { t } = useTranslation();
 
   const downloadDocument = async () => {
     console.log('Download', title);
@@ -31,7 +33,7 @@ const ListItem = (props: Props) => {
         <Caption13>{title}</Caption13>
       </TD>
       <TD>
-        <Caption13>{language}</Caption13>
+        <Caption13>{t(`locales.${language}`)}</Caption13>
       </TD>
       <TD>
         <Caption13>{formatDate(signedAt)}</Caption13>
