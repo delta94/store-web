@@ -2,8 +2,10 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 
 import { ProfileWrapper, ProfileTitle, ProfileSubtitle } from '../styles';
-import TermsList from './components/TermsList';
-import mockTerms from './mockTerms';
+import LegalDocumentsList from './components/LegalDocumentsList';
+import { useQuery } from '@apollo/react-hooks';
+import { GET_USER_DOCUMENTS } from 'store-library';
+import PageLoading from '~/components/PageLoading';
 
 interface Props {
   className?: string;
@@ -11,6 +13,19 @@ interface Props {
 
 const EulaHistory = () => {
   const { t } = useTranslation();
+  const { data, loading, error } = useQuery(GET_USER_DOCUMENTS, {
+    variables: {
+      input: {
+        offset: 0,
+        limit: 30,
+      },
+    },
+  });
+  console.log(data);
+
+  if (loading) return <PageLoading />;
+
+  if (error || !data) return null;
 
   return (
     <ProfileWrapper>
@@ -20,7 +35,7 @@ const EulaHistory = () => {
       <ProfileSubtitle>
         {t('profile.eula.description')}
       </ProfileSubtitle>
-      <TermsList terms={Math.random() > 0.5 ? mockTerms : []} />
+      <LegalDocumentsList legalDocuments={data?.documentsByUser || []} />
     </ProfileWrapper>
   );
 };

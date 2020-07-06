@@ -1,12 +1,15 @@
 import React from 'react';
 import ProfileLayout from '~/components/Profile/ProfileLayout';
 import EulaHistory from '~/components/Profile/EulaHistory';
+import useProtectedPage from '~/hooks/useProtectedPage';
 
 interface Props {
   className?: string;
 }
 
-const EulaHistoryPage = (props: Props) => {
+const EulaHistoryPage = () => {
+  useProtectedPage();
+
   return (
     <ProfileLayout>
       <EulaHistory />
