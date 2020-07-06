@@ -1,11 +1,11 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
+import { useQuery } from '@apollo/react-hooks';
+import PageLoading from '~/components/PageLoading';
+import { GET_USER_DOCUMENTS } from 'store-library/src/api';
 
 import { ProfileWrapper, ProfileTitle, ProfileSubtitle } from '../styles';
 import LegalDocumentsList from './components/LegalDocumentsList';
-import { useQuery } from '@apollo/react-hooks';
-import { GET_USER_DOCUMENTS } from 'store-library';
-import PageLoading from '~/components/PageLoading';
 
 interface Props {
   className?: string;

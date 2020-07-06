@@ -1,7 +1,7 @@
 import React, { useState, FormEvent } from 'react';
 import { useTranslation } from 'react-i18next';
-import DateSelect from '~/components/DateSelect';
 import { Grid } from 'store-library';
+import DateSelect from '~/components/DateSelect';
 
 import {
   ProfileWrapper,

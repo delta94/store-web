@@ -53,9 +53,7 @@ const areEqual = (prev: Props, next: Props) => prev === next;
 
 export default React.memo(ListItem, areEqual);
 
-const Wrapper = styled.tr`
-  
-`;
+const Wrapper = styled.tr``;
 
 const TD = styled.td`
   padding: 12px 16px 12px 0;
