@@ -43,7 +43,9 @@ const Home = (props: Props) => {
 
   const handleCardClick = (slug: string) => {
     router.push(
+      `/game?slug=${slug}`,
       `/game/${slug}`,
+      { shallow: true },
     );
   };
 
