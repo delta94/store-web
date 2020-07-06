@@ -9,11 +9,11 @@ import ListItem from './ListItem';
 
 interface Props {
   className?: string;
-  legalDocuments?: LegalDocument[];
+  legalDocuments: LegalDocument[];
 }
 
 const LegalDocumentsList = (props: Props) => {
-  const { className, legalDocuments = [] } = props;
+  const { className, legalDocuments } = props;
   const { t } = useTranslation();
 
   if (!legalDocuments.length) {

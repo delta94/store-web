@@ -21,7 +21,6 @@ const EulaHistory = () => {
       },
     },
   });
-  console.log(data);
 
   if (loading) return <PageLoading />;
 
