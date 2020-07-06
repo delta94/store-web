@@ -8,11 +8,11 @@ import { detectBot } from '~/helpers';
 
 interface Props {
   game: GameType | null;
-  isError: boolean;
+  error: boolean;
 }
 
 const GamePage = (props: Props) => {
-  const { game, isError } = props;
+  const { game, error } = props;
   const router = useRouter();
   const slug = router.query.slug;
 
@@ -24,7 +24,7 @@ const GamePage = (props: Props) => {
       return;
     }
 
-    if (isError) {
+    if (error) {
       router.push('/_error');
       return;
     }
@@ -43,7 +43,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
   const slug = context.params?.slug;
   const userAgent = context.req.headers['user-agent'];
   const isBot = detectBot(userAgent);
-  let isError = false;
+  let error = false;
 
   let game: GameType | null = null;
 
@@ -55,15 +55,15 @@ export const getServerSideProps: GetServerSideProps = async context => {
       });
 
       if (errors) {
-        isError = true;
+        error = true;
       }
 
       game = data?.gameBySlug;
-    } catch (error) {
-      console.error(error);
-      isError = true;
+    } catch (err) {
+      console.error(err);
+      error = true;
     }
   }
 
-  return { props: { game, isError } };
+  return { props: { game, error } };
 };

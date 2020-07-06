@@ -12,13 +12,13 @@ import SearchFilter from '~/components/SearchFilter';
 interface Props {
   className?: string;
   blocks: PageModuleProps[] | null;
-  isError: boolean;
+  error: boolean;
 }
 
 const Home = (props: Props) => {
-  const { className, isError } = props;
+  const { className, error } = props;
   const [blocks, setBlocks] = useState(props.blocks);
-  const [loadBlocks, { called, error, loading, data }] = useLazyQuery(GET_STORE_FRONT);
+  const [loadBlocks, { called, error: queryError, loading, data }] = useLazyQuery(GET_STORE_FRONT);
   const router = useRouter();
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const Home = (props: Props) => {
   }, [called, loading]);
 
   useEffect(() => {
-    if (isError) {
+    if (error || queryError) {
       router.push('/_error');
     }
   }, []);
@@ -48,11 +48,6 @@ const Home = (props: Props) => {
       { shallow: true },
     );
   };
-
-  if (error) {
-    router.push('/_error');
-    return null;
-  }
 
   if (!blocks) return null;
 
@@ -87,7 +82,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
   const isBot = detectBot(userAgent);
 
   let blocks: PageModuleProps[] | null = null;
-  let isError = false;
+  let error = false;
 
   if (isBot) {
     try {
@@ -96,14 +91,14 @@ export const getServerSideProps: GetServerSideProps = async context => {
       });
 
       if (errors) {
-        isError = true;
+        error = true;
       }
 
       blocks = data?.storefront?.blocks;
-    } catch (error) {
-      isError = true;
+    } catch (err) {
+      error = true;
     }
   }
 
-  return { props: { blocks, isError } };
+  return { props: { blocks, error } };
 };
