@@ -1,23 +1,22 @@
 import React from 'react';
-import styled from 'styled-components';
-import { useTranslation } from 'react-i18next';
 import ProfileLayout from '~/components/Profile/ProfileLayout';
+import EulaHistory from '~/components/Profile/EulaHistory';
+import useProtectedPage from '~/hooks/useProtectedPage';
 
 interface Props {
   className?: string;
 }
 
-const EulaHistory = (props: Props) => {
-  const { className } = props;
-  const { t } = useTranslation();
+const EulaHistoryPage = () => {
+  useProtectedPage();
 
   return (
     <ProfileLayout>
-      PersonalInformation
+      <EulaHistory />
     </ProfileLayout>
   );
 };
 
 const areEqual = (prev: Props, next: Props) => prev === next;
 
-export default React.memo(EulaHistory, areEqual);
+export default React.memo(EulaHistoryPage, areEqual);

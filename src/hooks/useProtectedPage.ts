@@ -3,17 +3,13 @@ import { UserContext } from '~/contexts';
 import { useRouter } from 'next/router';
 
 export default () => {
-  const { user, loading, onLogin } = useContext(UserContext);
+  const { user, loading } = useContext(UserContext);
   const router = useRouter();
 
   const checkPermissions = () => {
     if (loading || user) return;
 
-    if (onLogin) {
-      onLogin();
-    } else {
-      router.push('/');
-    }
+    router.push('/');
   };
 
   useEffect(() => {

@@ -66,7 +66,7 @@ const MainMenu = (props: Props) => {
       <Divider />
       {isUserSignedIn && (
         <>
-          <Link href="/settings">
+          <Link href="/profile">
             <StyledLink >
               <MenuItem>
                 <IconWrapper>
