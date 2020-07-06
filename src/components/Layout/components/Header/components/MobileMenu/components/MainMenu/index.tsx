@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { Avatar, Button, Caps11Bold, WHITE } from 'store-library';
+import { Avatar, Button, Caps11Bold, WHITE, PURPLE_500 } from 'store-library';
 import { LanguagesIcon, SettingsIcon, LogoutIcon } from 'store-library/src/icons';
 import { LANGUAGES } from 'store-library/src/const';
 import { UserContext } from '~/contexts';
@@ -37,7 +37,7 @@ const MainMenu = (props: Props) => {
       {isUserSignedIn && (
         <>
           <MenuItem>
-            <StyledAvatar width="24px" height="24px" src={user?.photoURL} />
+            <StyledAvatar width="24px" height="24px" src={user?.photoURL} backgroundColor={PURPLE_500} />
             <UserName>
               <Caps11Bold>{user?.email || 'anonymous'}</Caps11Bold>
             </UserName>

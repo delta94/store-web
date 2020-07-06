@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
 import { UserContext } from '~/contexts';
 import { Button, Avatar, Dropdown } from 'store-library';
-import { Caps10Bold, GRAY_700, WHITE, Caps11Bold } from 'store-library/src/styles';
+import { Caps10Bold, GRAY_700, WHITE, Caps11Bold, PURPLE_500 } from 'store-library/src/styles';
 import { LogoutIcon, SettingsIcon } from 'store-library/src/icons';
 import { DropdownMenuItem } from '~/styles/primitives';
 
@@ -45,7 +45,7 @@ const UserButton = (props: Props) => {
 
   const userTitle = (
     <TitleWrapper isOpen={dropdownOpen}>
-      <StyledAvatar src={user?.photoURL} />
+      <StyledAvatar src={user?.photoURL} backgroundColor={PURPLE_500} />
       <Caps11Bold>
         {user?.email || 'anonymous'}
       </Caps11Bold>
