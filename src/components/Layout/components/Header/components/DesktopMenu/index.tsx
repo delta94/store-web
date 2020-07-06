@@ -4,8 +4,8 @@ import { useTranslation } from 'react-i18next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { SCREEN_SIZE } from 'store-library/src/const';
-import { Caps11, WHITE, GRAY_100, buttonStyles, PURPLE_500 } from 'store-library/src/styles';
-import { DownloadFullIcon } from 'store-library/src/icons';
+import { Caps11, WHITE, GRAY_100, buttonStyles, PURPLE_500, Caps10Bold } from 'store-library/src/styles';
+import { DownloadSmallIcon } from 'store-library/src/icons';
 
 import menuLinks from '../../menuLinks';
 import LocaleSwitcher from '../LocaleSwitcher';
@@ -36,8 +36,8 @@ const DesktopMenu = (props: Props) => {
         <StyledUserButton />
         <Link href="/download">
           <DownloadLink color={PURPLE_500}>
-            <DownloadFullIcon />
-            {t('routes.download')}
+            <DownloadSmallIcon />
+            <Caps10Bold>{t('routes.download')}</Caps10Bold>
           </DownloadLink>
         </Link>
       </OtherMenu>
@@ -89,8 +89,9 @@ const DownloadLink = styled.a`
   display: flex;
   align-items: center;
   padding: 10px 20px;
+  height: 34px;
 
   svg {
-    margin-right: 6px;
+    margin-right: 4px;
   }
 `;

@@ -12,12 +12,13 @@ import SearchFilter from '~/components/SearchFilter';
 interface Props {
   className?: string;
   blocks: PageModuleProps[] | null;
+  error: boolean;
 }
 
 const Home = (props: Props) => {
-  const { className } = props;
+  const { className, error } = props;
   const [blocks, setBlocks] = useState(props.blocks);
-  const [loadBlocks, { called, loading, data }] = useLazyQuery(GET_STORE_FRONT);
+  const [loadBlocks, { called, error: queryError, loading, data }] = useLazyQuery(GET_STORE_FRONT);
   const router = useRouter();
 
   useEffect(() => {
@@ -33,6 +34,12 @@ const Home = (props: Props) => {
     const newBlocks = data?.storefront.blocks || [];
     setBlocks(newBlocks);
   }, [called, loading]);
+
+  useEffect(() => {
+    if (error || queryError) {
+      router.push('/_error');
+    }
+  }, []);
 
   const handleCardClick = (slug: string) => {
     router.push(
@@ -75,18 +82,23 @@ export const getServerSideProps: GetServerSideProps = async context => {
   const isBot = detectBot(userAgent);
 
   let blocks: PageModuleProps[] | null = null;
+  let error = false;
 
   if (isBot) {
     try {
-      const { data } = await apolloClient.query({
+      const { data, errors } = await apolloClient.query({
         query: GET_STORE_FRONT,
       });
 
+      if (errors) {
+        error = true;
+      }
+
       blocks = data?.storefront?.blocks;
-    } catch (error) {
-      console.error(error);
+    } catch (err) {
+      error = true;
     }
   }
 
-  return { props: { blocks } };
+  return { props: { blocks, error } };
 };
