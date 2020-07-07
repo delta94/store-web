@@ -24,6 +24,8 @@ Qilin is an open-source digital distribution platform for game developers and pu
 - Authorization through [Qilin Store Auth Web](https://github.com/qilin/store-auth-web).
 - View and edit a user profile.
 
+![Qilin Storefront](qilin-store-web.png)
+
 ---
 
 ## Table of Contents
