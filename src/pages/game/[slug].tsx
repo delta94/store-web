@@ -48,21 +48,17 @@ export const getServerSideProps: GetServerSideProps = async context => {
   let game: GameType | null = null;
 
   if (isBot) {
-    try {
-      const { data, errors } = await apolloClient.query({
-        query: GET_GAME,
-        variables: { slug },
-      });
+    const { data, errors } = await apolloClient.query({
+      query: GET_GAME,
+      variables: { slug },
+      errorPolicy: 'all',
+    });
 
-      if (errors) {
-        error = true;
-      }
-
-      game = data?.gameBySlug;
-    } catch (err) {
-      console.error(err);
+    if (errors) {
       error = true;
     }
+
+    game = data?.gameBySlug;
   }
 
   return { props: { game, error } };

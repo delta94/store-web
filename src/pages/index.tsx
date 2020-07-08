@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
-import { useLazyQuery } from '@apollo/react-hooks';
 import { Container, PageModule } from 'store-library';
 import { GET_STORE_FRONT, apolloClient } from 'store-library/src/api';
 import { PageModule as PageModuleProps } from 'store-library/src/types';
@@ -18,26 +17,30 @@ interface Props {
 const Home = (props: Props) => {
   const { className, error } = props;
   const [blocks, setBlocks] = useState(props.blocks);
-  const [loadBlocks, { called, error: queryError, loading, data }] = useLazyQuery(GET_STORE_FRONT);
   const router = useRouter();
 
-  useEffect(() => {
-    if (blocks) return;
+  const loadBlocks = async () => {
+    const { data, errors } = await apolloClient.query({
+      query: GET_STORE_FRONT,
+      errorPolicy: 'all',
+    });
 
-    if (!called) {
-      loadBlocks();
+    if (errors && !data?.storefront?.blocks) {
+      router.push('/_error');
       return;
     }
 
-    if (loading) return;
-
-    const newBlocks = data?.storefront.blocks || [];
-    setBlocks(newBlocks);
-  }, [called, loading]);
+    setBlocks(data?.storefront?.blocks || []);
+  };
 
   useEffect(() => {
-    if (error || queryError) {
+    if (error) {
       router.push('/_error');
+      return;
+    }
+
+    if (!blocks) {
+      loadBlocks();
     }
   }, []);
 
@@ -85,19 +88,16 @@ export const getServerSideProps: GetServerSideProps = async context => {
   let error = false;
 
   if (isBot) {
-    try {
-      const { data, errors } = await apolloClient.query({
-        query: GET_STORE_FRONT,
-      });
+    const { data, errors } = await apolloClient.query({
+      query: GET_STORE_FRONT,
+      errorPolicy: 'all',
+    });
 
-      if (errors) {
-        error = true;
-      }
-
-      blocks = data?.storefront?.blocks;
-    } catch (err) {
+    if (errors) {
       error = true;
     }
+
+    blocks = data?.storefront?.blocks;
   }
 
   return { props: { blocks, error } };
