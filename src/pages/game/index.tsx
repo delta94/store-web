@@ -11,39 +11,31 @@ import { qu } from '~/helpers';
 const GamePage = () => {
   const router = useRouter();
   const { slug, fromSearch } = router.query;
-  const { data, error, loading } = useQuery(GET_GAME, { variables: { slug } });
+  const { data, error, loading } = useQuery(GET_GAME, { variables: { slug }, errorPolicy: 'all' });
+  const game: GameType = data?.gameBySlug;
 
   useEffect(() => {
-    if (fromSearch) {
+    if (fromSearch && game) {
       qu('myevent', {
         key: 'GAME_PAGE_VIEW_FROM_SEARCH',
         data: { slug },
       });
     }
-  }, []);
+  }, [game]);
 
   if (loading) return <PageLoading />;
 
-  const game: GameType = data?.gameBySlug;
-
-  if (error) {
-    const { graphQLErrors, networkError } = error;
-
-    if (!game) {
-      router.push('/404');
-    }
-
-    if (networkError) {
-      console.log(networkError);
-      router.push('/_error');
-    }
-
-    if (graphQLErrors) {
-      console.log(graphQLErrors);
-    }
-
+  if (error?.graphQLErrors.map(({ message }) => message).includes('ST-1006 errors.qilin.store.not_found')) {
+    router.push('/404');
     return null;
   }
+
+  if (error?.graphQLErrors && !game) {
+    router.push('/_error');
+    return null;
+  }
+
+  if (!game) return null;
 
   return (
     <>
