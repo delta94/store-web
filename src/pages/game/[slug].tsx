@@ -58,7 +58,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
       error = true;
     }
 
-    game = data?.gameBySlug;
+    game = data?.gameBySlug || null;
   }
 
   return { props: { game, error } };

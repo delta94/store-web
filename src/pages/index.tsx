@@ -97,7 +97,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
       error = true;
     }
 
-    blocks = data?.storefront?.blocks;
+    blocks = data?.storefront?.blocks || null;
   }
 
   return { props: { blocks, error } };
