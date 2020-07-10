@@ -3,12 +3,12 @@ import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { DownloadLauncherWrapper, DownloadLauncherContent } from '~/styles/primitives';
 import { WHITE, H3, GRAY_100, PURPLE_500 } from 'store-library/src/styles';
+import { PageLoading } from 'store-library';
 import { UserContext } from '~/contexts';
 import useLauncherDownload from '~/hooks/useLauncherDownload';
 
 import Instructions from './components/Instructions';
 import DownloadHint from './components/DownloadHint';
-import PageLoading from '../PageLoading';
 
 interface Props {
   className?: string;

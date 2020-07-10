@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { GET_PERSONAL_INFORMATION, UPDATE_PERSONAL_INFORMATION } from 'store-library/src/api';
 import { useQuery, useMutation } from '@apollo/react-hooks';
-import PageLoading from '~/components/PageLoading';
+import { PageLoading } from 'store-library';
 
 import Personal from './components/Personal';
 import AccountInformation from './components/AccountInformation';
