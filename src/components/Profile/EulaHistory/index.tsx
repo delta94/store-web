@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useQuery } from '@apollo/react-hooks';
-import PageLoading from '~/components/PageLoading';
+import { PageLoading } from 'store-library';
 import { GET_USER_DOCUMENTS } from 'store-library/src/api';
 
 import { ProfileWrapper, ProfileTitle, ProfileSubtitle } from '../styles';
