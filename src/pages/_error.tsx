@@ -25,7 +25,7 @@ export default Error;
 
 const Wrapper = styled.div`
   display: flex;
-  min-height: calc(100vh - 48px);
+  height: calc(100vh - 168px);
   padding: 0 16px;
   justify-content: center;
   align-items: center;
