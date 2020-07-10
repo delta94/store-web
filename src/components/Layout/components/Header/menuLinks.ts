@@ -13,7 +13,7 @@ export default [
   },
   {
     title: 'news',
-    href: '#',
+    href: '/posts',
     icon: NewsIcon,
   },
   {
