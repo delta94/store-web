@@ -2,10 +2,11 @@
 const path = require('path');
 const withTM = require('next-transpile-modules')(['store-library']);
 const withPWA = require('next-pwa');
+const withImages = require('next-images');
 
 const isProd = process.env.NODE_ENV === 'production';
 
-module.exports = withPWA(withTM({
+module.exports = withPWA(withTM(withImages({
   env: {
     API_URL: 'https://store.tst.qilin.super.com/api',
     STORE_NAME: 'Qilin',
@@ -38,4 +39,4 @@ module.exports = withPWA(withTM({
 
     return config;
   },
-}));
+})));
