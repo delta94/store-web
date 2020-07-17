@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
@@ -7,6 +7,9 @@ import { GET_STORE_FRONT, apolloClient } from 'store-library/src/api';
 import { PageModule as PageModuleProps } from 'store-library/src/types';
 import { detectBot } from '~/helpers';
 import SearchFilter from '~/components/SearchFilter';
+import { ErrorContext } from '~/components/ErrorBoundary';
+
+const ERROR_MESSAGE = 'Get StoreFront Error';
 
 interface Props {
   className?: string;
@@ -18,6 +21,7 @@ const Home = (props: Props) => {
   const { className, error } = props;
   const [blocks, setBlocks] = useState(props.blocks);
   const router = useRouter();
+  const { throwAsyncError } = useContext(ErrorContext);
 
   const loadBlocks = async () => {
     const { data, errors } = await apolloClient.query({
@@ -26,8 +30,7 @@ const Home = (props: Props) => {
     });
 
     if (errors && !data?.storefront?.blocks) {
-      router.push('/_error');
-      return;
+      throwAsyncError(new Error(ERROR_MESSAGE));
     }
 
     setBlocks(data?.storefront?.blocks || []);
@@ -35,7 +38,7 @@ const Home = (props: Props) => {
 
   useEffect(() => {
     if (error) {
-      router.push('/_error');
+      throwAsyncError(new Error(ERROR_MESSAGE));
       return;
     }
 

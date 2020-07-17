@@ -1,10 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
 import { GetServerSideProps } from 'next';
 import { Game as GameType } from 'store-library/src/types';
 import { apolloClient, GET_GAME } from 'store-library/src/api';
 import Game from '~/components/Game';
 import { detectBot } from '~/helpers';
+import { ErrorContext } from '~/components/ErrorBoundary';
+
+const ERROR_MESSAGE = 'Get Game Error by Slug';
 
 interface Props {
   game: GameType | null;
@@ -14,6 +17,7 @@ interface Props {
 const GamePage = (props: Props) => {
   const { game, error } = props;
   const router = useRouter();
+  const { throwAsyncError } = useContext(ErrorContext);
   const slug = router.query.slug;
 
   useEffect(() => {
@@ -25,7 +29,7 @@ const GamePage = (props: Props) => {
     }
 
     if (error) {
-      router.push('/_error');
+      throwAsyncError(new Error(`${ERROR_MESSAGE}: ${slug}`));
       return;
     }
 

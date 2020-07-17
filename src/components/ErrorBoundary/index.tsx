@@ -1,21 +1,44 @@
-import React, { Component } from 'react';
-import styled from 'styled-components';
-import { RED_500 } from 'store-library/src/styles';
+import React, { Component, createContext, ReactNode } from 'react';
+import { withRouter } from 'next/router';
+import { WithRouterProps } from 'next/dist/client/with-router';
 
-export default class ErrorBoundary extends Component<any, any> {
-  constructor(props: any) {
+import ErrorComponent from '../Error';
+
+interface Props extends WithRouterProps {
+  children: ReactNode;
+}
+
+interface State {
+  error: Error | null;
+}
+
+interface ContextValue {
+  throwAsyncError: (err: Error) => void;
+}
+
+export const ErrorContext = createContext<ContextValue>({
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  throwAsyncError: () => {},
+});
+
+class ErrorBoundary extends Component<Props, State> {
+  constructor(props: Props) {
     super(props);
-    this.state = {
-      hasError: false,
-      error: null,
-    };
+    this.state = { error: null };
   }
 
   static getDerivedStateFromError(error: Error) {
-    return {
-      hasError: true,
-      error,
-    };
+    return { error };
+  }
+
+  clearError = () => {
+    this.setState({ error: null });
+    this.props.router.events.off('routeChangeComplete', this.clearError);
+  }
+
+  throwAsyncError = (error: Error) => {
+    this.setState({ error });
+    this.props.router.events.on('routeChangeComplete', this.clearError);
   }
 
   componentDidCatch(error: Error, errorInfo: any) {
@@ -23,16 +46,16 @@ export default class ErrorBoundary extends Component<any, any> {
   }
 
   render() {
-    if (this.state.hasError) {
-      return <OfflineMessage>Что-то пошло не так.</OfflineMessage>;
+    if (this.state.error) {
+      return <ErrorComponent />;
     }
 
-    return this.props.children;
+    return (
+      <ErrorContext.Provider value={{ throwAsyncError: this.throwAsyncError }}>
+        {this.props.children}
+      </ErrorContext.Provider>
+    );
   }
 }
 
-const OfflineMessage = styled.h1`
-  color: ${RED_500};
-  padding-top: 36px;
-  text-align: center;
-`;
+export default withRouter(ErrorBoundary);
