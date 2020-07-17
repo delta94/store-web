@@ -28,7 +28,7 @@ const PostPage = () => {
   }
 
   if (error?.graphQLErrors && !post) {
-      throwAsyncError(new Error(`${ERROR_MESSAGE}: ${slug}`));
+    throwAsyncError(new Error(`${ERROR_MESSAGE}: ${slug}`));
     return null;
   }
 

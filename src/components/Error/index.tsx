@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
-import { H2Bold, H3, GRAY_100, PURPLE_500, buttonStyles, WHITE, Caps10Bold } from 'store-library';
+import { H2Bold, H3, GRAY_100, PURPLE_500, buttonStyles, WHITE, Caps10Bold } from 'store-library/src/styles';
 import { useTranslation } from 'react-i18next';
 
 const Error = () => {
@@ -9,7 +9,7 @@ const Error = () => {
 
   return (
     <Wrapper>
-      <Image src="/images/500.png" />
+      <Image src="/images/500.png" alt="500 error image" />
       <H2Bold>{t('titles.server_error')}</H2Bold>
       <Description>{t('titles.try_going_back')}</Description>
       <Link href="/">
