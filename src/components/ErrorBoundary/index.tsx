@@ -39,6 +39,7 @@ class ErrorBoundary extends Component<Props, State> {
   throwAsyncError = (error: Error) => {
     this.setState({ error });
     this.props.router.events.on('routeChangeComplete', this.clearError);
+    console.log(error);
   }
 
   componentDidCatch(error: Error, errorInfo: any) {
