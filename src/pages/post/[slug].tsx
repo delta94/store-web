@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { useRouter } from 'next/router';
 import { GetServerSideProps } from 'next';
 import { Post as PostType } from 'store-library/src/types';
@@ -6,6 +6,9 @@ import { apolloClient, GET_POST } from 'store-library/src/api';
 import { detectBot } from '~/helpers';
 import { Post } from 'store-library';
 import SearchFilter from '~/components/SearchFilter';
+import { ErrorContext } from '~/components/ErrorBoundary';
+
+const ERROR_MESSAGE = 'Get Post Error by Slug';
 
 interface Props {
   post: PostType | null;
@@ -15,6 +18,7 @@ interface Props {
 const PostPage = (props: Props) => {
   const { post, error } = props;
   const router = useRouter();
+  const { throwAsyncError } = useContext(ErrorContext);
   const slug = router.query.slug;
 
   useEffect(() => {
@@ -26,7 +30,7 @@ const PostPage = (props: Props) => {
     }
 
     if (error) {
-      router.push('/_error');
+      throwAsyncError(new Error(`${ERROR_MESSAGE}: ${slug}`));
       return;
     }
 

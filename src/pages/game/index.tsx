@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 import Game from '~/components/Game';
 import { GET_GAME } from 'store-library/src/api';
 import { useRouter } from 'next/router';
@@ -7,11 +7,15 @@ import { Game as GameType } from 'store-library/src/types';
 import { PageLoading } from 'store-library';
 import SearchFilter from '~/components/SearchFilter';
 import { qu } from '~/helpers';
+import { ErrorContext } from '~/components/ErrorBoundary';
+
+const ERROR_MESSAGE = 'Get Game Error by Slug';
 
 const GamePage = () => {
   const router = useRouter();
   const { slug, fromSearch } = router.query;
   const { data, error, loading } = useQuery(GET_GAME, { variables: { slug }, errorPolicy: 'all' });
+  const { throwAsyncError } = useContext(ErrorContext);
   const game: GameType = data?.gameBySlug;
 
   useEffect(() => {
@@ -31,7 +35,7 @@ const GamePage = () => {
   }
 
   if (error?.graphQLErrors && !game) {
-    router.push('/_error');
+    throwAsyncError(new Error(`${ERROR_MESSAGE}: ${slug}`));
     return null;
   }
 
