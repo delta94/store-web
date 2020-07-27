@@ -7547,9 +7547,9 @@ static-extend@^0.1.1:
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.5.0.tgz#161c7dac177659fd9811f43771fa99381478628c"
   integrity sha1-Fhx9rBd2Wf2YEfQ3cfqZOBR4Yow=
 
-"store-library@https://github.com/qilin/store-library#v1.4.23":
-  version "1.4.23"
-  resolved "https://github.com/qilin/store-library#eb11e26bc50cbeb1ead8e6afd51f7e78096dd3ce"
+"store-library@https://github.com/qilin/store-library#v1.5.0":
+  version "1.5.0"
+  resolved "https://github.com/qilin/store-library#f28fb2d214dbdcde460ab184af5f958af4b8af24"
 
 stream-browserify@^2.0.1:
   version "2.0.2"
