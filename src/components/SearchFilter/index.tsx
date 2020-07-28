@@ -1,6 +1,7 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
+import { useTranslation } from 'react-i18next';
 import { Search } from 'store-library';
 import { FilterIcon } from 'store-library/src/icons';
 import {
@@ -24,6 +25,7 @@ interface Props {
 const SearchFilter = (props: Props) => {
   const { onShowFiltersModal, className, filterCount } = props;
   const router = useRouter();
+  const { t } = useTranslation();
   const isCatalogPage = router.pathname === '/games';
 
   const handleSearchItemClick = (slug: string) => {
@@ -54,7 +56,7 @@ const SearchFilter = (props: Props) => {
           <FilterButton onClick={handleFilterClick} isCatalogPage={isCatalogPage}>
             {!!filterCount && <Bage>{filterCount}</Bage>}
             <FilterIcon />
-            <Caption13>Filter games</Caption13>
+            <Caption13>{t('titles.all_games')}</Caption13>
           </FilterButton>
         </Row>
       </Container>
@@ -73,7 +75,7 @@ const Row = styled.div`
   padding: 24px 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
 
   @media only screen and (min-width: ${SCREEN_SIZE.TABLET}) {
     padding: 32px 0;
@@ -89,7 +91,7 @@ const StyledSearch = styled(Search)`
   }
 
   @media only screen and (min-width: ${SCREEN_SIZE.TABLET}) {
-    width: 300px;
+    width: 212px;
     flex-grow: 0;
     position: relative;
   }
@@ -100,7 +102,7 @@ const FilterButton = styled.div<{ isCatalogPage: boolean }>`
   cursor: pointer;
   color: ${GRAY_100};
   min-width: 34px;
-  margin-left: 8px;
+  margin-left: 16px;
   height: 34px;
   background: ${GRAY_700};
   border-radius: 80px;
