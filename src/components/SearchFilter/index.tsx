@@ -52,6 +52,7 @@ const SearchFilter = (props: Props) => {
           <StyledSearch
             client={apolloClient}
             onGameClick={handleSearchItemClick}
+            align="right"
           />
           <FilterButton onClick={handleFilterClick} isCatalogPage={isCatalogPage}>
             {!!filterCount && <Bage>{filterCount}</Bage>}
@@ -91,7 +92,7 @@ const StyledSearch = styled(Search)`
   }
 
   @media only screen and (min-width: ${SCREEN_SIZE.TABLET}) {
-    width: 212px;
+    width: 200px;
     flex-grow: 0;
     position: relative;
   }
