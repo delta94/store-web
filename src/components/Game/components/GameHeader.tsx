@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Breadcrumbs } from 'store-library';
+import { Breadcrumbs, Scroller } from 'store-library';
 import { SCREEN_SIZE } from 'store-library/src/const';
 import SearchFilter from '~/components/SearchFilter';
 import { useTranslation } from 'react-i18next';
@@ -16,6 +16,14 @@ const mockEditions = [
   {
     edition: 'super-deluxe-edition',
     title: 'Super Deluxe Edition',
+  },
+  {
+    edition: 'super-mega-deluxe-edition',
+    title: 'Super Mega Deluxe Edition',
+  },
+  {
+    edition: 'mega-super-deluxe-edition',
+    title: 'Mega Super Deluxe Edition',
   },
   {
     edition: 'psycho-edition',
@@ -47,31 +55,35 @@ const GameHeader = (props: Props) => {
   return (
     <Wrapper className={className}>
       <SearchFilter />
-      <StyledBreadcrumbs>
-        <GameLink
-          url="/"
-          title={t('store')}
-          active={false}
-          onClick={handleRouteChange}
-        />
-        <GameLink
-          title={gameTitle}
-          active={!queryEdition}
-          url={url}
-          as={as}
-          onClick={handleRouteChange}
-        />
-        {mockEditions.map(({ edition, title }) => (
-          <GameLink
-            title={title}
-            active={queryEdition === edition}
-            key={edition}
-            url={`${url}&edition=${edition}`}
-            as={`${as}${restQuerySring ? '&' : '?'}edition=${edition}`}
-            onClick={handleRouteChange}
-          />
-        ))}
-      </StyledBreadcrumbs>
+      <StyledScroller>
+        <ScrollContent>
+          <Breadcrumbs>
+            <GameLink
+              url="/"
+              title={t('store')}
+              active={false}
+              onClick={handleRouteChange}
+            />
+            <GameLink
+              title={gameTitle}
+              active={!queryEdition}
+              url={url}
+              as={as}
+              onClick={handleRouteChange}
+            />
+            {mockEditions.map(({ edition, title }) => (
+              <GameLink
+                title={title}
+                active={queryEdition === edition}
+                key={edition}
+                url={`${url}&edition=${edition}`}
+                as={`${as}${restQuerySring ? '&' : '?'}edition=${edition}`}
+                onClick={handleRouteChange}
+              />
+            ))}
+          </Breadcrumbs>
+        </ScrollContent>
+      </StyledScroller>
     </Wrapper>
   );
 };
@@ -84,14 +96,22 @@ const Wrapper = styled.div`
   justify-content: space-between;
   margin-bottom: 24px;
 
-  @media only screen and (min-width: ${SCREEN_SIZE.TABLET}) {
+  @media only screen and (min-width: ${SCREEN_SIZE.LAPTOP}) {
     flex-direction: row-reverse;
     margin-bottom: 0;
+    align-items: center;
   }
 `;
 
-const StyledBreadcrumbs = styled(Breadcrumbs)`
-  @media only screen and (min-width: ${SCREEN_SIZE.TABLET}) {
-    margin-right: 16px;
+const StyledScroller = styled(Scroller)`
+  margin: 0 -16px;
+  
+  @media only screen and (min-width: ${SCREEN_SIZE.LAPTOP}) {
+    margin-right: 0 ;
   }
+`;
+
+const ScrollContent = styled.div`
+  padding: 0 16px;
+  display: inline-block;
 `;
