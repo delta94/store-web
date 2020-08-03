@@ -59,8 +59,8 @@ const Home = (props: Props) => {
 
   return (
     <Wrapper className={className}>
-      <SearchFilter />
       <Container>
+        <SearchFilter />
         {(blocks as PageModuleProps[]).map(({ type, items, title }, i) => (
           <PageModule
             key={`${i}_${type}`}

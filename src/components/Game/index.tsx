@@ -10,6 +10,8 @@ import {
 } from 'store-library';
 import { Game as GameType } from 'store-library/src/types';
 
+import GameHeader from './components/GameHeader';
+
 const { Row, Col } = Grid;
 
 interface Props {
@@ -22,6 +24,7 @@ const Game = (props: Props) => {
 
   return (
     <Container>
+      <GameHeader gameTitle={game.title} />
       <BlockWrapper>
         <GameMedia game={game} />
       </BlockWrapper>

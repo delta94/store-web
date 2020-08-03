@@ -18,7 +18,10 @@ const GamePage = (props: Props) => {
   const { game, error } = props;
   const router = useRouter();
   const { throwAsyncError } = useContext(ErrorContext);
-  const slug = router.query.slug;
+  const { slug, ...restQuery } = router.query;
+  const restQuerySring = Object.keys(restQuery)
+    .map(key => `${key}=${restQuery[key]}`)
+    .join('&');
 
   useEffect(() => {
     if (game) return;
@@ -33,7 +36,10 @@ const GamePage = (props: Props) => {
       return;
     }
 
-    router.push(`/game?slug=${slug}`, `/game/${slug}`);
+    router.push(
+      `/game?slug=${slug}${restQuerySring && `&${restQuerySring}`}`,
+      `/game/${slug}${restQuerySring && `?${restQuerySring}`}`,
+    );
   }, []);
 
   if (!game) return null;

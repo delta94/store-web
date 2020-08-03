@@ -8,7 +8,6 @@ import {
   Caption13,
   GRAY_100,
   GRAY_700,
-  Container,
   GRAY_900,
   PURPLE_500,
   WHITE,
@@ -47,20 +46,18 @@ const SearchFilter = (props: Props) => {
 
   return (
     <Wrapper className={className}>
-      <Container>
-        <Row>
-          <StyledSearch
-            client={apolloClient}
-            onGameClick={handleSearchItemClick}
-            align="right"
-          />
-          <FilterButton onClick={handleFilterClick} isCatalogPage={isCatalogPage}>
-            {!!filterCount && <Bage>{filterCount}</Bage>}
-            <FilterIcon />
-            <Caption13>{t('titles.all_games')}</Caption13>
-          </FilterButton>
-        </Row>
-      </Container>
+      <Row>
+        <StyledSearch
+          client={apolloClient}
+          onGameClick={handleSearchItemClick}
+          align="right"
+        />
+        <FilterButton onClick={handleFilterClick} isCatalogPage={isCatalogPage}>
+          {!!filterCount && <Bage>{filterCount}</Bage>}
+          <FilterIcon />
+          <Caption13>{t('titles.all_games')}</Caption13>
+        </FilterButton>
+      </Row>
     </Wrapper>
   );
 };
@@ -68,7 +65,7 @@ const SearchFilter = (props: Props) => {
 export default SearchFilter;
 
 const Wrapper = styled.div`
-  background: ${GRAY_900};
+  background: transparent;
 `;
 
 const Row = styled.div`
@@ -76,25 +73,22 @@ const Row = styled.div`
   padding: 24px 0;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
 
-  @media only screen and (min-width: ${SCREEN_SIZE.TABLET}) {
+  @media only screen and (min-width: ${SCREEN_SIZE.LAPTOP}) {
+    justify-content: flex-end;
     padding: 32px 0;
     margin: 0;
   }
 `;
 
 const StyledSearch = styled(Search)`
-  flex-grow: 1;
+  max-width: calc(100% - 50px);
+  width: 200px;
+  position: relative;
 
   input {
     border-radius: 100px;
-  }
-
-  @media only screen and (min-width: ${SCREEN_SIZE.TABLET}) {
-    width: 200px;
-    flex-grow: 0;
-    position: relative;
   }
 `;
 
@@ -110,12 +104,13 @@ const FilterButton = styled.div<{ isCatalogPage: boolean }>`
   justify-content: center;
   align-items: center;
   display: flex;
+  white-space: nowrap;
 
   ${Caption13} {
     display: none;
   }
 
-  @media only screen and (min-width: ${SCREEN_SIZE.LAUNCHER}) {
+  @media only screen and (min-width: ${SCREEN_SIZE.TABLET}) {
     ${({ isCatalogPage }) => isCatalogPage && 'display: none;'}
     background: none;
     width: auto;

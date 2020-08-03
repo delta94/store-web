@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 import { useQuery } from '@apollo/react-hooks';
 import { Game as GameType } from 'store-library/src/types';
 import { PageLoading } from 'store-library';
-import SearchFilter from '~/components/SearchFilter';
 import { qu } from '~/helpers';
 import { ErrorContext } from '~/components/ErrorBoundary';
 
@@ -41,12 +40,7 @@ const GamePage = () => {
 
   if (!game) return null;
 
-  return (
-    <>
-      <SearchFilter />
-      <Game game={game} />
-    </>
-  );
+  return <Game game={game} />;
 };
 
 export default React.memo(GamePage);
