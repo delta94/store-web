@@ -5,18 +5,18 @@ import { useRouter } from 'next/router';
 import { useQuery } from '@apollo/react-hooks';
 import { Game as GameType } from 'store-library/src/types';
 import { PageLoading } from 'store-library';
-import SearchFilter from '~/components/SearchFilter';
 import { qu } from '~/helpers';
 import { ErrorContext } from '~/components/ErrorBoundary';
 
 const ERROR_MESSAGE = 'Get Game Error by Slug';
 
-const GamePage = () => {
+const GameIndexPage = () => {
   const router = useRouter();
   const { slug, fromSearch } = router.query;
   const { data, error, loading } = useQuery(GET_GAME, { variables: { slug }, errorPolicy: 'all' });
   const { throwAsyncError } = useContext(ErrorContext);
   const game: GameType = data?.gameBySlug;
+  const editions: GameType[] = data?.editions || [];
 
   useEffect(() => {
     if (fromSearch && game) {
@@ -41,12 +41,7 @@ const GamePage = () => {
 
   if (!game) return null;
 
-  return (
-    <>
-      <SearchFilter />
-      <Game game={game} />
-    </>
-  );
+  return <Game game={game} editions={editions} />;
 };
 
-export default React.memo(GamePage);
+export default React.memo(GameIndexPage);

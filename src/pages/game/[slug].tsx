@@ -11,14 +11,18 @@ const ERROR_MESSAGE = 'Get Game Error by Slug';
 
 interface Props {
   game: GameType | null;
+  editions: GameType[];
   error: boolean;
 }
 
-const GamePage = (props: Props) => {
-  const { game, error } = props;
+const GameSlugPage = (props: Props) => {
+  const { game, editions, error } = props;
   const router = useRouter();
   const { throwAsyncError } = useContext(ErrorContext);
-  const slug = router.query.slug;
+  const { slug, ...restQuery } = router.query;
+  const restQuerySring = Object.keys(restQuery)
+    .map(key => `${key}=${restQuery[key]}`)
+    .join('&');
 
   useEffect(() => {
     if (game) return;
@@ -33,15 +37,18 @@ const GamePage = (props: Props) => {
       return;
     }
 
-    router.push(`/game?slug=${slug}`, `/game/${slug}`);
+    router.push(
+      `/game?slug=${slug}${restQuerySring && `&${restQuerySring}`}`,
+      `/game/${slug}${restQuerySring && `?${restQuerySring}`}`,
+    );
   }, []);
 
   if (!game) return null;
 
-  return <Game game={game} />;
+  return <Game game={game} editions={editions} />;
 };
 
-export default React.memo(GamePage);
+export default React.memo(GameSlugPage);
 
 export const getServerSideProps: GetServerSideProps = async context => {
   const slug = context.params?.slug;
@@ -50,6 +57,7 @@ export const getServerSideProps: GetServerSideProps = async context => {
   let error = false;
 
   let game: GameType | null = null;
+  let editions: GameType[] = [];
 
   if (isBot) {
     const { data, errors } = await apolloClient.query({
@@ -63,7 +71,8 @@ export const getServerSideProps: GetServerSideProps = async context => {
     }
 
     game = data?.gameBySlug || null;
+    editions = data?.editions || [];
   }
 
-  return { props: { game, error } };
+  return { props: { game, editions, error } };
 };
