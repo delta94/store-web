@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Breadcrumbs } from 'store-library';
+import { Breadcrumbs, Scroller } from 'store-library';
 import { SCREEN_SIZE } from 'store-library/src/const';
 import SearchFilter from '~/components/SearchFilter';
 import { useTranslation } from 'react-i18next';
@@ -67,7 +67,7 @@ const GameHeader = (props: Props) => {
   );
 };
 
-export default GameHeader;
+export default React.memo(GameHeader);
 
 const Wrapper = styled.div`
   display: flex;
@@ -79,20 +79,6 @@ const Wrapper = styled.div`
     flex-direction: row-reverse;
     margin-bottom: 0;
     align-items: center;
-  }
-`;
-
-const Scroller = styled.div`
-  overflow-x: scroll;
-  overflow-y: hidden;
-
-  /* hiding scrollbar */
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-
-  ::-webkit-scrollbar {
-    display: none;
-    -webkit-appearance: none;
   }
 `;
 
