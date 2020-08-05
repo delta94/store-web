@@ -1,43 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Breadcrumbs, Scroller } from 'store-library';
+import { Breadcrumbs } from 'store-library';
 import { SCREEN_SIZE } from 'store-library/src/const';
 import SearchFilter from '~/components/SearchFilter';
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
+import { Game } from 'store-library/src/types';
 
 import GameLink from './GameLink';
-
-const mockEditions = [
-  {
-    edition: 'deluxe-edition',
-    title: 'Deluxe Edition',
-  },
-  {
-    edition: 'super-deluxe-edition',
-    title: 'Super Deluxe Edition',
-  },
-  {
-    edition: 'super-mega-deluxe-edition',
-    title: 'Super Mega Deluxe Edition',
-  },
-  {
-    edition: 'mega-super-deluxe-edition',
-    title: 'Mega Super Deluxe Edition',
-  },
-  {
-    edition: 'psycho-edition',
-    title: 'Psycho Edition',
-  },
-];
 
 interface Props {
   className?: string;
   gameTitle: string;
+  editions: Game[];
 }
 
 const GameHeader = (props: Props) => {
-  const { className, gameTitle } = props;
+  const { className, gameTitle, editions } = props;
   const { t } = useTranslation();
   const { query, push } = useRouter();
   const { slug, edition: queryEdition, ...restQuery } = query;
@@ -60,7 +39,7 @@ const GameHeader = (props: Props) => {
           <Breadcrumbs>
             <GameLink
               url="/"
-              title={t('store')}
+              title={t('routes.store')}
               active={false}
               onClick={handleRouteChange}
             />
@@ -71,13 +50,13 @@ const GameHeader = (props: Props) => {
               as={as}
               onClick={handleRouteChange}
             />
-            {mockEditions.map(({ edition, title }) => (
+            {editions.map(({ slug: editionSlug, title }) => (
               <GameLink
                 title={title}
-                active={queryEdition === edition}
-                key={edition}
-                url={`${url}&edition=${edition}`}
-                as={`${as}${restQuerySring ? '&' : '?'}edition=${edition}`}
+                active={queryEdition === editionSlug}
+                key={editionSlug}
+                url={`${url}&edition=${editionSlug}`}
+                as={`${as}${restQuerySring ? '&' : '?'}edition=${editionSlug}`}
                 onClick={handleRouteChange}
               />
             ))}
@@ -100,6 +79,20 @@ const Wrapper = styled.div`
     flex-direction: row-reverse;
     margin-bottom: 0;
     align-items: center;
+  }
+`;
+
+const Scroller = styled.div`
+  overflow-x: scroll;
+  overflow-y: hidden;
+
+  /* hiding scrollbar */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  ::-webkit-scrollbar {
+    display: none;
+    -webkit-appearance: none;
   }
 `;
 
