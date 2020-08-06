@@ -3,7 +3,7 @@ import { GET_POST } from 'store-library/src/api';
 import { useRouter } from 'next/router';
 import { useQuery } from '@apollo/react-hooks';
 import { Post as PostType } from 'store-library/src/types';
-import { PageLoading, Post } from 'store-library';
+import { PageLoading, Post, Container } from 'store-library';
 import SearchFilter from '~/components/SearchFilter';
 import { ErrorContext } from '~/components/ErrorBoundary';
 import { useTranslation } from 'react-i18next';
@@ -46,7 +46,9 @@ const PostPage = () => {
 
   return (
     <>
-      <SearchFilter />
+      <Container>
+        <SearchFilter />
+      </Container>
       <Post post={post} />
     </>
   );
