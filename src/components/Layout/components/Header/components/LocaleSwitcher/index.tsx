@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import { Caps11, GRAY_100, WHITE } from 'store-library/src/styles';
@@ -13,7 +13,7 @@ interface Props {
 const LocaleSwitcher = (props: Props) => {
   const { className } = props;
   const { i18n } = useTranslation();
-  const [activeLang, setActiveLang] = useState(i18n.language);
+  const [activeLang, setActiveLang] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const displayedLang = activeLang.slice(0, 2);
   const toggleOpen = () => setIsOpen(!isOpen);
@@ -29,6 +29,10 @@ const LocaleSwitcher = (props: Props) => {
       {displayedLang}
     </ActiveLang>
   );
+
+  useEffect(() => {
+    setActiveLang(i18n.language);
+  }, []);
 
   return (
     <Wrapper
