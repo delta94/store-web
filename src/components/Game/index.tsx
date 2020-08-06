@@ -36,7 +36,7 @@ const GamePage = (props: Props) => {
       </BlockWrapper>
       <Row gap="40px">
         <Col xs={12} sm={7} lg={8}>
-          {!activeEdition && editions.length && (
+          {!activeEdition && !!editions.length && (
             <BlockWrapper>
               <Editions editions={editions} />
             </BlockWrapper>
