@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Catalog } from 'store-library';
+import { Catalog, Container } from 'store-library';
 import SearchFilter from '~/components/SearchFilter';
 import apolloClient from '~/apolloClient';
 import { useRouter } from 'next/router';
@@ -75,7 +75,9 @@ const GamesPage = () => {
 
   return (
     <>
-      <SearchFilter onShowFiltersModal={handleShowFiltersModal} filterCount={filterCount} />
+      <Container>
+        <SearchFilter onShowFiltersModal={handleShowFiltersModal} filterCount={filterCount} />
+      </Container>
       <Catalog
         initialFilter={initialFilter}
         onChangeFilter={handleChangeFilter}
