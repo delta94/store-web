@@ -8,7 +8,7 @@ import { useHideableError } from 'store-library/src/hooks';
 import { PURPLE_500, RED_500, WHITE, ORANGE_500 } from 'store-library/src/styles';
 
 import PasswordInput from '../components/PasswordInput';
-import validate from '../validate';
+import validate from './validate';
 import { ProfileInput, ProfileLabel } from '../../styles';
 
 const { Col, Row } = Grid;
