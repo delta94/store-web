@@ -85,7 +85,7 @@ const StyledLink = styled.a<{ active?: boolean }>`
 `;
 
 const DownloadLink = styled.a`
-  ${buttonStyles}
+  ${buttonStyles as any}
   display: flex;
   align-items: center;
   padding: 10px 20px;

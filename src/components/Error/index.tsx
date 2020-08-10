@@ -46,5 +46,5 @@ const Description = styled(H3)`
 `;
 
 const GoToMainLink = styled.a`
-  ${buttonStyles};
+  ${buttonStyles as any};
 `;

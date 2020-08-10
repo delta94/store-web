@@ -2,18 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
 import ProfileLayout from '~/components/Profile/ProfileLayout';
+import SignInAndSecurity from '~/components/Profile/SignInAndSecurity';
+import useProtectedPage from '~/hooks/useProtectedPage';
 
 interface Props {
   className?: string;
 }
 
 const PersonalInformation = (props: Props) => {
-  const { className } = props;
-  const { t } = useTranslation();
+  useProtectedPage();
 
   return (
     <ProfileLayout>
-      PersonalInformation
+      <SignInAndSecurity />
     </ProfileLayout>
   );
 };

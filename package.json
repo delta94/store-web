@@ -15,6 +15,7 @@
     "apollo-client": "^2.6.8",
     "apollo-link-http": "^1.5.16",
     "bowser": "^2.9.0",
+    "formik": "^2.1.5",
     "graphql": "^14.6.0",
     "graphql-tag": "^2.10.3",
     "i18next": "^19.4.1",
