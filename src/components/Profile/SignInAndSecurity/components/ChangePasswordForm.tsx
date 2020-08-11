@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import { useTranslation } from 'react-i18next';
+import { useMutation } from '@apollo/react-hooks';
 import { useFormik } from 'formik';
 import { Grid, Button } from 'store-library';
-import { CHANGE_PASSWORD, apolloClient } from 'store-library/src/api';
+import { CHANGE_PASSWORD } from 'store-library/src/api';
 import { useHideableError } from 'store-library/src/hooks';
 import { PURPLE_500, RED_500, WHITE, ORANGE_500 } from 'store-library/src/styles';
+import { getTranslationTitleFromError } from 'store-library/src/helpers';
 
 import PasswordInput from '../components/PasswordInput';
 import validate from './validate';
@@ -19,9 +21,9 @@ interface Props {
 
 const ChangePasswordForm = (props: Props) => {
   const { className } = props;
-  const [loading, setLoading] = useState(false);
   const { t } = useTranslation();
   const [formError, setFormError] = useHideableError(3000);
+  const [updatePasswort, { error, loading }] = useMutation(CHANGE_PASSWORD);
 
   const formik = useFormik({
     initialValues: {
@@ -32,23 +34,22 @@ const ChangePasswordForm = (props: Props) => {
     onSubmit: async values => {
       const { currentPassword, newPassword } = values;
 
-      setLoading(true);
-
-      apolloClient.mutate({
-        mutation: CHANGE_PASSWORD,
+      updatePasswort({
         variables: {
           old: currentPassword,
           new: newPassword,
         },
-      })
-        .then(() => {
-          formik.resetForm();
-        })
-        .catch(err => setFormError(err.message))
-        .finally(() => setLoading(false));
+      });
     },
     validate,
   });
+
+  useEffect(() => {
+    if (!error) return;
+
+    const errorTitle = getTranslationTitleFromError(error.message) || 'errors.unknown_error';
+    setFormError(t(errorTitle));
+  }, [error]);
 
   return (
     <Wrapper className={className} onSubmit={formik.handleSubmit}>
@@ -71,7 +72,11 @@ const ChangePasswordForm = (props: Props) => {
             error={formik.touched.currentPassword && !!formik.errors.currentPassword}
           />
           <ErrorMessage>
-            {formik.errors.currentPassword && t(`labels.${formik.errors.currentPassword}`)}
+            {
+              formik.touched.currentPassword && 
+              !!formik.errors.currentPassword && 
+              t(formik.errors.currentPassword)
+            }
           </ErrorMessage>
         </Col>
         <Col xs={12} sm={6}></Col>
@@ -91,7 +96,11 @@ const ChangePasswordForm = (props: Props) => {
             error={formik.touched.newPassword && !!formik.errors.newPassword}
           />
           <ErrorMessage>
-            {formik.errors.newPassword && t(`labels.${formik.errors.newPassword}`)}
+            {
+              formik.touched.newPassword &&
+              !!formik.errors.newPassword &&
+              t(formik.errors.newPassword)
+            }
           </ErrorMessage>
         </Col>
         <Col xs={12} sm={6}></Col>
@@ -108,10 +117,17 @@ const ChangePasswordForm = (props: Props) => {
             value={formik.values.newPasswordAgain}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            error={formik.touched.newPasswordAgain && !!formik.errors.newPasswordAgain}
+            error={
+              (formik.touched.newPasswordAgain || formik.touched.newPassword) && 
+              !!formik.errors.newPasswordAgain
+            }
           />
           <ErrorMessage>
-            {formik.errors.newPasswordAgain && t(`labels.${formik.errors.newPasswordAgain}`)}
+            {
+              (formik.touched.newPasswordAgain || formik.touched.newPassword) &&
+              !!formik.errors.newPasswordAgain &&
+              t(formik.errors.newPasswordAgain)
+            }
           </ErrorMessage>
         </Col>
         <Col xs={12} sm={6}></Col>
