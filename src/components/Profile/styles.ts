@@ -1,6 +1,38 @@
-import styled from 'styled-components';
-import { WHITE_01, GRAY_700, WHITE, H2Bold, Caption13, Caps10, GRAY_100, PURPLE_500 } from 'store-library/src/styles';
-import { SCREEN_SIZE, Button } from 'store-library';
+import styled, { css } from 'styled-components';
+import {
+  WHITE_01,
+  GRAY_700,
+  WHITE,
+  H2Bold,
+  Caption13,
+  Caps10,
+  GRAY_100,
+  PURPLE_500,
+  RED_500,
+} from 'store-library/src/styles';
+import { Button } from 'store-library';
+import { SCREEN_SIZE } from 'store-library/src/const';
+
+export const profileInputStyles = css<{ error?: boolean }>`
+  width: 100%;
+  border: 1px solid ${WHITE_01};
+  border-radius: 4px;
+  background-color: transparent;
+  padding: 9px 12px;
+  outline: none;
+  color: ${WHITE};
+  font-size: 13px;
+  line-height: 18px;
+  margin-bottom: 16px;
+
+  :focus {
+    border-color: ${PURPLE_500};
+  }
+
+  ${({ error }) => error && `
+    border-color: ${RED_500};
+  `}
+`;
 
 export const ProfileWrapper = styled.section`
   background: ${GRAY_700};
@@ -33,21 +65,8 @@ export const ProfileLabel = styled(Caps10)`
   margin-bottom: 6px;
 `;
 
-export const ProfileInput = styled.input`
-  width: 100%;
-  border: 1px solid ${WHITE_01};
-  border-radius: 4px;
-  background-color: transparent;
-  padding: 9px 12px;
-  outline: none;
-  color: ${WHITE};
-  font-size: 13px;
-  line-height: 18px;
-  margin-bottom: 16px;
-
-  :focus {
-    border-color: ${PURPLE_500};
-  }
+export const ProfileInput = styled.input<{ error?: boolean }>`
+  ${profileInputStyles}
 `;
 
 export const ProfileSelect = styled.select`
