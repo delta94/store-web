@@ -54,4 +54,4 @@ const PostPage = () => {
   );
 };
 
-export default React.memo(PostPage);
+export default PostPage;

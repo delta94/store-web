@@ -25,4 +25,4 @@ const PostsPage = () => {
   );
 };
 
-export default React.memo(PostsPage);
+export default PostsPage;
