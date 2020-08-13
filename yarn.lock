@@ -7614,7 +7614,7 @@ static-extend@^0.1.1:
 
 "store-library@https://github.com/qilin/store-library#bugs/QIL-10696":
   version "1.5.12"
-  resolved "https://github.com/qilin/store-library#6a704f34c8f0ae57e10eb63e51a66f0b93ba3f50"
+  resolved "https://github.com/qilin/store-library#df88d9c7e094faae0d84aa4ed3e007211a3bf0f8"
 
 stream-browserify@^2.0.1:
   version "2.0.2"
