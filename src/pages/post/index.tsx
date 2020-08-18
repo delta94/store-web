@@ -23,12 +23,8 @@ const PostPage = () => {
   const post: PostType = data?.postBySlug;
 
   useEffect(() => {
-    i18n.on('languageChanged', refetch);
-
-    return () => {
-      i18n.off('languageChanged', refetch);
-    };
-  }, []);
+    refetch();
+  }, [i18n.language]);
 
   if (loading) return <PageLoading />;
 
