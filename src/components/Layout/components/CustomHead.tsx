@@ -23,7 +23,6 @@ const CustomHead = () => (
     <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.json" />
     <link rel="shortcut icon" href="/icons/favicon.ico" />
-    <script src="https://cdn.pay.super.com/paysdk/dev/paysuper.js"></script>
     <script
       dangerouslySetInnerHTML={{
         __html: `

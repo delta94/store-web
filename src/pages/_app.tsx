@@ -14,6 +14,13 @@ import Layout from '~/components/Layout';
 import { getCookie } from '~/helpers';
 
 class MyApp extends App {
+  componentDidMount() {
+    const script = document.createElement('script');
+
+    script.src = 'https://cdn.pay.super.com/paysdk/dev/paysuper.js';
+    document.head.appendChild(script);
+  }
+
   render() {
     const { Component, pageProps } = this.props;
 
