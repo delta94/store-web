@@ -65,7 +65,7 @@ const Subtitle = styled(H3)`
 `;
 
 const DownloadLink = styled.a`
-  ${buttonStyles}
+  ${buttonStyles as any}
   display: flex;
   align-items: center;
   padding: 20px 36px;
